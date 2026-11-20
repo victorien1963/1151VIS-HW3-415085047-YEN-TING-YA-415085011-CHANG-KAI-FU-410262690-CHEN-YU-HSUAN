@@ -175,6 +175,8 @@ html, body { margin: 0; background: #0a0f1c; }
 @media (hover: none) { .zoom-hint, .panel-head .zoom-reset { display: none; } }
 .panel h4 { font-size: 14px; margin: 0 0 2px; color: var(--text-secondary); font-weight: 600; }
 .sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 10px; max-width: 52em; }
+/* 圖 2、圖 5 的說明佔滿整行（其他圖的說明維持寬度上限） */
+.sub.sub-full { max-width: none; }
 
 .map-panel { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, 1fr); gap: 20px; align-items: start; }
 @media (max-width: 860px) { .map-panel { grid-template-columns: 1fr; } }
