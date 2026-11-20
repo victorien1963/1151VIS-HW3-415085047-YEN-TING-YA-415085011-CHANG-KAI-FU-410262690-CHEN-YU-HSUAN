@@ -122,6 +122,15 @@
     }));
   }
 
+  // ---------- 觸控判斷 ----------
+  // 手指碰到時若馬上換掉畫面上的內容（提示框、預覽），手機瀏覽器會把這一下當成「滑過」而不觸發點擊，
+  // 所以最近一次操作是觸控或觸控筆時，不顯示提示框、不做滑過預覽，點一下直接選取。
+  let inputType = 'mouse';
+  window.addEventListener('pointerover', (e) => { inputType = e.pointerType || 'mouse'; }, true);
+  window.addEventListener('pointerdown', (e) => { inputType = e.pointerType || 'mouse'; }, true);
+  window.addEventListener('keydown', () => { inputType = 'keyboard'; }, true);
+  const isTouchInput = () => inputType === 'touch' || inputType === 'pen';
+
   // ---------- 提示框 ----------
   const tip = document.querySelector('.tooltip');
   function tipContent(title, rows, text) {
@@ -155,6 +164,7 @@
     }
   }
   function placeTip(x, y) {
+    if (isTouchInput()) return;
     tip.hidden = false;
     const box = tip.getBoundingClientRect();
     let left = x + 14;
@@ -198,6 +208,7 @@
     views.forEach((v) => v.run('select'));
   }
   function setHover(date, source) {
+    if (date != null && isTouchInput()) return;
     if (state.hover === date) return;
     state.hover = date;
     views.filter((v) => v.hover && v.name !== source).forEach((v) => v.run('hover'));
