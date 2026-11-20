@@ -56,16 +56,16 @@
       <article class="story-step">
         <h2>被轉傳的是什麼？</h2>
         <p>每顆泡泡是一篇熱門貼文，從它所屬的那場車掃冒出來；越大顆，互動越多。</p>
-        <p>白色泡泡是一般民眾，加光暈的是追蹤者不到 600 人的帳號。外圈顏色是場次，銀灰色外圈是蔣萬安。</p>
+        <p>白色泡泡是一般民眾，畫斜線的是原文點名的小帳號（追蹤者不到 600 人）。外圈顏色是場次，藍色外圈是蔣萬安。</p>
       </article>
       <article class="story-step">
         <h2>沈伯洋的熱門互動，六成來自一般民眾與個人帳號</h2>
-        <p>依發文者分群：沈伯洋的熱門貼文，一般民眾和個人帳號拿下 61% 的互動；蔣萬安是 27%。5 個追蹤者不到 600 人的帳號，各有 3.9 萬到 6.2 萬次互動，都在 Threads。</p>
+        <p>依發文者分群：沈伯洋的熱門貼文，一般民眾和個人帳號拿下 61% 的互動；蔣萬安是 27%。原文點名 5 個追蹤者不到 600 人的帳號（畫斜線的泡泡），各有 3.9 萬到 6.2 萬次互動，都在 Threads。</p>
         <p>被轉傳的是船舵、健身教練、動畫角色的衣服、洋蔥、太太的舉牌等現場畫面。</p>
       </article>
       <article class="story-step">
         <h2>蔣萬安走夜市，有 2 場隔天討論變多</h2>
-        <p>銀灰色光點是蔣萬安的夜市、市場掃街，越大越亮代表那場當天或隔天的討論越多。他的熱門貼文多是政治人物、評論者與媒體的攻防。</p>
+        <p>藍色光點是蔣萬安的夜市、市場掃街，越大越亮代表那場當天或隔天的討論越多。他的熱門貼文多是政治人物、評論者與媒體的攻防。</p>
         <p>7 場裡有 2 場隔天討論反而變多：10/27 內湖 737 夜市（隔天他身體不適、取消行程），11/6 遼寧夜市（走進挺沈伯洋的水餃店「又一村」引發爭議）。</p>
       </article>
       <article class="story-step">
@@ -77,7 +77,7 @@
   </section>
 
   <section class="explore" aria-labelledby="explore-title">
-    <h2 id="explore-title" class="explore-title">自己探索</h2>
+    <h2 id="explore-title" class="explore-title">自由探索</h2>
     <nav class="session-picker" aria-label="選擇車掃場次">
       <span class="picker-label">選一場車掃</span>
       <div class="chips" role="group"></div>
@@ -85,21 +85,21 @@
 
     <section class="panel map-panel">
       <div class="map-col">
-        <h3>圖 1　洋流地圖</h3>
+        <div class="panel-head"><h3>圖 1　洋流地圖</h3><button type="button" class="clear-sel" data-clear="session">清除選取</button></div>
         <p class="sub">點一塊看那場車掃的細節；按播放看每天的變化，或拖曳下方時間軸。區塊和光點的亮度，都是地圖上方那一天全台的掃街相關討論量，不是各區各自的量；左上角的亮度條可以對照筆數，白色三角形是目前這一天。</p>
-        <p class="sub">銀灰色光點是蔣萬安的夜市、市場掃街（依地名標的約略位置；10/29 夫人代打沒有地點，未標）。只有最近一場會放大：點越大越亮，代表那天和蔣萬安掃街有關的討論越多；已經過去的場次縮成小點，還沒到的場次最暗。</p>
+        <p class="sub">藍色光點是蔣萬安的夜市、市場掃街（依地名標的約略位置；10/29 夫人代打沒有地點，未標）。只有最近一場會放大：點越大越亮，代表那天和蔣萬安掃街有關的討論越多；已經過去的場次縮成小點，還沒到的場次最暗。</p>
         <div class="chart" data-chart="map"></div>
       </div>
       <aside class="detail-card" aria-live="polite"></aside>
     </section>
 
     <section class="panel">
-      <h3>圖 2　熱門貼文泡泡圖</h3>
-      <p class="sub">沈伯洋每場取當天與隔天互動最高的 3 篇，蔣萬安每場取 2 篇。泡泡越大，互動越多；填色是發文者類型（白＝一般民眾、灰＝個人帳號、深＝公眾帳號），外圈是場次顏色，光暈是追蹤者不到 600 人。</p>
+      <div class="panel-head"><h3>圖 2　熱門貼文泡泡圖</h3><button type="button" class="clear-sel" data-clear="bubbles">清除選取</button></div>
+      <p class="sub">沈伯洋每場取當天與隔天互動最高的 3 篇，蔣萬安每場取 2 篇。泡泡越大，互動越多；填色是發文者類型（白＝一般民眾、灰＝個人帳號、深＝公眾帳號），外圈是場次顏色，斜線是原文點名的小帳號（追蹤者不到 600 人）。</p>
       <div class="grouping" role="group" aria-label="泡泡分群方式">
-        <button type="button" data-grouping="type" aria-pressed="true">依發文者類型</button>
+        <button type="button" data-grouping="map" aria-pressed="true">依地點</button>
         <button type="button" data-grouping="session" aria-pressed="false">依場次</button>
-        <button type="button" data-grouping="map" aria-pressed="false">依地點</button>
+        <button type="button" data-grouping="type" aria-pressed="false">依發文者類型</button>
       </div>
       <p class="bubble-headline"></p>
       <div class="chart" data-chart="bubbles"></div>
@@ -107,14 +107,15 @@
     </section>
 
     <section class="panel">
-      <h3>圖 3　每天有多少和車掃有關的討論</h3>
+      <div class="panel-head"><h3>圖 3　每天有多少和車掃有關的討論</h3><button type="button" class="clear-sel" data-clear="session">清除選取</button></div>
       <p class="sub">沈伯洋掃街相關貼文，每日筆數（Threads、Facebook、新聞網站、YouTube 影片數）。線段顏色是最近一場車掃，圓點是車掃當天。</p>
       <div class="chart" data-chart="overview"></div>
     </section>
 
     <section class="panel">
-      <h3>圖 4　把每一場對齊到「掃街當天」：隔天剩多少？</h3>
+      <div class="panel-head"><h3>圖 4　把每一場對齊到「掃街當天」：隔天剩多少？</h3><div class="panel-actions"><button type="button" class="zoom-reset" disabled>還原縮放</button><button type="button" class="clear-sel" data-clear="decay">清除選取</button></div></div>
       <p class="sub">當天的筆數算 100%，畫前後各 3 天。兩人的查詢會重疊，只比起伏，不比高低。蔣萬安的掃街日期和沈伯洋的車掃對不上，他的小圖獨立選取。</p>
+      <p class="zoom-hint">游標在圖上時，滾動滑鼠滾輪或用觸控板兩指開合可以放大縮小橫軸，放大後可以左右拖曳；縮回原寬或放到最大後再滾，就會繼續捲動網頁。</p>
       <div class="facets">
         <div class="facet">
           <h4>沈伯洋 · 6 場車掃</h4>
@@ -128,8 +129,9 @@
     </section>
 
     <section class="panel">
-      <h3>圖 5　車掃當天，提到沈伯洋的討論比前 3 天多了多少？</h3>
-      <p class="sub">每列一場：空心點是前 3 天平均，實心點是車掃當天。橫軸是對數刻度，每一格是 1.25 倍；倍數相同的兩場，線一樣長。沒有車掃的週末，當天平均是前 3 天的 0.99 倍（中位數），灰色兩場受辯論影響，不列入比較。</p>
+      <div class="panel-head"><h3>圖 5　車掃當天，提到沈伯洋的討論比前 3 天多了多少？</h3><div class="panel-actions"><button type="button" class="zoom-reset" disabled>還原縮放</button><button type="button" class="clear-sel" data-clear="session">清除選取</button></div></div>
+      <p class="sub">每列一場：空心點是前 3 天平均，實心點是車掃當天。橫軸是對數刻度，每一格是 1.25 倍；倍數相同的兩場，線一樣長。沒有車掃的週末，當天平均是前 3 天的 0.99 倍（中位數），線較淡、當天點加黑色星號的兩場受辯論影響，不列入比較。</p>
+      <p class="zoom-hint">游標在圖上時，滾動滑鼠滾輪或用觸控板兩指開合可以放大縮小橫軸，放大後可以左右拖曳；縮回原寬或放到最大後再滾，就會繼續捲動網頁。</p>
       <div class="chart" data-chart="lift"></div>
     </section>
 
@@ -137,7 +139,7 @@
       <details>
         <summary>原圖的問題與這版的改法</summary>
         <ol>
-          <li><strong>原圖二（前 3 天 vs 當天長條圖）</strong>：重點是 1.03～1.27 倍，但長條從 0 畫起，差 3%～27% 看起來幾乎一樣高；最搶眼的反而是文章說不列入比較的 1.80 倍。這版改成點圖，只看兩點的距離，被排除的場次改成灰色並寫出原因。</li>
+          <li><strong>原圖二（前 3 天 vs 當天長條圖）</strong>：重點是 1.03～1.27 倍，但長條從 0 畫起，差 3%～27% 看起來幾乎一樣高；最搶眼的反而是文章說不列入比較的 1.80 倍。這版改成點圖，只看兩點的距離，被排除的兩場保留場次顏色，但線畫得比較淡、當天點加星號（星號＝有但書），並寫出原因。</li>
           <li><strong>原圖三（每日折線）</strong>：要講「熱度延續兩三天」，讀者卻得自己數高峰後每天掉多少；而且它和原圖四的上半張是同一條線。這版用洋流地圖播放每天的變化，並另做「對齊當天」的圖，直接看隔天、後天剩幾成。</li>
           <li><strong>原圖四（沈、蔣上下兩張折線）</strong>：兩張刻度不同、標籤重疊，蔣萬安的重點「隔天反而變多」看不出來。這版兩人用同一個百分比刻度，各自對齊自己的掃街日。</li>
           <li><strong>兩張熱門貼文表</strong>：結論是「沈這邊多是一般民眾、蔣這邊多是政治人物與媒體」，但 32 列文字要讀者自己數。這版用泡泡圖，可以依發文者類型、場次、地點分群。</li>

@@ -37,8 +37,9 @@
   const sessionByDate = new Map(sessions.map((s) => [s.date, s]));
   const sessionByDistrict = new Map(sessions.flatMap((s) => s.districts.map((d) => [d, s])));
 
-  // 兩位候選人都不用政黨色（綠、藍）：沈伯洋各場用場次色，蔣萬安用中性的銀灰。
-  const CHIANG_COLOR = '#c3cad8';
+  // 沈伯洋各場用場次色；蔣萬安統一用中等亮度的藍色：在深色背景上對比約 4:1，
+  // 和 6 個場次色（最接近的是 10/18 紫、10/11 淺藍）、泡泡的白／灰／深填色都分得開。
+  const CHIANG_COLOR = '#4a6cf7';
   // 夜市位置是我們依地名標的約略座標；10/29 太太代為走的市場原文沒有地點，不標。
   const CHIANG_SPOTS = [
     // dx／dy／anchor 是標籤相對光點的位置，避免彼此重疊
@@ -62,6 +63,8 @@
     { key: '個人帳號', label: '個人帳號（追蹤者上萬）', fill: '#9aa6bd', text: '#0a0f1c' },
     { key: '公眾帳號', label: '公眾帳號（政治人物、評論者、粉專、媒體）', fill: '#34405a', text: '#e9edf5' },
   ];
+  // 斜線底紋的線色：比白色暗、但不至於讓白色泡泡看起來像灰色的「個人帳號」。
+  const HATCH_INK = '#4a5470';
   const authorTypeOf = (post) => (post.category === '一般民眾' || post.category === '個人帳號' ? post.category : '公眾帳號');
   const authorInfo = (key) => AUTHOR_TYPES.find((a) => a.key === key);
   const ringColor = (post) => (post.candidate === 'shen' ? sessionByDate.get(post.date).color : CHIANG_COLOR);
@@ -127,18 +130,30 @@
   // 每張圖都附圖例。items：{ type, color, label }；type 決定前面小圖示的畫法。
   const SURFACE = '#111829';
   const REF = '#77829a';
+  // 星號：三條穿過圓心的線，臂長約為圓半徑的 0.65，用黑色畫在場次色的實心點上。
+  // 用在「受辯論影響、不列入比較」的車掃當天點，星號在這裡是「有但書」的意思。
+  const STAR_INK = '#0a0f1c';
+  function asteriskD(cx, cy, r) {
+    const a = r * 0.65;
+    return [90, 30, 150].map((deg) => {
+      const dx = a * Math.cos((deg * Math.PI) / 180);
+      const dy = a * Math.sin((deg * Math.PI) / 180);
+      return `M${(cx - dx).toFixed(2)},${(cy - dy).toFixed(2)}L${(cx + dx).toFixed(2)},${(cy + dy).toFixed(2)}`;
+    }).join('');
+  }
   function swatchSvg(it) {
     const c = it.color || '#ffffff';
     const svg = (wd, ht, body) => `<svg width="${wd}" height="${ht}" viewBox="0 0 ${wd} ${ht}" aria-hidden="true">${body}</svg>`;
     switch (it.type) {
       case 'dot': return svg(14, 14, `<circle cx="7" cy="7" r="5" fill="${c}"/>`);
+      case 'star-dot': return svg(14, 14, `<circle cx="7" cy="7" r="5.5" fill="${c}"/><path d="${asteriskD(7, 7, 5.5)}" stroke="${STAR_INK}" stroke-width="1.4" stroke-linecap="round"/>`);
       case 'hollow': return svg(14, 14, `<circle cx="7" cy="7" r="4.5" fill="${SURFACE}" stroke="${c}" stroke-width="2"/>`);
       case 'fill': return svg(16, 16, `<circle cx="8" cy="8" r="6.5" fill="${c}" stroke="#77829a" stroke-width="1"/>`);
       case 'ring': return svg(16, 16, `<circle cx="8" cy="8" r="6" fill="${SURFACE}" stroke="${c}" stroke-width="2.5"/>`);
       case 'dashed-ring': return svg(16, 16, `<circle cx="8" cy="8" r="6" fill="none" stroke="${c}" stroke-width="2" stroke-dasharray="3 2.5"/>`);
-      case 'glow': return svg(20, 20, `<circle cx="10" cy="10" r="9" fill="#ffffff" opacity="0.28"/><circle cx="10" cy="10" r="6" fill="#ffffff"/>`);
-      case 'silver-dot': return svg(20, 20, `<circle cx="10" cy="10" r="9" fill="${c}" opacity="0.35"/><circle cx="10" cy="10" r="4.5" fill="${c}"/>`);
-      case 'line': return svg(22, 10, `<line x1="2" x2="20" y1="5" y2="5" stroke="${c}" stroke-width="3" stroke-linecap="round"/>`);
+      case 'hatch': return svg(16, 16, `<defs><pattern id="lg-hatch-${it.id}" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><rect width="5" height="5" fill="${c}"/><line x1="0" x2="0" y1="0" y2="5" stroke="${HATCH_INK}" stroke-width="1.2"/></pattern></defs><circle cx="8" cy="8" r="6.5" fill="url(#lg-hatch-${it.id})" stroke="#77829a" stroke-width="1"/>`);
+      case 'glow-dot': return svg(20, 20, `<circle cx="10" cy="10" r="9" fill="${c}" opacity="0.35"/><circle cx="10" cy="10" r="4.5" fill="${c}"/>`);
+      case 'line': return svg(22, 10, `<line x1="2" x2="20" y1="5" y2="5" stroke="${c}" stroke-width="${it.width || 3}" stroke-opacity="${it.opacity ?? 1}" stroke-linecap="round"/>`);
       case 'ref': return svg(22, 10, `<line x1="1" x2="21" y1="5" y2="5" stroke="${REF}" stroke-width="1.5"/>`);
       case 'vref': return svg(10, 16, `<line x1="5" x2="5" y1="1" y2="15" stroke="${REF}" stroke-width="1.5"/>`);
       case 'outline': return svg(16, 16, `<rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="#ffffff" stroke-width="2"/>`);
@@ -267,10 +282,10 @@
   window.HW3 = {
     data, parseDate, formatDate, fmt, md, weekday, shiftDate, wan, byDate, DAYS, dayIndex,
     sessions, sessionByDate, sessionByDistrict, CHIANG_COLOR, CHIANG_SPOTS, CHIANG_NOTES,
-    AUTHOR_TYPES, authorTypeOf, authorInfo, ringColor,
+    AUTHOR_TYPES, HATCH_INK, authorTypeOf, authorInfo, ringColor,
     OFFSETS, decay, decayMax, pctAt,
     MAX_SHEN, MAX_CHIANG, shenGlow, shenGlowAll, chiangGlow, chiangGlowAll,
-    tipContent, placeTip, placeTipAt, hideTip, activateOnKey, legend, fillLegend, swatchSvg,
+    tipContent, placeTip, placeTipAt, hideTip, activateOnKey, legend, fillLegend, swatchSvg, asteriskD, STAR_INK,
     state, active, registerView, setSession, setHover, prefersReducedMotion,
   };
 })();

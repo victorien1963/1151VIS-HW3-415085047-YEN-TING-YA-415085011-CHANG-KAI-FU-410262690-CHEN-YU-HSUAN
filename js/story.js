@@ -19,7 +19,7 @@
     { type: 'swatches', colors: sessionColors, label: '顏色＝6 場車掃（每場兩區）' },
     { type: 'gradient', id: 'story', color: '#ff8c42', label: `越亮＝那場車掃當天討論越多（最亮：11/15 士林×北投 ${H.fmt(H.MAX_SHEN)} 筆）` },
   ];
-  const LEGEND_CHIANG = { type: 'silver-dot', color: H.CHIANG_COLOR, label: '銀灰光點＝蔣萬安掃街，越大越亮＝當天或隔天討論越多' };
+  const LEGEND_CHIANG = { type: 'glow-dot', color: H.CHIANG_COLOR, label: '藍色光點＝蔣萬安掃街，越大越亮＝當天或隔天討論越多' };
   function setMapLegend(items) {
     H.fillLegend(mapLegend, items);
     mapLegend.hidden = !items.length;
@@ -30,7 +30,7 @@
   const BAND_SWATCH = '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.25)"/></svg>';
   const decayKey = H.legend(decayEl, [
     { type: 'ref', label: '橫線＝100%（車掃當天的量）' },
-    { type: 'line', color: '#5b6478', label: '灰線＝10/31 受辯論影響，不列入' },
+    { type: 'line', color: H.sessionByDate.get('2026-10-31').color, width: 2, opacity: 0.4, label: '淡線＝10/31 受辯論影響，不列入' },
     { html: BAND_SWATCH, label: '框＝文章寫的區間' },
   ], { place: 'append', className: 'stage-key' });
   let decayDrawn = null;
@@ -53,9 +53,10 @@
       const col = narrow ? i % 2 : i % 3;
       const row = narrow ? Math.floor(i / 2) : Math.floor(i / 3);
       const g = legend.append('g').attr('transform', `translate(${col * (narrow ? 150 : 170)},${row * 18})`);
-      // 10/31 在圖裡畫成灰色（受辯論影響），圖例也要一致
+      // 10/31 在圖裡畫成較細的淡線（受辯論影響），圖例也要一致
       const muted = s.date === '2026-10-31';
-      g.append('line').attr('x2', 14).attr('y1', -4).attr('y2', -4).attr('stroke', muted ? '#5b6478' : s.color).attr('stroke-width', 3);
+      g.append('line').attr('x2', 14).attr('y1', -4).attr('y2', -4).attr('stroke', s.color)
+        .attr('stroke-width', muted ? 2 : 3).attr('stroke-opacity', muted ? 0.4 : 1);
       g.append('text').attr('class', 'stage-legend').attr('x', 20).text(`${H.md(s.date)} ${s.name}${muted ? '（不列入）' : ''}`);
     });
 
@@ -82,7 +83,7 @@
     const line = d3.line().x((p) => x(p.k)).y((p) => y(p.pct)).curve(d3.curveMonotoneX);
     const paths = svg.append('g').selectAll('path').data(H.decay.shen).join('path')
       .attr('d', (s) => line(s.points)).attr('fill', 'none')
-      .attr('stroke', (s) => (s.date === '2026-10-31' ? '#5b6478' : s.color))
+      .attr('stroke', (s) => s.color).attr('stroke-opacity', (s) => (s.date === '2026-10-31' ? 0.4 : 1))
       .attr('stroke-width', (s) => (s.date === '2026-10-31' ? 2 : 3)).attr('stroke-linecap', 'round');
     const debate = H.decay.shen.find((s) => s.date === '2026-10-31');
     const dp = debate.points.find((p) => p.k === 1);
@@ -105,7 +106,7 @@
     { type: 'hollow', color: '#e9edf5', label: '空心＝前 3 天平均' },
     { type: 'dot', color: '#e9edf5', label: '實心＝車掃當天' },
     { type: 'dots', colors: sessionColors, label: '顏色＝場次' },
-    { type: 'dot', color: '#5b6478', label: '灰色＝受辯論影響，不列入' },
+    { type: 'star-dot', color: '#e9edf5', label: '星號＝受辯論影響，不列入（線較淡）' },
     { type: 'line', color: '#aab3c5', label: '線長＝倍數' },
   ], { place: 'append', className: 'stage-key' });
   const liftEl = layerEl('lift');
@@ -136,12 +137,15 @@
     const dy = narrow ? 10 : 0;
     rows.append('text').attr('class', 'stage-legend').attr('x', narrow ? 20 : 12).attr('y', narrow ? -10 : 4)
       .text((s) => `${H.md(s.date)} ${s.name}`);
-    const ink = (s) => (s.excluded ? '#5b6478' : s.color);
+    // 受辯論影響的兩場也用場次色，但線畫得比較淡，當天點加黑色星號（跟著圓點一起滑）。
     const link = rows.append('line').attr('y1', dy).attr('y2', dy).attr('x1', (s) => x(s.prev3)).attr('x2', (s) => x(s.prev3))
-      .attr('stroke', ink).attr('stroke-width', 3).attr('opacity', 0.6);
+      .attr('stroke', (s) => s.color).attr('stroke-width', 3).attr('opacity', (s) => (s.excluded ? 0.3 : 0.6));
     rows.append('circle').attr('cy', dy).attr('cx', (s) => x(s.prev3)).attr('r', 6)
-      .attr('fill', '#0a0f1c').attr('stroke', ink).attr('stroke-width', 2.5);
-    const dot = rows.append('circle').attr('cy', dy).attr('cx', (s) => x(s.prev3)).attr('r', 7).attr('fill', ink);
+      .attr('fill', '#0a0f1c').attr('stroke', (s) => s.color).attr('stroke-width', 2.5);
+    const dot = rows.append('circle').attr('cy', dy).attr('cx', (s) => x(s.prev3)).attr('r', 7).attr('fill', (s) => s.color);
+    const star = rows.filter((s) => s.excluded).append('path').attr('d', H.asteriskD(0, 0, 7))
+      .attr('transform', (s) => `translate(${x(s.prev3)},${dy})`)
+      .attr('stroke', H.STAR_INK).attr('stroke-width', 1.7).attr('stroke-linecap', 'round');
     const ratio = rows.append('text').attr('class', 'stage-ratio').attr('x', width - m.right + 12).attr('y', dy + 5)
       .attr('opacity', 0);
     ratio.append('tspan').text((s) => `${s.ratio.toFixed(2)} 倍`);
@@ -150,6 +154,9 @@
       .text(narrow ? '不列入' : ' · 不列入');
     const t = H.prefersReducedMotion() ? 0 : 1;
     dot.transition().delay((s, i) => i * 150 * t).duration(900 * t).ease(d3.easeCubicOut).attr('cx', (s) => x(s.day0));
+    // filter 後的索引會重排，延遲改用場次在全部場次裡的順序，才會和圓點同步。
+    star.transition().delay((s) => H.sessions.indexOf(s) * 150 * t).duration(900 * t).ease(d3.easeCubicOut)
+      .attr('transform', (s) => `translate(${x(s.day0)},${dy})`);
     link.transition().delay((s, i) => i * 150 * t).duration(900 * t).ease(d3.easeCubicOut).attr('x2', (s) => x(s.day0));
     ratio.transition().delay((s, i) => i * 150 * t + 700 * t).duration(400 * t).attr('opacity', (s) => (s.excluded ? 0.6 : 1));
   }

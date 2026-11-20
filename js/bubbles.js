@@ -27,9 +27,15 @@
     }
     let rScale = null;
     const defs = svg.append('defs');
-    defs.append('filter').attr('id', `${id}-halo`).attr('x', '-100%').attr('y', '-100%')
-      .attr('width', '300%').attr('height', '300%')
-      .append('feGaussianBlur').attr('stdDeviation', 4);
+    // 原文點名的小帳號（追蹤者不到 600 人）：底色維持發文者類型的填色，加 45° 細斜線。
+    const hatchId = (type) => `${id}-hatch-${H.AUTHOR_TYPES.findIndex((t) => t.key === type)}`;
+    H.AUTHOR_TYPES.forEach((t) => {
+      const pat = defs.append('pattern').attr('id', hatchId(t.key)).attr('patternUnits', 'userSpaceOnUse')
+        .attr('width', 5).attr('height', 5).attr('patternTransform', 'rotate(45)');
+      pat.append('rect').attr('width', 5).attr('height', 5).attr('fill', t.fill);
+      pat.append('line').attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 5)
+        .attr('stroke', H.HATCH_INK).attr('stroke-width', 1.2);
+    });
     const gBack = svg.append('g').attr('class', 'bubble-backdrop').attr('pointer-events', 'none');
     const gLabels = svg.append('g').attr('class', 'bubble-labels').attr('pointer-events', 'none');
     const gNodes = svg.append('g');
@@ -43,29 +49,32 @@
     let projection = null;
     let targets = new Map();
     let labels = [];
+    // 點擊範圍至少半徑 9，泡泡之間也用這個距離排開，感應圓才不會蓋到旁邊的泡泡。
+    const hitR = (d) => Math.max(d.r, 9);
 
     const sim = d3.forceSimulation(nodes)
       .force('x', d3.forceX((d) => targets.get(d.i)?.[0] ?? w / 2).strength(0.09))
       .force('y', d3.forceY((d) => targets.get(d.i)?.[1] ?? h / 2).strength(0.09))
-      .force('collide', d3.forceCollide((d) => d.r + 1.5).iterations(3))
+      .force('collide', d3.forceCollide((d) => hitR(d) + 1.5).iterations(3))
       .alphaDecay(0.035)
       .on('tick', ticked)
       .stop();
 
     const nodeSel = gNodes.selectAll('g.bubble').data(nodes, (d) => d.i).join((enter) => {
       const g = enter.append('g').attr('class', 'bubble');
-      g.filter((d) => d.post.small).append('circle').attr('class', 'bubble-halo').attr('filter', `url(#${id}-halo)`);
+      // 感應圓：透明但會接收點擊，讓虛線（沒有填色）和很小的泡泡也點得到。
+      g.append('circle').attr('class', 'bubble-hit').attr('fill', 'transparent');
       g.append('circle').attr('class', 'bubble-body');
-      g.append('text').attr('class', 'bubble-text').attr('text-anchor', 'middle').attr('dy', '0.35em');
       return g;
     });
     nodeSel.select('.bubble-body')
-      .attr('fill', (d) => (d.post.interactions == null ? 'none' : H.authorInfo(d.type).fill))
+      .attr('fill', (d) => {
+        if (d.post.interactions == null) return 'none';
+        return d.post.small ? `url(#${hatchId(d.type)})` : H.authorInfo(d.type).fill;
+      })
       .attr('stroke', (d) => H.ringColor(d.post))
       .attr('stroke-width', 2.5)
       .attr('stroke-dasharray', (d) => (d.post.interactions == null ? '3 3' : null));
-    nodeSel.select('.bubble-halo').attr('fill', '#ffffff').attr('opacity', 0.55);
-    nodeSel.select('.bubble-text').attr('fill', (d) => H.authorInfo(d.type).text);
 
     if (o.interactive) {
       nodeSel.attr('role', 'button').attr('tabindex', 0)
@@ -197,9 +206,9 @@
       };
       const top = [...shen].sort((a, b) => b.post.interactions - a.post.interactions);
       const text = {
-        map: '每顆泡泡是一篇熱門貼文，從它所屬的那場車掃（沈伯洋）或夜市（蔣萬安）冒出來；越大顆，互動越多。白色是一般民眾，加光暈的是追蹤者不到 600 人的帳號。',
+        map: '每顆泡泡是一篇熱門貼文，從它所屬的那場車掃（沈伯洋）或夜市（蔣萬安）冒出來；越大顆，互動越多。白色是一般民眾，畫斜線的是原文點名的小帳號（追蹤者不到 600 人）。',
         type: `沈伯洋的 ${shen.length} 篇熱門貼文，一般民眾和個人帳號的貼文拿下 ${share(shen)}% 的互動；蔣萬安的 ${chiang.length} 篇是 ${share(chiang)}%，多是政治人物、評論者與媒體的攻防。`,
-        session: `每場車掃最熱的 3 篇貼文。最大顆的是 ${H.md(top[0].post.date)} ${top[0].post.author}（${top[0].post.interactionsLabel}），其次是 ${H.md(top[1].post.date)} ${top[1].post.author}「${top[1].post.content.slice(0, 14)}…」（${top[1].post.interactionsLabel}）。`,
+        session: `每場車掃最熱的 3 篇貼文。最大顆的是 ${H.md(top[0].post.date)} ${top[0].post.author}（${top[0].post.interactionsLabel}），其次是 ${H.md(top[1].post.date)} ${top[1].post.author} 的貼文（${top[1].post.interactionsLabel}）：${top[1].post.content}。`,
       }[o.grouping];
       o.headline.textContent = text;
     }
@@ -226,8 +235,8 @@
         { type: 'fill', color: H.AUTHOR_TYPES[1].fill, label: '個人帳號（追蹤者上萬）' },
         { type: 'fill', color: H.AUTHOR_TYPES[2].fill, label: '公眾帳號' },
         { type: 'rings', colors: H.sessions.map((s) => s.color), label: '外圈＝沈伯洋的車掃場次' },
-        { type: 'ring', color: H.CHIANG_COLOR, label: '銀灰外圈＝蔣萬安' },
-        { type: 'glow', label: '光暈＝追蹤者不到 600 人' },
+        { type: 'ring', color: H.CHIANG_COLOR, label: '藍色外圈＝蔣萬安' },
+        { type: 'hatch', id, color: H.AUTHOR_TYPES[0].fill, label: '斜線＝原文點名的小帳號（追蹤者不到 600 人）' },
         { type: 'dashed-ring', color: '#aab3c5', label: '虛線＝原文沒有互動數' },
       ]);
     }
@@ -247,9 +256,7 @@
         .attr('aria-label', '熱門貼文泡泡圖，每篇貼文一顆泡泡，大小代表互動數。');
       layout();
       headline();
-      nodeSel.select('.bubble-halo').attr('r', (d) => d.r + 5);
-      nodeSel.select('.bubble-text').text((d) => (d.r >= 30 ? d.post.author.slice(0, 6) : ''))
-        .attr('font-size', (d) => Math.min(12, d.r / 3));
+      nodeSel.select('.bubble-hit').attr('r', hitR);
       const body = nodeSel.select('.bubble-body');
       if (burst) {
         for (const d of nodes) {
@@ -264,7 +271,7 @@
       // forceX／forceY 會快取目標位置，換分群或尺寸後要重新指定才會重算
       sim.force('x').x((d) => targets.get(d.i)?.[0] ?? w / 2).strength(o.grouping === 'map' ? 0.14 : 0.09);
       sim.force('y').y((d) => targets.get(d.i)?.[1] ?? h / 2).strength(o.grouping === 'map' ? 0.14 : 0.09);
-      sim.force('collide').radius((d) => d.r + 1.5);
+      sim.force('collide').radius((d) => hitR(d) + 1.5);
       if (H.prefersReducedMotion()) {
         sim.stop();
         for (let k = 0; k < 300; k += 1) sim.tick();

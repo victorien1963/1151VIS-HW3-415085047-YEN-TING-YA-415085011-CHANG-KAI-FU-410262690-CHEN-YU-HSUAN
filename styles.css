@@ -100,6 +100,9 @@ html, body { margin: 0; background: #0a0f1c; }
 .legend-tick { stroke: var(--text-muted); stroke-width: 1; }
 .chart-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: 4px 0 10px; font-size: 12px; line-height: 1.4; color: var(--text-secondary); }
 .chart-legend .lg-item { display: inline-flex; align-items: center; gap: 6px; }
+/* 自由探索區：圖例和上方說明文字拉開一點（敘事舞台的圖例另外定位，不受影響） */
+.explore .chart-legend { margin-top: 18px; }
+.explore .facet .chart-legend { margin-top: 14px; }
 .chart-legend svg { flex: none; overflow: visible; }
 .story-stage .stage-key { position: absolute; left: 16px; right: 16px; bottom: 6px; margin: 0; pointer-events: none; }
 .chart-legend[hidden] { display: none; }
@@ -114,11 +117,10 @@ html, body { margin: 0; background: #0a0f1c; }
 /* ---------- 泡泡 ---------- */
 .bubbles-wrap { position: relative; width: 100%; height: 100%; }
 .bubbles-svg { display: block; width: 100%; height: auto; }
-.bubble-text { font-size: 11px; font-weight: 700; pointer-events: none; }
 .bubble-col { font-size: 13px; font-weight: 700; fill: var(--text-primary); }
 .bubble-row { font-size: 15px; font-weight: 800; fill: var(--text-primary); }
 .bubble-stat { font-size: 12px; fill: var(--text-secondary); }
-.bubble-headline { font-size: 16px; font-weight: 600; margin: 8px 0 0; max-width: 46em; }
+.bubble-headline { font-size: 16px; font-weight: 600; margin: 8px 0 16px; max-width: 46em; }
 .grouping { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0; }
 .grouping button, .chips button {
   color: var(--text-primary); background: var(--surface-2); border: 1px solid var(--border);
@@ -154,6 +156,20 @@ html, body { margin: 0; background: #0a0f1c; }
 
 .panel { background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 20px; }
 .panel h3 { font-size: 18px; margin: 0 0 4px; line-height: 1.4; }
+.panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.panel-head h3 { flex: 1; min-width: 0; }
+.panel-actions { flex: none; display: flex; gap: 6px; }
+.panel-actions .clear-sel, .panel-actions .zoom-reset { margin-top: 4px; }
+/* 要寫成 .panel-head .clear-sel，才蓋得過 .viz-root button { font: inherit; } 的字級 */
+.panel-head .clear-sel, .panel-head .zoom-reset {
+  flex: none; margin-top: 4px; padding: 1px 8px; font-size: 11px; line-height: 1.5;
+  color: var(--text-secondary); background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; cursor: pointer;
+}
+.panel-head .clear-sel:hover:not(:disabled), .panel-head .zoom-reset:hover:not(:disabled) { background: #22304f; color: var(--text-primary); }
+.panel-head .clear-sel:disabled, .panel-head .zoom-reset:disabled { opacity: 0.4; cursor: default; }
+.zoom-hint { font-size: 12px; color: var(--text-muted); margin: -4px 0 0; }
+/* 觸控螢幕沒有滾輪，不顯示縮放提示和按鈕 */
+@media (hover: none) { .zoom-hint, .panel-head .zoom-reset { display: none; } }
 .panel h4 { font-size: 14px; margin: 0 0 2px; color: var(--text-secondary); font-weight: 600; }
 .sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 10px; max-width: 52em; }
 
