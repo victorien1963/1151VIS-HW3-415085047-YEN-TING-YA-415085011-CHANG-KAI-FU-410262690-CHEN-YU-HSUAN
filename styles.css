@@ -100,6 +100,9 @@ html, body { margin: 0; background: #0a0f1c; }
 .legend-tick { stroke: var(--text-muted); stroke-width: 1; }
 .chart-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: 4px 0 10px; font-size: 12px; line-height: 1.4; color: var(--text-secondary); }
 .chart-legend .lg-item { display: inline-flex; align-items: center; gap: 6px; }
+/* 包成一塊的圖例項目：換行時留在這一塊裡，不會跑到左邊大小圓圈的下面；太窄放不下時整塊換到下一行 */
+.chart-legend .lg-group { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; flex: 1 1 240px; min-width: 0; }
+.chart-legend .lg-group > .lg-group { flex-basis: 100%; }
 /* 自由探索區：圖例和上方說明文字拉開一點（敘事舞台的圖例另外定位，不受影響） */
 .explore .chart-legend { margin-top: 18px; }
 .explore .facet .chart-legend { margin-top: 14px; }
@@ -120,7 +123,7 @@ html, body { margin: 0; background: #0a0f1c; }
 .bubble-col { font-size: 13px; font-weight: 700; fill: var(--text-primary); }
 .bubble-row { font-size: 15px; font-weight: 800; fill: var(--text-primary); }
 .bubble-stat { font-size: 12px; fill: var(--text-secondary); }
-.bubble-headline { font-size: 16px; font-weight: 600; margin: 8px 0 16px; max-width: 46em; }
+.bubble-headline { font-size: 16px; font-weight: 600; margin: 8px 0 16px; }
 .grouping { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0; }
 .grouping button, .chips button {
   color: var(--text-primary); background: var(--surface-2); border: 1px solid var(--border);
@@ -208,8 +211,12 @@ html, body { margin: 0; background: #0a0f1c; }
 .lift-row:hover > rect:first-child, .lift-row:focus-visible > rect:first-child { fill: var(--wash); }
 [data-chart="overview"] g[role="button"]:hover > .marker-dot { r: 7px; }
 
-.facets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-@media (max-width: 640px) { .facets { grid-template-columns: 1fr; } }
+/* 圖 4 左右兩張小圖用 subgrid 共用同一組列：標題、圖例、圖、說明各自對齊；
+   圖例行數不同時靠下貼著圖，兩張圖的橫軸就會在同一高度 */
+.facets { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; row-gap: 0; }
+.facet { display: grid; grid-row: span 4; grid-template-rows: subgrid; min-width: 0; }
+.facet > .chart-legend { align-self: end; }
+@media (max-width: 640px) { .facets { grid-template-columns: 1fr; } .facet + .facet { margin-top: 18px; } }
 .readout { font-size: 12px; color: var(--text-secondary); margin: 4px 0 0; min-height: 4.8em; }
 
 .inspect {

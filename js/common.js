@@ -174,9 +174,21 @@
     else target.after(box);
     return box;
   }
+  // items 裡可以放 { group: [...] }：這些項目包成一塊，換行時留在同一塊裡（例如泡泡圖大小圓圈右邊那塊）；
+  // 一塊裡面再放 group，每個就各佔一行。
   function fillLegend(box, items) {
     box.replaceChildren();
+    appendLegendItems(box, items);
+  }
+  function appendLegendItems(box, items) {
     for (const it of items) {
+      if (it.group) {
+        const g = document.createElement('div');
+        g.className = 'lg-group';
+        appendLegendItems(g, it.group);
+        box.append(g);
+        continue;
+      }
       const span = document.createElement('span');
       span.className = 'lg-item';
       if (it.html) span.innerHTML = it.html;

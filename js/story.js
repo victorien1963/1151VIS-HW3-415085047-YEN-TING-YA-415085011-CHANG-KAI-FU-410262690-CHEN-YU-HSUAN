@@ -131,7 +131,7 @@
     svg.append('g').attr('class', 'grid').selectAll('line').data(ticks).join('line')
       .attr('x1', (d) => x(d)).attr('x2', (d) => x(d)).attr('y1', m.top - 10).attr('y2', height - m.bottom);
     svg.append('g').attr('class', 'axis').selectAll('text').data(ticks).join('text')
-      .attr('x', (d) => x(d)).attr('y', height - m.bottom + 20).attr('text-anchor', 'middle').text((d) => H.fmt(d));
+      .attr('x', (d) => x(d)).attr('y', height - m.bottom + 20).attr('text-anchor', 'middle').text((d) => `${H.fmt(d)} 筆`);
     const rows = svg.append('g').selectAll('g').data(H.sessions).join('g')
       .attr('transform', (s, i) => `translate(0,${m.top + i * rowH + rowH / 2})`);
     const dy = narrow ? 10 : 0;

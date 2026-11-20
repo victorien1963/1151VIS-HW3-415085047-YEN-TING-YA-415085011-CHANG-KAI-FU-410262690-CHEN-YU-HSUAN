@@ -539,7 +539,7 @@
         .attr('x1', (d) => xs(d)).attr('x2', (d) => xs(d)).attr('y1', m.top).attr('y2', height - m.bottom);
       gTicks.selectAll('text').data(vals).join('text')
         .attr('x', (d) => xs(d)).attr('y', height - m.bottom + 16).attr('text-anchor', 'middle')
-        .text((d) => fmt(Math.round(d / 100) * 100));
+        .text((d) => `${fmt(Math.round(d / 100) * 100)} 筆`);
       const zoomed = t.k > 1.001;
       axisTitle.text(narrow
         ? `筆／日（對數刻度${zoomed ? `，每格 ${step.toFixed(2)} 倍` : ''}）`

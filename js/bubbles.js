@@ -229,15 +229,23 @@
           + `<text x="${big * 2 + 8}" y="${ty + 3}">${v / 10000} 萬</text>`;
       }).join('');
       const sizeSvg = `<svg class="lg-size" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" aria-hidden="true">${circles}</svg>`;
+      // 大小圓圈單獨放左邊，其餘項目包成一塊放右邊；斜線、虛線固定排在第二行。
       H.fillLegend(legendBox, [
-        { html: sizeSvg, label: '大小＝互動數' },
-        { type: 'fill', color: H.AUTHOR_TYPES[0].fill, label: '一般民眾' },
-        { type: 'fill', color: H.AUTHOR_TYPES[1].fill, label: '個人帳號（追蹤者上萬）' },
-        { type: 'fill', color: H.AUTHOR_TYPES[2].fill, label: '公眾帳號' },
-        { type: 'rings', colors: H.sessions.map((s) => s.color), label: '外圈＝沈伯洋的車掃場次' },
-        { type: 'ring', color: H.CHIANG_COLOR, label: '藍色外圈＝蔣萬安' },
-        { type: 'hatch', id, color: H.AUTHOR_TYPES[0].fill, label: '斜線＝原文點名的小帳號（追蹤者不到 600 人）' },
-        { type: 'dashed-ring', color: '#aab3c5', label: '虛線＝原文沒有互動數' },
+        { html: sizeSvg, label: '' },
+        { group: [
+          { group: [
+            { html: '', label: '大小＝互動數' },
+            { type: 'fill', color: H.AUTHOR_TYPES[0].fill, label: '一般民眾' },
+            { type: 'fill', color: H.AUTHOR_TYPES[1].fill, label: '個人帳號（追蹤者上萬）' },
+            { type: 'fill', color: H.AUTHOR_TYPES[2].fill, label: '公眾帳號' },
+            { type: 'rings', colors: H.sessions.map((s) => s.color), label: '外圈＝沈伯洋的車掃場次' },
+            { type: 'ring', color: H.CHIANG_COLOR, label: '藍色外圈＝蔣萬安' },
+          ] },
+          { group: [
+            { type: 'hatch', id, color: H.AUTHOR_TYPES[0].fill, label: '斜線＝原文點名的小帳號（追蹤者不到 600 人）' },
+            { type: 'dashed-ring', color: '#aab3c5', label: '虛線＝原文沒有互動數' },
+          ] },
+        ] },
       ]);
     }
 
