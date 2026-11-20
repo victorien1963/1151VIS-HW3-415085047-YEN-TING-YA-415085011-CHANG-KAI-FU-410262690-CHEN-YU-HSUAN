@@ -12,11 +12,20 @@
   H.createBubbles = function createBubbles(el, options) {
     const id = `bub${uid++}`;
     const o = {
-      grouping: 'map', height: null, name: 'bubbles', onPick: null, headline: null, interactive: true, linked: true,
+      grouping: 'map', height: null, name: 'bubbles', onPick: null, headline: null, interactive: true, linked: true, legend: null,
       ...options,
     };
     const wrap = d3.select(el).classed('bubbles-wrap', true);
     const svg = wrap.append('svg').attr('class', 'bubbles-svg').attr('role', 'img');
+    // 圖例：explore 放在圖上方；敘事舞台放在圖下方，並從可用高度扣掉圖例的高度。
+    let legendBox = null;
+    if (o.legend) {
+      legendBox = document.createElement('div');
+      legendBox.className = 'chart-legend';
+      if (o.legend === 'before') el.insertBefore(legendBox, svg.node());
+      else el.append(legendBox);
+    }
+    let rScale = null;
     const defs = svg.append('defs');
     defs.append('filter').attr('id', `${id}-halo`).attr('x', '-100%').attr('y', '-100%')
       .attr('width', '300%').attr('height', '300%')
@@ -91,13 +100,14 @@
 
     function size() {
       w = el.clientWidth;
-      h = o.height ? o.height(w) : el.clientHeight;
+      h = o.height ? o.height(w) : el.clientHeight - (legendBox && o.legend !== 'before' ? legendBox.offsetHeight + 4 : 0);
     }
 
     function radii() {
       const narrow = w < 600;
       const maxR = o.grouping === 'map' ? (narrow ? 22 : 34) : (narrow ? 26 : Math.min(48, w / 16));
       const scale = d3.scaleSqrt().domain([0, 136000]).range([0, maxR]);
+      rScale = scale;
       for (const d of nodes) d.r = d.post.interactions == null ? 5 : Math.max(5, scale(d.post.interactions));
     }
 
@@ -194,16 +204,47 @@
       o.headline.textContent = text;
     }
 
+    function drawLegend() {
+      if (!legendBox) return;
+      // 大小用和泡泡同一個比例尺，畫 1 萬、5 萬、10 萬次互動三個同心圓。
+      const vals = [10000, 50000, 100000];
+      const rs = vals.map((v) => rScale(v));
+      const big = rs[2];
+      const width = big * 2 + 52;
+      const height = big * 2 + 4;
+      const circles = vals.map((v, i) => {
+        const cy = height - 2 - rs[i];
+        const ty = height - 2 - rs[i] * 2;
+        return `<circle cx="${big + 1}" cy="${cy}" r="${rs[i]}" fill="none" stroke="#aab3c5" stroke-width="1"/>`
+          + `<line x1="${big + 1}" x2="${big * 2 + 6}" y1="${ty}" y2="${ty}" stroke="#4a5470" stroke-width="1"/>`
+          + `<text x="${big * 2 + 8}" y="${ty + 3}">${v / 10000} 萬</text>`;
+      }).join('');
+      const sizeSvg = `<svg class="lg-size" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" aria-hidden="true">${circles}</svg>`;
+      H.fillLegend(legendBox, [
+        { html: sizeSvg, label: '大小＝互動數' },
+        { type: 'fill', color: H.AUTHOR_TYPES[0].fill, label: '一般民眾' },
+        { type: 'fill', color: H.AUTHOR_TYPES[1].fill, label: '個人帳號（追蹤者上萬）' },
+        { type: 'fill', color: H.AUTHOR_TYPES[2].fill, label: '公眾帳號' },
+        { type: 'rings', colors: H.sessions.map((s) => s.color), label: '外圈＝沈伯洋的車掃場次' },
+        { type: 'ring', color: H.CHIANG_COLOR, label: '銀灰外圈＝蔣萬安' },
+        { type: 'glow', label: '光暈＝追蹤者不到 600 人' },
+        { type: 'dashed-ring', color: '#aab3c5', label: '虛線＝原文沒有互動數' },
+      ]);
+    }
+
     function ticked() {
       nodeSel.attr('transform', (d) => `translate(${d.x},${d.y})`);
     }
 
     function render({ burst = false } = {}) {
       size();
-      if (w < 200 || h < 200) return;
+      if (w < 200) return;
+      radii();
+      drawLegend();
+      size(); // 圖例畫好後高度才確定，敘事舞台要重新扣掉
+      if (h < 200) return;
       svg.attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h)
         .attr('aria-label', '熱門貼文泡泡圖，每篇貼文一顆泡泡，大小代表互動數。');
-      radii();
       layout();
       headline();
       nodeSel.select('.bubble-halo').attr('r', (d) => d.r + 5);

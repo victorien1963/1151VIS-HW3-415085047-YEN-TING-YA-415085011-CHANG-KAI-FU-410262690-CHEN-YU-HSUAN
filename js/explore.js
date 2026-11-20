@@ -90,7 +90,7 @@
   const bubbleHeadline = document.querySelector('.bubble-headline');
   const inspect = document.querySelector('.inspect');
   const bubbles = H.createBubbles(document.querySelector('[data-chart="bubbles"]'), {
-    name: 'bubbles', grouping: 'type', headline: bubbleHeadline,
+    name: 'bubbles', grouping: 'type', headline: bubbleHeadline, legend: 'before',
     height: (w) => (w < 600 ? 640 : 560),
     onPick: (post) => {
       if (post.candidate === 'shen' && post.date !== H.state.session) H.setSession(post.date);
@@ -516,6 +516,36 @@
     H.registerView(name, () => run(true));
     new ResizeObserver(() => run(false)).observe(elm);
   }
+
+  // ---------- 圖例 ----------
+  const sessionColors = H.sessions.map((s) => s.color);
+  H.legend(document.querySelector('[data-chart="map"]'), [
+    { type: 'swatches', colors: sessionColors, label: '區塊顏色＝6 場車掃（每場兩區）' },
+    { type: 'gradient', id: 'map', color: '#ff8c42', label: '越亮＝那天的掃街相關討論越多（左上角亮度條可對照筆數）' },
+    { type: 'outline', label: '白框＝選取中的場次' },
+    { type: 'silver-dot', color: H.CHIANG_COLOR, label: '銀灰光點＝蔣萬安掃街，越大越亮＝那天討論越多' },
+  ]);
+  H.legend(document.querySelector('[data-chart="overview"]'), [
+    { type: 'lines', colors: sessionColors, label: '線段顏色＝最近一場車掃' },
+    { type: 'line', color: MUTED, label: '灰色＝第一場車掃之前' },
+    { type: 'dots', colors: sessionColors, label: '圓點＝車掃當天' },
+    { type: 'vref', label: '直線＝10/31 首場電視辯論' },
+  ]);
+  H.legend(document.querySelector('[data-chart="decay-shen"]'), [
+    ...H.sessions.map((s) => ({ type: 'line', color: s.color, label: `${md(s.date)} ${s.name}` })),
+    { type: 'ref', label: '橫線＝100%（掃街當天）' },
+  ]);
+  H.legend(document.querySelector('[data-chart="decay-chiang"]'), [
+    { type: 'line', color: H.CHIANG_COLOR, label: '銀灰線＝蔣萬安各場（滑過或點線看是哪一場）' },
+    { type: 'ref', label: '橫線＝100%（掃街當天）' },
+  ]);
+  H.legend(document.querySelector('[data-chart="lift"]'), [
+    { type: 'hollow', color: '#e9edf5', label: '空心＝前 3 天平均' },
+    { type: 'dot', color: '#e9edf5', label: '實心＝車掃當天' },
+    { type: 'dots', colors: sessionColors, label: '顏色＝場次' },
+    { type: 'dot', color: MUTED, label: '灰色＝受辯論影響，不列入' },
+    { type: 'line', color: '#aab3c5', label: '線長＝倍數（對數刻度，每格 1.25 倍）' },
+  ]);
 
   buildChips();
   buildTables();

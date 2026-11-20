@@ -123,6 +123,54 @@
     }));
   }
 
+  // ---------- 圖例 ----------
+  // 每張圖都附圖例。items：{ type, color, label }；type 決定前面小圖示的畫法。
+  const SURFACE = '#111829';
+  const REF = '#77829a';
+  function swatchSvg(it) {
+    const c = it.color || '#ffffff';
+    const svg = (wd, ht, body) => `<svg width="${wd}" height="${ht}" viewBox="0 0 ${wd} ${ht}" aria-hidden="true">${body}</svg>`;
+    switch (it.type) {
+      case 'dot': return svg(14, 14, `<circle cx="7" cy="7" r="5" fill="${c}"/>`);
+      case 'hollow': return svg(14, 14, `<circle cx="7" cy="7" r="4.5" fill="${SURFACE}" stroke="${c}" stroke-width="2"/>`);
+      case 'fill': return svg(16, 16, `<circle cx="8" cy="8" r="6.5" fill="${c}" stroke="#77829a" stroke-width="1"/>`);
+      case 'ring': return svg(16, 16, `<circle cx="8" cy="8" r="6" fill="${SURFACE}" stroke="${c}" stroke-width="2.5"/>`);
+      case 'dashed-ring': return svg(16, 16, `<circle cx="8" cy="8" r="6" fill="none" stroke="${c}" stroke-width="2" stroke-dasharray="3 2.5"/>`);
+      case 'glow': return svg(20, 20, `<circle cx="10" cy="10" r="9" fill="#ffffff" opacity="0.28"/><circle cx="10" cy="10" r="6" fill="#ffffff"/>`);
+      case 'silver-dot': return svg(20, 20, `<circle cx="10" cy="10" r="9" fill="${c}" opacity="0.35"/><circle cx="10" cy="10" r="4.5" fill="${c}"/>`);
+      case 'line': return svg(22, 10, `<line x1="2" x2="20" y1="5" y2="5" stroke="${c}" stroke-width="3" stroke-linecap="round"/>`);
+      case 'ref': return svg(22, 10, `<line x1="1" x2="21" y1="5" y2="5" stroke="${REF}" stroke-width="1.5"/>`);
+      case 'vref': return svg(10, 16, `<line x1="5" x2="5" y1="1" y2="15" stroke="${REF}" stroke-width="1.5"/>`);
+      case 'outline': return svg(16, 16, `<rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="#ffffff" stroke-width="2"/>`);
+      case 'dots': return svg(it.colors.length * 12, 12, it.colors.map((k, i) => `<circle cx="${i * 12 + 6}" cy="6" r="4.5" fill="${k}"/>`).join(''));
+      case 'rings': return svg(it.colors.length * 14, 14, it.colors.map((k, i) => `<circle cx="${i * 14 + 7}" cy="7" r="5" fill="${SURFACE}" stroke="${k}" stroke-width="2"/>`).join(''));
+      case 'gradient': return svg(40, 10, `<defs><linearGradient id="lg-grad-${it.id}"><stop offset="0" stop-color="${c}" stop-opacity="0.1"/><stop offset="1" stop-color="${c}" stop-opacity="0.95"/></linearGradient></defs><rect x="0" y="1" width="40" height="8" rx="2" fill="url(#lg-grad-${it.id})"/>`);
+      case 'swatches': return svg(it.colors.length * 12, 12, it.colors.map((k, i) => `<rect x="${i * 12}" y="1" width="10" height="10" rx="2" fill="${k}"/>`).join(''));
+      case 'lines': return svg(it.colors.length * 12 + 4, 10, it.colors.map((k, i) => `<line x1="${i * 12 + 2}" x2="${i * 12 + 12}" y1="5" y2="5" stroke="${k}" stroke-width="3" stroke-linecap="round"/>`).join(''));
+      default: return '';
+    }
+  }
+  function legend(target, items, { place = 'before', className = '' } = {}) {
+    const box = document.createElement('div');
+    box.className = `chart-legend ${className}`.trim();
+    fillLegend(box, items);
+    if (place === 'before') target.before(box);
+    else if (place === 'append') target.append(box);
+    else target.after(box);
+    return box;
+  }
+  function fillLegend(box, items) {
+    box.replaceChildren();
+    for (const it of items) {
+      const span = document.createElement('span');
+      span.className = 'lg-item';
+      if (it.html) span.innerHTML = it.html;
+      else span.innerHTML = swatchSvg(it);
+      span.append(document.createTextNode(it.label));
+      box.append(span);
+    }
+  }
+
   // ---------- 觸控判斷 ----------
   // 手指碰到時若馬上換掉畫面上的內容（提示框、預覽），手機瀏覽器會把這一下當成「滑過」而不觸發點擊，
   // 所以最近一次操作是觸控或觸控筆時，不顯示提示框、不做滑過預覽，點一下直接選取。
@@ -222,7 +270,7 @@
     AUTHOR_TYPES, authorTypeOf, authorInfo, ringColor,
     OFFSETS, decay, decayMax, pctAt,
     MAX_SHEN, MAX_CHIANG, shenGlow, shenGlowAll, chiangGlow, chiangGlowAll,
-    tipContent, placeTip, placeTipAt, hideTip, activateOnKey,
+    tipContent, placeTip, placeTipAt, hideTip, activateOnKey, legend, fillLegend, swatchSvg,
     state, active, registerView, setSession, setHover, prefersReducedMotion,
   };
 })();

@@ -9,8 +9,21 @@
     name: 'story-map', interactive: false, controls: true, hud: true, allLit: true,
   });
   const bubbles = H.createBubbles(layerEl('bubbles'), {
-    name: 'story-bubbles', grouping: 'map', linked: false, interactive: true,
+    name: 'story-bubbles', grouping: 'map', linked: false, interactive: true, legend: 'after',
   });
+
+  // 地圖的圖例：放在地圖下方（播放時那裡是時間軸，所以播放段落改看左上角的亮度條）。
+  const sessionColors = H.sessions.map((s) => s.color);
+  const mapLegend = H.legend(layerEl('map'), [], { place: 'append', className: 'stage-legend' });
+  const LEGEND_SHEN = [
+    { type: 'swatches', colors: sessionColors, label: '顏色＝6 場車掃（每場兩區）' },
+    { type: 'gradient', id: 'story', color: '#ff8c42', label: `越亮＝那場車掃當天討論越多（最亮：11/15 士林×北投 ${H.fmt(H.MAX_SHEN)} 筆）` },
+  ];
+  const LEGEND_CHIANG = { type: 'silver-dot', color: H.CHIANG_COLOR, label: '銀灰光點＝蔣萬安掃街，越大越亮＝當天或隔天討論越多' };
+  function setMapLegend(items) {
+    H.fillLegend(mapLegend, items);
+    mapLegend.hidden = !items.length;
+  }
 
   // ---------- 對齊圖（敘事版） ----------
   const decayEl = layerEl('decay');
@@ -128,14 +141,14 @@
 
   // ---------- 段落設定 ----------
   const STEPS = [
-    () => { show('map'); map.pause(); map.set({ allLit: true, chiang: false, dimShen: false, labels: true }); hud(false); },
-    () => { show('map'); map.set({ allLit: false, chiang: false, dimShen: false, labels: true }); hud(true); map.play(true); },
+    () => { show('map'); map.pause(); map.set({ allLit: true, chiang: false, dimShen: false, labels: true }); hud(false); setMapLegend(LEGEND_SHEN); },
+    () => { show('map'); map.set({ allLit: false, chiang: false, dimShen: false, labels: true }); hud(true); setMapLegend([]); map.play(true); },
     () => { stopMap(); show('decay'); animateDecay(); },
     () => { stopMap(); show('lift'); animateLift(); },
     () => { stopMap(); show('bubbles'); if (bubbles.grouping !== 'map') bubbles.setGrouping('map'); bubbles.burst(); },
     () => { stopMap(); show('bubbles'); bubbles.setGrouping('type'); },
-    () => { show('map'); map.pause(); map.set({ allLit: true, allLitChiang: true, chiang: true, dimShen: true, labels: true }); hud(false); },
-    () => { show('map'); map.pause(); map.set({ allLit: true, allLitChiang: true, chiang: true, dimShen: false, labels: true }); hud(false); },
+    () => { show('map'); map.pause(); map.set({ allLit: true, allLitChiang: true, chiang: true, dimShen: true, labels: true }); hud(false); setMapLegend([LEGEND_CHIANG, { type: 'swatches', colors: sessionColors, label: '沈伯洋的場次先調暗' }]); },
+    () => { show('map'); map.pause(); map.set({ allLit: true, allLitChiang: true, chiang: true, dimShen: false, labels: true }); hud(false); setMapLegend([...LEGEND_SHEN, LEGEND_CHIANG]); },
   ];
   function show(name) {
     stage.querySelectorAll('[data-layer]').forEach((l) => l.classList.toggle('is-on', l.dataset.layer === name));
