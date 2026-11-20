@@ -188,7 +188,7 @@
       const top = [...shen].sort((a, b) => b.post.interactions - a.post.interactions);
       const text = {
         map: '每顆泡泡是一篇熱門貼文，從它所屬的那場車掃（沈伯洋）或夜市（蔣萬安）冒出來；越大顆，互動越多。白色是一般民眾，加光暈的是追蹤者不到 600 人的帳號。',
-        type: `沈伯洋的 ${shen.length} 篇熱門貼文，一般民眾和個人帳號的貼文拿下 ${share(shen)}% 的互動；蔣萬安的 ${chiang.length} 篇只有 ${share(chiang)}%，多是政治人物、評論者與媒體的攻防。`,
+        type: `沈伯洋的 ${shen.length} 篇熱門貼文，一般民眾和個人帳號的貼文拿下 ${share(shen)}% 的互動；蔣萬安的 ${chiang.length} 篇是 ${share(chiang)}%，多是政治人物、評論者與媒體的攻防。`,
         session: `每場車掃最熱的 3 篇貼文。最大顆的是 ${H.md(top[0].post.date)} ${top[0].post.author}（${top[0].post.interactionsLabel}），其次是 ${H.md(top[1].post.date)} ${top[1].post.author}「${top[1].post.content.slice(0, 14)}…」（${top[1].post.interactionsLabel}）。`,
       }[o.grouping];
       o.headline.textContent = text;

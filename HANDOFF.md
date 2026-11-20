@@ -1,6 +1,6 @@
 # HW3 組員交接
 
-**題目已更換**：第一版（TPOC「洋流」動員公文）移到 `archive/tpoc-yangliu/`。現在的題目是重做 QSearch〈街頭陸戰遇上網路空戰〉的圖表，說明見 [README.md](README.md)。
+**題目已更換**：第一版（TPOC「洋流」動員公文）移到 `archive/tpoc-yangliu/`。現在的題目是重構 QSearch〈街頭陸戰遇上網路空戰〉的圖表，說明見 [README.md](README.md)。
 
 **接手起點**　線上版：<https://victorien1963.github.io/1151VIS-HW3-415085047-YEN-TING-YA-415085011-CHANG-KAI-FU-410262690-CHEN-YU-HSUAN/>。要改程式就下載整個 repo、解壓，雙擊 `index.html`。上半是捲動敘事（往下捲就會換圖），下半是「自己探索」，可以直接拿來截圖、錄影。
 

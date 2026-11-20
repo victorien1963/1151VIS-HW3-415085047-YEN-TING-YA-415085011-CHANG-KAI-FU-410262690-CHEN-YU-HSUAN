@@ -371,15 +371,17 @@
     const height = m.top + rows.length * rowH + m.bottom;
     const focus = H.active();
     const svg = freshSvg(elm, width, height, '6 場車掃當天與前 3 天平均的比較：可比較的 4 場是 1.03 到 1.27 倍，11/15 士林北投最多。10/31 與 11/1 受辯論影響，不列入比較。');
-    const x = d3.scaleLinear().domain([6000, 16000]).range([m.left, width - m.right]);
+    // 對數刻度：線長對應「當天 ÷ 前 3 天」的倍數，不受該場原本討論量大小影響。
+    const x = d3.scaleLog().domain([6000, 16000]).range([m.left, width - m.right]);
     const y = (i) => m.top + i * rowH + rowH / 2;
-    const ticks = x.ticks(narrow ? 3 : 5);
+    // 刻度每格固定 1.25 倍（15,625 取整為 15,600），在對數刻度上等距。
+    const ticks = narrow ? [6400, 10000, 15600] : [6400, 8000, 10000, 12500, 15600];
     svg.append('g').attr('class', 'grid').selectAll('line').data(ticks).join('line')
       .attr('x1', (d) => x(d)).attr('x2', (d) => x(d)).attr('y1', m.top).attr('y2', height - m.bottom);
     svg.append('g').attr('class', 'axis').selectAll('text').data(ticks).join('text')
       .attr('x', (d) => x(d)).attr('y', height - m.bottom + 16).attr('text-anchor', 'middle').text((d) => fmt(d));
     svg.append('text').attr('class', 'axis-title').attr('x', width - m.right).attr('y', height - 4)
-      .attr('text-anchor', 'end').text('提到沈伯洋的討論（筆／日，四平台合計）');
+      .attr('text-anchor', 'end').text(narrow ? '筆／日（對數刻度）' : '提到沈伯洋的討論（筆／日，四平台合計，對數刻度）');
     const row = svg.append('g').selectAll('g').data(rows).join('g')
       .attr('class', 'lift-row')
       .attr('transform', (d, i) => `translate(0,${y(i)})`)

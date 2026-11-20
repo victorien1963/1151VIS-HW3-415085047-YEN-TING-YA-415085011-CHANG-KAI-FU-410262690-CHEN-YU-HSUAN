@@ -86,18 +86,22 @@
     const height = liftEl.clientHeight;
     if (width < 200 || height < 200) return;
     const narrow = width < 600;
-    const m = { top: 90, right: narrow ? 110 : 140, bottom: 56, left: narrow ? 20 : 150 };
+    const m = { top: 104, right: narrow ? 110 : 140, bottom: 56, left: narrow ? 20 : 150 };
     const svg = d3.select(liftEl).selectAll('svg').data([null]).join('svg')
       .attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height)
       .attr('role', 'img').attr('aria-label', '車掃當天提到沈伯洋的討論是前 3 天的 1.03 到 1.27 倍；10/31 與 11/1 受辯論影響不列入。');
     svg.selectAll('*').remove();
     svg.append('text').attr('class', 'stage-title').attr('x', narrow ? 20 : m.left).attr('y', 30).text('提到沈伯洋的總討論：當天 vs 前 3 天平均');
     svg.append('text').attr('class', 'stage-sub').attr('x', narrow ? 20 : m.left).attr('y', 54).text('空心＝前 3 天平均，實心＝車掃當天（筆／日，四平台合計）');
-    const x = d3.scaleLinear().domain([6000, 16000]).range([m.left, width - m.right]);
+    svg.append('text').attr('class', 'stage-sub').attr('x', narrow ? 20 : m.left).attr('y', 76).text('橫軸是對數刻度，每格 1.25 倍：倍數相同，線就一樣長');
+    // 對數刻度：線長對應「當天 ÷ 前 3 天」的倍數，不受該場原本討論量大小影響。
+    const x = d3.scaleLog().domain([6000, 16000]).range([m.left, width - m.right]);
+    // 刻度每格固定 1.25 倍（15,625 取整為 15,600），在對數刻度上等距。
+    const ticks = narrow ? [6400, 10000, 15600] : [6400, 8000, 10000, 12500, 15600];
     const rowH = (height - m.top - m.bottom) / H.sessions.length;
-    svg.append('g').attr('class', 'grid').selectAll('line').data(x.ticks(narrow ? 3 : 5)).join('line')
+    svg.append('g').attr('class', 'grid').selectAll('line').data(ticks).join('line')
       .attr('x1', (d) => x(d)).attr('x2', (d) => x(d)).attr('y1', m.top - 10).attr('y2', height - m.bottom);
-    svg.append('g').attr('class', 'axis').selectAll('text').data(x.ticks(narrow ? 3 : 5)).join('text')
+    svg.append('g').attr('class', 'axis').selectAll('text').data(ticks).join('text')
       .attr('x', (d) => x(d)).attr('y', height - m.bottom + 20).attr('text-anchor', 'middle').text((d) => H.fmt(d));
     const rows = svg.append('g').selectAll('g').data(H.sessions).join('g')
       .attr('transform', (s, i) => `translate(0,${m.top + i * rowH + rowH / 2})`);
