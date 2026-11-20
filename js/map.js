@@ -65,6 +65,7 @@
     let spark = null;
 
     const sessionOf = (f) => H.sessionByDistrict.get(f.properties.name);
+    const touchOnly = window.matchMedia('(hover: none)').matches;
 
     function size() {
       w = el.clientWidth;
@@ -96,6 +97,8 @@
           .attr('aria-label', (s) => `${H.md(s.date)} ${s.name} 車掃，當天 ${H.fmt(s.street)} 筆。選取這一場`)
           .style('cursor', 'pointer')
           .on('pointerenter focus', (event, s) => {
+            // 觸控沒有「滑過」，點一下直接選取；不先預覽，免得手機把第一下當成滑過而不觸發點擊。
+            if (event.type !== 'focus' && event.pointerType !== 'mouse') return;
             sessionTip(s);
             if (event.type === 'focus') H.placeTipAt(event.currentTarget);
             else H.placeTip(event.clientX, event.clientY);
@@ -152,12 +155,15 @@
       // 蔣萬安的夜市
       const spots = gSpots.selectAll('g').data(H.CHIANG_SPOTS, (s) => s.date).join((enter) => {
         const g = enter.append('g').attr('class', 'spot');
-        g.append('circle').attr('class', 'spot-halo').attr('filter', `url(#${id}-soft)`);
-        g.append('circle').attr('class', 'spot-core');
+        // 只有透明的感應圓接收滑鼠，光暈、圓點和標籤（窄螢幕時透明）都不擋住下面的區塊。
+        g.append('circle').attr('class', 'spot-halo').attr('filter', `url(#${id}-soft)`).attr('pointer-events', 'none');
+        g.append('circle').attr('class', 'spot-core').attr('pointer-events', 'none');
         g.append('circle').attr('class', 'spot-hit').attr('r', 12).attr('fill', 'transparent');
-        g.append('text').attr('class', 'spot-label');
+        g.append('text').attr('class', 'spot-label').attr('pointer-events', 'none');
         return g;
       }).attr('transform', (s) => `translate(${projection([s.lon, s.lat])})`);
+      // 觸控螢幕上，夜市光點不接收點擊，手指點到哪一區就選哪一區。
+      spots.attr('pointer-events', touchOnly ? 'none' : null);
       spots.select('.spot-label').attr('x', (s) => s.dx).attr('y', (s) => s.dy)
         .attr('text-anchor', (s) => s.anchor).text((s) => s.name);
       spots.on('pointerenter', (event, s) => {

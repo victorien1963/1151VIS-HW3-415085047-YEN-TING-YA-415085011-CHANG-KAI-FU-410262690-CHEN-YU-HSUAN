@@ -19,6 +19,6 @@
 
 ## 繳交素材
 
-- [GitHub 專案](https://github.com/victorien1963/1151VIS-HW3-415085047-YEN-TING-YA-410262690-CHEN-YU-HSUAN)
+- [GitHub 專案](https://github.com/victorien1963/1151VIS-HW3-415085047-YEN-TING-YA-415085011-CHANG-KAI-FU-410262690-CHEN-YU-HSUAN)
 - 專案截圖與 YouTube 影片連結待組員完成錄影後補入。
 - [TronClass 作業頁](https://elearn2.fju.edu.tw/course/403380/learning-activity#/3155608)

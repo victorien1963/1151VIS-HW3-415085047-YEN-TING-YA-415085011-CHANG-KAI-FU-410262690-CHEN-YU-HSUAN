@@ -2,10 +2,10 @@
 
 輔仁大學「資料分析與視覺化應用」HW3 · News visualization。找一篇有資料視覺化的文章，指出原圖的缺點，再用 D3.js 改良重做。
 
-- **組員**：415085047 嚴庭亞、410262690 陳予璇
+- **組員**：415085047 嚴庭亞、415085011 張凱富、410262690 陳予璇
 - **原文**：QSearch〈[街頭陸戰遇上網路空戰：沈伯洋車掃、蔣萬安走夜市，社群在聊什麼？](https://www.qsearch.cc/blog/2026/11/2026-taipei-mayoral-street-campaign-social-volume/)〉（2026/11/17）
-- **線上版**：<https://victorien1963.github.io/1151VIS-HW3-415085047-YEN-TING-YA-410262690-CHEN-YU-HSUAN/>
-- **GitHub**：<https://github.com/victorien1963/1151VIS-HW3-415085047-YEN-TING-YA-410262690-CHEN-YU-HSUAN>
+- **線上版**：<https://victorien1963.github.io/1151VIS-HW3-415085047-YEN-TING-YA-415085011-CHANG-KAI-FU-410262690-CHEN-YU-HSUAN/>
+- **GitHub**：<https://github.com/victorien1963/1151VIS-HW3-415085047-YEN-TING-YA-415085011-CHANG-KAI-FU-410262690-CHEN-YU-HSUAN>
 - **YouTube 互動影片**：（錄影後補上連結）
 
 **怎麼看成品**　直接開上面的線上版。也可以從 GitHub 的 **Code → Download ZIP** 下載並解壓，用 Chrome、Safari 或 Edge 開啟 `index.html`；D3、地圖和資料都放在 repo 裡，不需要網路。
