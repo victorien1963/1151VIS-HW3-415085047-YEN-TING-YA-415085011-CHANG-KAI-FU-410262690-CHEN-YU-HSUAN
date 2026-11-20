@@ -101,7 +101,7 @@ html, body { margin: 0; background: #0a0f1c; }
 .chart-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin: 4px 0 10px; font-size: 12px; line-height: 1.4; color: var(--text-secondary); }
 .chart-legend .lg-item { display: inline-flex; align-items: center; gap: 6px; }
 .chart-legend svg { flex: none; overflow: visible; }
-.story-stage .stage-legend { position: absolute; left: 16px; right: 16px; bottom: 6px; margin: 0; pointer-events: none; }
+.story-stage .stage-key { position: absolute; left: 16px; right: 16px; bottom: 6px; margin: 0; pointer-events: none; }
 .chart-legend[hidden] { display: none; }
 .chart-legend .lg-size text { font-size: 10px; fill: var(--text-muted); }
 .map-controls { position: absolute; top: 12px; right: 12px; }

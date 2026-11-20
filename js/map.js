@@ -254,6 +254,9 @@
         .attr('fill', (s) => s.color);
       gHud.append('text').attr('class', 'spark-tick').attr('x', 20).attr('y', h - 1).text('10/1');
       gHud.append('text').attr('class', 'spark-tick').attr('x', w - 20).attr('y', h - 1).attr('text-anchor', 'end').text('11/16');
+      // 走勢線的圖例，放在兩端日期中間
+      gHud.append('text').attr('class', 'spark-tick').attr('x', w / 2).attr('y', h - 1).attr('text-anchor', 'middle')
+        .text(w < 500 ? '每日筆數 · 圓點＝車掃日 · 白線＝目前日期' : '下方走勢＝每日筆數 · 圓點＝車掃當天 · 白線＝目前日期（可拖曳）');
       const cursor = gHud.append('line').attr('class', 'spark-cursor').attr('y1', sy0 - 6).attr('y2', sy1);
       const scrub = (event) => {
         const [px] = d3.pointer(event, svg.node());

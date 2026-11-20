@@ -14,7 +14,7 @@
 
   // 地圖的圖例：放在地圖下方（播放時那裡是時間軸，所以播放段落改看左上角的亮度條）。
   const sessionColors = H.sessions.map((s) => s.color);
-  const mapLegend = H.legend(layerEl('map'), [], { place: 'append', className: 'stage-legend' });
+  const mapLegend = H.legend(layerEl('map'), [], { place: 'append', className: 'stage-key' });
   const LEGEND_SHEN = [
     { type: 'swatches', colors: sessionColors, label: '顏色＝6 場車掃（每場兩區）' },
     { type: 'gradient', id: 'story', color: '#ff8c42', label: `越亮＝那場車掃當天討論越多（最亮：11/15 士林×北投 ${H.fmt(H.MAX_SHEN)} 筆）` },
@@ -27,14 +27,20 @@
 
   // ---------- 對齊圖（敘事版） ----------
   const decayEl = layerEl('decay');
+  const BAND_SWATCH = '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.25)"/></svg>';
+  const decayKey = H.legend(decayEl, [
+    { type: 'ref', label: '橫線＝100%（車掃當天的量）' },
+    { type: 'line', color: '#5b6478', label: '灰線＝10/31 受辯論影響，不列入' },
+    { html: BAND_SWATCH, label: '框＝文章寫的區間' },
+  ], { place: 'append', className: 'stage-key' });
   let decayDrawn = null;
   function drawDecay() {
     const width = decayEl.clientWidth;
     const height = decayEl.clientHeight;
     if (width < 200 || height < 200) return null;
     const narrow = width < 600;
-    const m = { top: narrow ? 120 : 96, right: 24, bottom: 48, left: 48 };
-    const svg = d3.select(decayEl).selectAll('svg').data([null]).join('svg')
+    const m = { top: narrow ? 120 : 96, right: 24, bottom: 48 + decayKey.offsetHeight + 6, left: 48 };
+    const svg = d3.select(decayEl).selectChildren('svg').data([null]).join('svg')
       .attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height)
       .attr('role', 'img').attr('aria-label', '6 場車掃對齊到當天：隔天大多還有 7 到 10 成，3 天後剩 2 到 3 成。');
     svg.selectAll('*').remove();
@@ -47,8 +53,10 @@
       const col = narrow ? i % 2 : i % 3;
       const row = narrow ? Math.floor(i / 2) : Math.floor(i / 3);
       const g = legend.append('g').attr('transform', `translate(${col * (narrow ? 150 : 170)},${row * 18})`);
-      g.append('line').attr('x2', 14).attr('y1', -4).attr('y2', -4).attr('stroke', s.color).attr('stroke-width', 3);
-      g.append('text').attr('class', 'stage-legend').attr('x', 20).text(`${H.md(s.date)} ${s.name}`);
+      // 10/31 在圖裡畫成灰色（受辯論影響），圖例也要一致
+      const muted = s.date === '2026-10-31';
+      g.append('line').attr('x2', 14).attr('y1', -4).attr('y2', -4).attr('stroke', muted ? '#5b6478' : s.color).attr('stroke-width', 3);
+      g.append('text').attr('class', 'stage-legend').attr('x', 20).text(`${H.md(s.date)} ${s.name}${muted ? '（不列入）' : ''}`);
     });
 
     svg.append('g').attr('class', 'grid').selectAll('line').data([0, 50, 150, 200]).join('line')
@@ -62,14 +70,14 @@
       .attr('font-weight', (d) => (d === 0 ? 700 : null)).text((d) => LABEL[d]);
 
     // 標出文章的結論區間
-    const band = (k, lo, hi, text, anchor) => {
+    const band = (k, lo, hi, text, anchor, below) => {
       svg.append('rect').attr('class', 'stage-band').attr('x', x(k) - 16).attr('width', 32)
         .attr('y', y(hi)).attr('height', y(lo) - y(hi)).attr('rx', 6);
       svg.append('text').attr('class', 'stage-note').attr('x', anchor === 'end' ? x(k) + 16 : x(k))
-        .attr('y', y(hi) - 8).attr('text-anchor', anchor || 'middle').text(text);
+        .attr('y', below ? y(lo) + 18 : y(hi) - 8).attr('text-anchor', anchor || 'middle').text(text);
     };
-    band(1, 72, 108, '隔天：7～10 成');
-    band(3, 24, 32, '3 天後：2～3 成', 'end');
+    band(1, 72, 108, '文章：隔天剩 7～10 成');
+    band(3, 24, 32, '文章：3 天後剩 2～3 成', 'end', true);
 
     const line = d3.line().x((p) => x(p.k)).y((p) => y(p.pct)).curve(d3.curveMonotoneX);
     const paths = svg.append('g').selectAll('path').data(H.decay.shen).join('path')
@@ -93,14 +101,21 @@
   }
 
   // ---------- 當天 vs 前 3 天（敘事版） ----------
+  const liftKey = H.legend(layerEl('lift'), [
+    { type: 'hollow', color: '#e9edf5', label: '空心＝前 3 天平均' },
+    { type: 'dot', color: '#e9edf5', label: '實心＝車掃當天' },
+    { type: 'dots', colors: sessionColors, label: '顏色＝場次' },
+    { type: 'dot', color: '#5b6478', label: '灰色＝受辯論影響，不列入' },
+    { type: 'line', color: '#aab3c5', label: '線長＝倍數' },
+  ], { place: 'append', className: 'stage-key' });
   const liftEl = layerEl('lift');
   function animateLift() {
     const width = liftEl.clientWidth;
     const height = liftEl.clientHeight;
     if (width < 200 || height < 200) return;
     const narrow = width < 600;
-    const m = { top: 104, right: narrow ? 110 : 140, bottom: 56, left: narrow ? 20 : 150 };
-    const svg = d3.select(liftEl).selectAll('svg').data([null]).join('svg')
+    const m = { top: 104, right: narrow ? 110 : 140, bottom: 56 + liftKey.offsetHeight + 6, left: narrow ? 20 : 150 };
+    const svg = d3.select(liftEl).selectChildren('svg').data([null]).join('svg')
       .attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height)
       .attr('role', 'img').attr('aria-label', '車掃當天提到沈伯洋的討論是前 3 天的 1.03 到 1.27 倍；10/31 與 11/1 受辯論影響不列入。');
     svg.selectAll('*').remove();
