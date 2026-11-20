@@ -1,17 +1,226 @@
-:root{--foreground:#152924;--muted-foreground:#4d6058;--green:#14724a;--blue:#245eab;--border:#c9d4ce;--background:#fff;--muted:#f0f5f1}
-body{margin:0;background:var(--background)}
-main{max-width:880px;margin:clamp(20px,7vw,70px) auto;padding:0 20px}
-summary{padding:10px 0}a{color:var(--blue)}
-#yl-track{font-family:"Instrument Sans","PingFang TC",sans-serif;color:var(--foreground);container-type:inline-size;font-variant-numeric:tabular-nums}
-#yl-track h2{font:600 clamp(21px,4.6cqw,33px)/1.25 "Songti TC",serif;margin:0 0 4px}
-#yl-track header p,#yl-track details p{font-size:13px;margin:4px 0 8px}
-#yl-track .yt-key{display:flex;gap:6px 20px;flex-wrap:wrap;font-size:12px;color:var(--muted-foreground);border-top:1px solid var(--border);padding-top:8px}
-#yl-track svg{width:100%;height:auto;display:block}
-#yl-track [role=button],#yl-track summary{cursor:pointer}
-#yl-track [role=button]:focus-visible circle:last-child{stroke:var(--foreground);stroke-width:2}
-#yl-track .yt-inspect{border-left:3px solid var(--ink);padding:6px 11px;font-size:14px;background:var(--muted);color:var(--foreground)}
-#yl-track .yt-inspect span{display:block;font-size:12px;margin-top:2px}
-#yl-track details{margin:12px 0;font-size:14px}
-#yl-track .yt-pairs>div{display:flex;gap:5px 12px;align-items:center;flex-wrap:wrap;padding:4px 0}
-#yl-track .yt-pairs b{font-size:18px;letter-spacing:1px;color:var(--ink)}
-#yl-track .yt-pairs small,#yl-track .yt-source{font-size:12px;color:var(--muted-foreground)}
+/* 夜間主題：洋流發光地圖需要深色底，整頁固定用深色。 */
+.viz-root {
+  color-scheme: dark;
+  --page: #0a0f1c;
+  --surface-1: #111829;
+  --surface-2: #172036;
+  --text-primary: #e9edf5;
+  --text-secondary: #aab3c5;
+  --text-muted: #77829a;
+  --grid: #222b3f;
+  --axis: #2e3850;
+  --wash: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.10);
+  --link: #8fb3ff;
+}
+
+html, body { margin: 0; background: #0a0f1c; }
+
+.viz-root {
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+  line-height: 1.65;
+  box-sizing: border-box;
+}
+.viz-root *, .viz-root *::before, .viz-root *::after { box-sizing: inherit; }
+.viz-root a { color: var(--link); }
+.viz-root button { font: inherit; }
+
+/* ---------- 開頭 ---------- */
+.page-head {
+  max-width: 920px; margin: 0 auto; padding: clamp(40px, 10vh, 120px) 16px 40px;
+  min-height: 72vh; display: flex; flex-direction: column; justify-content: center;
+}
+.page-head h1 { font-size: clamp(26px, 5vw, 46px); line-height: 1.25; margin: 8px 0 16px; font-weight: 800; letter-spacing: 0.01em; }
+.kicker { font-size: 13px; color: var(--text-secondary); margin: 0; }
+.lead { font-size: clamp(15px, 2vw, 18px); color: var(--text-secondary); margin: 0; max-width: 40em; }
+.scroll-hint { color: var(--text-muted); font-size: 13px; margin-top: 32px; animation: bob 2s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(6px); } }
+
+/* ---------- 捲動敘事 ---------- */
+.story {
+  position: relative; max-width: 1240px; margin: 0 auto; padding: 0 16px;
+  display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: 32px;
+}
+.story-stage {
+  grid-column: 2; grid-row: 1; position: sticky; top: 0; height: 100vh; height: 100svh;
+}
+.story-steps { grid-column: 1; grid-row: 1; padding: 40vh 0 50vh; }
+.story-step {
+  background: rgba(17, 24, 41, 0.92); border: 1px solid var(--border); border-radius: 14px;
+  padding: 18px 20px; margin-bottom: 80vh; opacity: 0.4; transition: opacity 0.4s;
+  backdrop-filter: blur(6px);
+}
+.story-step:last-child { margin-bottom: 0; }
+.story-step.is-active { opacity: 1; }
+.story-step h2 { font-size: 20px; line-height: 1.4; margin: 0 0 8px; }
+.story-step p { font-size: 15px; color: var(--text-secondary); margin: 0 0 8px; }
+.replay-btn {
+  color: var(--text-primary); background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 6px 14px; cursor: pointer;
+}
+.layer, .layer.map-wrap, .layer.bubbles-wrap { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
+.layer.is-on { opacity: 1; pointer-events: auto; }
+.story-stage .map-hud, .story-stage .map-controls { opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+.story-stage.hud-on .map-hud, .story-stage.hud-on .map-controls { opacity: 1; pointer-events: auto; }
+
+@media (max-width: 760px) {
+  .story { display: block; padding: 0; }
+  .story-stage { position: sticky; top: 0; height: 100vh; height: 100svh; z-index: 0; }
+  .story-steps { position: relative; z-index: 1; margin-top: -100vh; margin-top: -100svh; padding: 60vh 12px 40vh; pointer-events: none; }
+  .story-step { pointer-events: auto; margin-bottom: 90vh; }
+  .story-step:not(.is-active) { opacity: 0.25; }
+  /* 手機上圖只佔舞台上方，下方留給文字卡 */
+  .story .story-stage .layer { inset: 0 0 36% 0; height: auto; }
+}
+
+.stage-title { font-size: 18px; font-weight: 700; fill: var(--text-primary); }
+.stage-sub, .stage-legend { font-size: 13px; fill: var(--text-secondary); }
+.stage-note { font-size: 12px; fill: var(--text-primary); }
+.stage-ratio { font-size: 14px; font-weight: 700; fill: var(--text-primary); }
+.stage-band { fill: rgba(255, 255, 255, 0.08); stroke: rgba(255, 255, 255, 0.25); }
+
+/* ---------- 地圖 ---------- */
+.map-wrap { position: relative; width: 100%; height: 100%; }
+.map-svg { display: block; width: 100%; height: auto; }
+.wave { fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-dasharray: 10 14; animation: flow 1.6s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -48; } }
+.map-label-no { font-size: 12px; font-weight: 700; fill: #ffffff; paint-order: stroke; stroke: rgba(10, 15, 28, 0.85); stroke-width: 3px; }
+.map-label-name { font-size: 12px; fill: #dfe5f0; paint-order: stroke; stroke: rgba(10, 15, 28, 0.85); stroke-width: 3px; }
+.spot-label { font-size: 11px; fill: #cfdcff; paint-order: stroke; stroke: rgba(10, 15, 28, 0.9); stroke-width: 3px; }
+.spot { cursor: default; }
+.hud-date { font-size: 22px; font-weight: 800; fill: #ffffff; }
+.hud-count { font-size: 13px; fill: var(--text-secondary); }
+.spark-area { fill: rgba(255, 255, 255, 0.08); }
+.spark-line { fill: none; stroke: rgba(255, 255, 255, 0.55); stroke-width: 1.5; }
+.spark-cursor { stroke: #ffffff; stroke-width: 1.5; }
+.spark-tick { font-size: 10px; fill: var(--text-muted); }
+.map-controls { position: absolute; top: 12px; right: 12px; }
+.play-btn {
+  color: var(--text-primary); background: rgba(23, 32, 54, 0.9); border: 1px solid var(--border);
+  border-radius: 999px; padding: 6px 14px; cursor: pointer; font-size: 13px;
+}
+.play-btn:hover { background: #22304f; }
+
+/* ---------- 泡泡 ---------- */
+.bubbles-wrap { position: relative; width: 100%; height: 100%; }
+.bubbles-svg { display: block; width: 100%; height: auto; }
+.bubble-text { font-size: 11px; font-weight: 700; pointer-events: none; }
+.bubble-col { font-size: 13px; font-weight: 700; fill: var(--text-primary); }
+.bubble-row { font-size: 15px; font-weight: 800; fill: var(--text-primary); }
+.bubble-stat { font-size: 12px; fill: var(--text-secondary); }
+.bubble-headline { font-size: 16px; font-weight: 600; margin: 8px 0 0; max-width: 46em; }
+.grouping { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0; }
+.grouping button, .chips button {
+  color: var(--text-primary); background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer; font-size: 13px; line-height: 1.3;
+}
+.grouping button[aria-pressed="true"], .chips button[aria-pressed="true"] { border-color: #ffffff; box-shadow: inset 0 0 0 1px #ffffff; font-weight: 700; }
+.grouping button:hover, .chips button:hover { background: #22304f; }
+
+/* ---------- 探索區 ---------- */
+.explore { max-width: 1100px; margin: 0 auto; padding: 80px 16px 48px; }
+.explore-title { font-size: clamp(24px, 4vw, 34px); margin: 0 0 8px; }
+.session-picker {
+  position: sticky; top: 0; z-index: 5; background: var(--page);
+  display: flex; gap: 8px 12px; align-items: center; flex-wrap: wrap;
+  padding: 10px 0; border-bottom: 1px solid var(--grid); margin-bottom: 20px;
+}
+.picker-label { font-size: 13px; color: var(--text-secondary); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chips button { display: inline-flex; align-items: center; gap: 6px; }
+.chips button small { color: var(--text-muted); font-weight: 400; }
+.chip-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+@media (max-width: 640px) {
+  .session-picker { flex-wrap: nowrap; }
+  .picker-label { flex: none; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+  .chips button { flex: none; }
+}
+.viz-root :focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+/* SVG 裡的按鈕用自己的描邊表示焦點（地圖白框、泡泡放大），不畫瀏覽器預設的方框 */
+.viz-root svg [role="button"]:focus, .viz-root svg[tabindex]:focus { outline: none; }
+.viz-root svg [role="button"]:focus-visible .bubble-body { stroke: #ffffff; stroke-width: 3.5px; }
+.viz-root svg [role="button"]:focus-visible .marker-dot { stroke: #ffffff; }
+
+.panel { background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 20px; }
+.panel h3 { font-size: 18px; margin: 0 0 4px; line-height: 1.4; }
+.panel h4 { font-size: 14px; margin: 0 0 2px; color: var(--text-secondary); font-weight: 600; }
+.sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 10px; max-width: 52em; }
+
+.map-panel { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .map-panel { grid-template-columns: 1fr; } }
+.detail-card {
+  --accent: transparent;
+  background: var(--surface-2); border-radius: 12px; border-top: 4px solid var(--accent);
+  padding: 16px; min-height: 240px; position: sticky; top: 64px;
+}
+.detail-empty { color: var(--text-secondary); font-size: 14px; margin: 0; }
+.detail-kicker { font-size: 12px; color: var(--text-muted); margin: 0; }
+.detail-title { font-size: 20px; margin: 2px 0 12px; }
+.detail-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.stat { background: rgba(255, 255, 255, 0.04); border-radius: 8px; padding: 8px 10px; }
+.stat-value { display: block; font-size: 22px; font-weight: 800; color: var(--text-primary); }
+.stat-label { display: block; font-size: 12px; color: var(--text-secondary); }
+.detail-list { margin: 0 0 8px; font-size: 13px; }
+.detail-list dt { color: var(--text-muted); font-size: 12px; margin-top: 6px; }
+.detail-list dd { margin: 0; color: var(--text-primary); }
+.detail-sub { font-size: 12px; color: var(--text-muted); margin: 10px 0 4px; }
+.detail-posts { margin: 0; padding-left: 1.3em; font-size: 13px; }
+.detail-posts li { margin-bottom: 6px; }
+.detail-post-text { color: var(--text-secondary); }
+
+.chart { position: relative; width: 100%; }
+.chart > svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: inherit; }
+.axis text, .tick-label { font-size: 11px; fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.axis-title { font-size: 11px; fill: var(--text-secondary); }
+.label { font-size: 12px; fill: var(--text-primary); }
+.label-sub { font-size: 11px; fill: var(--text-secondary); }
+.grid line { stroke: var(--grid); stroke-width: 1; }
+.ref-line { stroke: var(--text-muted); stroke-width: 1; }
+[role="button"] { cursor: pointer; }
+.lift-row:hover > rect:first-child, .lift-row:focus-visible > rect:first-child { fill: var(--wash); }
+[data-chart="overview"] g[role="button"]:hover > .marker-dot { r: 7px; }
+
+.facets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 640px) { .facets { grid-template-columns: 1fr; } }
+.readout { font-size: 12px; color: var(--text-secondary); margin: 4px 0 0; min-height: 4.8em; }
+
+.inspect {
+  margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: var(--surface-2);
+  border-left: 3px solid var(--axis); font-size: 14px; min-height: 3em;
+}
+.inspect .meta { display: block; font-size: 12px; color: var(--text-secondary); }
+.inspect .value { font-weight: 800; font-size: 16px; }
+
+.tooltip {
+  position: fixed; z-index: 20; pointer-events: none;
+  background: #18213a; color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  padding: 8px 10px; font-size: 12px; line-height: 1.5; max-width: 300px;
+}
+.tooltip .tt-title { color: var(--text-secondary); margin-bottom: 2px; }
+.tooltip .tt-row { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.tooltip .tt-row.is-focus { font-weight: 700; }
+.tooltip .tt-key { width: 12px; height: 3px; border-radius: 1px; flex: none; }
+.tooltip .tt-value { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tooltip .tt-text { white-space: normal; color: var(--text-secondary); margin-top: 2px; }
+
+.notes { font-size: 14px; }
+.notes summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+.notes ol { padding-left: 1.4em; }
+.notes li { margin-bottom: 6px; }
+.source { font-size: 12px; color: var(--text-secondary); margin: 12px 0 0; }
+.tables { overflow-x: auto; }
+.tables table { border-collapse: collapse; font-size: 12px; margin: 8px 0 16px; min-width: 560px; }
+.tables caption { text-align: left; font-weight: 600; padding: 4px 0; }
+.tables th, .tables td { border-bottom: 1px solid var(--grid); padding: 4px 8px; text-align: left; vertical-align: top; }
+.tables td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wave, .scroll-hint { animation: none; }
+  .layer, .story-step { transition: none; }
+}

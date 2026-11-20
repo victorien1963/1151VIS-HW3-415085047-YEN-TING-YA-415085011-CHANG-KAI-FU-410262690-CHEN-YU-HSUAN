@@ -1,38 +1,1034 @@
-window.YANGLIU_DATA = {
-  "camps": {
-    "泛綠": {
-      "before": {
-        "posts": 930,
-        "buzz": 51415
-      },
-      "after": {
-        "posts": 3770,
-        "buzz": 58435
-      }
-    },
-    "泛藍": {
-      "before": {
-        "posts": 1017,
-        "buzz": 11440
-      },
-      "after": {
-        "posts": 6370,
-        "buzz": 184860
-      }
-    }
+window.STREET_DATA = {
+ "daily": [
+  {
+   "date": "2026-10-01",
+   "shen": 214,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 45,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
   },
-  "people": [
-    {
-      "name": "沈伯洋",
-      "camp": "泛綠",
-      "buzz": 58813,
-      "pn": 0.25
-    },
-    {
-      "name": "蔣萬安",
-      "camp": "泛藍",
-      "buzz": 53466,
-      "pn": 0.6
-    }
-  ]
+  {
+   "date": "2026-10-02",
+   "shen": 165,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 42,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-03",
+   "shen": 153,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 33,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-04",
+   "shen": 125,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 10,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-05",
+   "shen": 70,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 7,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-06",
+   "shen": 101,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 18,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-07",
+   "shen": 173,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 34,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-08",
+   "shen": 75,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 23,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-09",
+   "shen": 210,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 51,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-10",
+   "shen": 246,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 43,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-11",
+   "shen": 1006,
+   "shenExact": true,
+   "shenCampaign": "中山×大同",
+   "chiang": 37,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-12",
+   "shen": 879,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 19,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-13",
+   "shen": 500,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 36,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-14",
+   "shen": 325,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 63,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-15",
+   "shen": 316,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 109,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-16",
+   "shen": 170,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 69,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-17",
+   "shen": 100,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 107,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-18",
+   "shen": 592,
+   "shenExact": true,
+   "shenCampaign": "松山×信義",
+   "chiang": 34,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-19",
+   "shen": 636,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 21,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-20",
+   "shen": 246,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 15,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-21",
+   "shen": 169,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 77,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-22",
+   "shen": 74,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 27,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-23",
+   "shen": 47,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 8,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-24",
+   "shen": 71,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 9,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-25",
+   "shen": 446,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 16,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-26",
+   "shen": 355,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 13,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-10-27",
+   "shen": 281,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 115,
+   "chiangExact": false,
+   "chiangCampaign": "內湖737夜市",
+   "note": ""
+  },
+  {
+   "date": "2026-10-28",
+   "shen": 279,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 309,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": "蔣萬安晚間身體不適"
+  },
+  {
+   "date": "2026-10-29",
+   "shen": 265,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 435,
+   "chiangExact": false,
+   "chiangCampaign": "夫人代打",
+   "note": "蔣萬安暫停公開行程，石舫亘代為走市場"
+  },
+  {
+   "date": "2026-10-30",
+   "shen": 211,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 495,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": "蔣萬安暫停公開行程，石舫亘代為走市場"
+  },
+  {
+   "date": "2026-10-31",
+   "shen": 460,
+   "shenExact": true,
+   "shenCampaign": "中正×萬華",
+   "chiang": 94,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": "首場電視辯論（中午）"
+  },
+  {
+   "date": "2026-11-01",
+   "shen": 1052,
+   "shenExact": true,
+   "shenCampaign": "大安×文山",
+   "chiang": 300,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-02",
+   "shen": 1042,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 241,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-03",
+   "shen": 469,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 436,
+   "chiangExact": false,
+   "chiangCampaign": "寧夏夜市",
+   "note": ""
+  },
+  {
+   "date": "2026-11-04",
+   "shen": 250,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 493,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-05",
+   "shen": 372,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 473,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-06",
+   "shen": 334,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 280,
+   "chiangExact": true,
+   "chiangCampaign": "遼寧夜市（又一村）",
+   "note": "遼寧夜市「又一村」插曲"
+  },
+  {
+   "date": "2026-11-07",
+   "shen": 928,
+   "shenExact": true,
+   "shenCampaign": "內湖×南港",
+   "chiang": 704,
+   "chiangExact": true,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-08",
+   "shen": 672,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 454,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-09",
+   "shen": 253,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 403,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-10",
+   "shen": 290,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 338,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-11",
+   "shen": 307,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 270,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  },
+  {
+   "date": "2026-11-12",
+   "shen": 260,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 265,
+   "chiangExact": false,
+   "chiangCampaign": "公館",
+   "note": ""
+  },
+  {
+   "date": "2026-11-13",
+   "shen": 680,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 258,
+   "chiangExact": false,
+   "chiangCampaign": "饒河夜市（東發號）",
+   "note": ""
+  },
+  {
+   "date": "2026-11-14",
+   "shen": 457,
+   "shenExact": false,
+   "shenCampaign": "",
+   "chiang": 309,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": "東發號是否付錢爭議"
+  },
+  {
+   "date": "2026-11-15",
+   "shen": 1283,
+   "shenExact": true,
+   "shenCampaign": "士林×北投",
+   "chiang": 409,
+   "chiangExact": false,
+   "chiangCampaign": "臨江街夜市",
+   "note": ""
+  },
+  {
+   "date": "2026-11-16",
+   "shen": 1113,
+   "shenExact": true,
+   "shenCampaign": "",
+   "chiang": 469,
+   "chiangExact": false,
+   "chiangCampaign": "",
+   "note": ""
+  }
+ ],
+ "shenSessions": [
+  {
+   "date": "2026-10-11",
+   "weekday": "日",
+   "name": "中山×大同",
+   "route": "首場；王世堅同車，終點大龍峒保安宮",
+   "scene": "路邊舉牌、上千輛機車跟車、經過馬偕醫院關音樂",
+   "keywords": "首場、王世堅、貪食蛇",
+   "prev3": 7131,
+   "day0": 7703,
+   "ratio": 1.08,
+   "excluded": false,
+   "excludeReason": ""
+  },
+  {
+   "date": "2026-10-18",
+   "weekday": "日",
+   "name": "松山×信義",
+   "route": "五分埔出發，終點民權公園；首次不跟車、認領路段；卓榮泰、蘇春槐到場",
+   "scene": "回老家五分埔、民眾跟著車隊全程慢跑",
+   "keywords": "",
+   "prev3": 6613,
+   "day0": 6804,
+   "ratio": 1.03,
+   "excluded": false,
+   "excludeReason": ""
+  },
+  {
+   "date": "2026-10-31",
+   "weekday": "六",
+   "name": "中正×萬華",
+   "route": "古亭南福宮出發，終點龍山寺；當天中午是首場電視辯論",
+   "scene": "萬聖節穿動畫角色欣梅爾的衣服",
+   "keywords": "",
+   "prev3": 8820,
+   "day0": 15877,
+   "ratio": 1.8,
+   "excluded": true,
+   "excludeReason": "當天中午是首場電視辯論，無法分辨是辯論還是車掃帶動"
+  },
+  {
+   "date": "2026-11-01",
+   "weekday": "日",
+   "name": "大安×文山",
+   "route": "木柵集應廟出發，終點大安森林公園；蔡其昌同車，蔡英文開講",
+   "scene": "洋流設計師本人路邊發海報、包船應援的玩笑",
+   "keywords": "",
+   "prev3": 11082,
+   "day0": 11054,
+   "ratio": 1.0,
+   "excluded": true,
+   "excludeReason": "前 3 天包含辯論日，比較基準被拉高"
+  },
+  {
+   "date": "2026-11-07",
+   "weekday": "六",
+   "name": "內湖×南港",
+   "route": "原訂 10/25，因颱風延期；李洋同車，蕭美琴到場",
+   "scene": "「洋洋連線」、團隊事先向店家打招呼",
+   "keywords": "李洋、蕭美琴、運動部長",
+   "prev3": 9229,
+   "day0": 10401,
+   "ratio": 1.13,
+   "excluded": false,
+   "excludeReason": ""
+  },
+  {
+   "date": "2026-11-15",
+   "weekday": "日",
+   "name": "士林×北投",
+   "route": "壓軸場；陳其邁同車，終點關渡宮；賴清德到場",
+   "scene": "太太舉牌祝結婚紀念日、支持者划龍舟到關渡",
+   "keywords": "關渡、終場、陳其邁、賴清德",
+   "prev3": 8302,
+   "day0": 10591,
+   "ratio": 1.27,
+   "excluded": false,
+   "excludeReason": ""
+  }
+ ],
+ "chiangSessions": [
+  {
+   "date": "2026-10-27",
+   "name": "內湖737夜市"
+  },
+  {
+   "date": "2026-10-29",
+   "name": "夫人代打"
+  },
+  {
+   "date": "2026-11-03",
+   "name": "寧夏夜市"
+  },
+  {
+   "date": "2026-11-06",
+   "name": "遼寧夜市（又一村）"
+  },
+  {
+   "date": "2026-11-12",
+   "name": "公館"
+  },
+  {
+   "date": "2026-11-13",
+   "name": "饒河夜市（東發號）"
+  },
+  {
+   "date": "2026-11-15",
+   "name": "臨江街夜市"
+  }
+ ],
+ "posts": [
+  {
+   "candidate": "shen",
+   "date": "2026-10-11",
+   "session": "中山×大同",
+   "author": "沈伯洋",
+   "label": "候選人",
+   "category": "政治人物",
+   "small": false,
+   "content": "首場心得：看到民眾舉牌「台北須團結，團結真有力」，一度眼眶泛紅",
+   "interactions": 136000,
+   "interactionsLabel": "13.6 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@pumashen/post/DeXAYd0kywx"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-11",
+   "session": "中山×大同",
+   "author": "張益贍",
+   "label": "評論者",
+   "category": "評論者",
+   "small": false,
+   "content": "車隊後方跟著的機車超過 2,000 台（發文者自估）",
+   "interactions": 30000,
+   "interactionsLabel": "3.0 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@yisan0519/post/DeWfreNj7g6"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-11",
+   "session": "中山×大同",
+   "author": "c妞",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": false,
+   "content": "問朋友為什麼只有王世堅拿到烤香腸，朋友說那是船舵",
+   "interactions": 33000,
+   "interactionsLabel": "3.3 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@cnewloveyou/post/DeWiVJtD73q"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-18",
+   "session": "松山×信義",
+   "author": "周立軒",
+   "label": "個人帳號",
+   "category": "個人帳號",
+   "small": false,
+   "content": "一組「洋流路跑團」全程跟著車隊跑",
+   "interactions": 43000,
+   "interactionsLabel": "4.3 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@victor31429/post/DeohzbRD7FL"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-18",
+   "session": "松山×信義",
+   "author": "打馬悍將粉絲團",
+   "label": "政治粉專",
+   "category": "粉專",
+   "small": false,
+   "content": "松山信義車掃人潮影片",
+   "interactions": 45000,
+   "interactionsLabel": "4.5 萬",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/reel/1866239834362758/"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-18",
+   "session": "松山×信義",
+   "author": "Jenny C.",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": false,
+   "content": "車掃途中看到健身教練",
+   "interactions": 34000,
+   "interactionsLabel": "3.4 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@jennychang211/post/Deoc7BHEmSI"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-31",
+   "session": "中正×萬華",
+   "author": "yhnmtttt",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": true,
+   "content": "沈伯洋穿著動畫角色欣梅爾的衣服車掃",
+   "interactions": 48000,
+   "interactionsLabel": "4.8 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@yhnmtttt/post/DfJ329Bkidx"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-31",
+   "session": "中正×萬華",
+   "author": "ngnews6969",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": true,
+   "content": "邊倒垃圾邊看車掃直播，和鄰居的政治對話",
+   "interactions": 62000,
+   "interactionsLabel": "6.2 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@ngnews6969/post/DfKM5uTk0WD"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-10-31",
+   "session": "中正×萬華",
+   "author": "連文烽",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": false,
+   "content": "看完辯論，建議多辦車掃、跟市民互動",
+   "interactions": 16000,
+   "interactionsLabel": "1.6 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@liengavin/post/DfJe1s8lNvT"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-01",
+   "session": "大安×文山",
+   "author": "蕭婆不姓蕭",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": true,
+   "content": "在路邊碰到洋流設計師本人發海報",
+   "interactions": 39000,
+   "interactionsLabel": "3.9 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@doritosaholic/post/DfNQjumCEFI"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-01",
+   "session": "大安×文山",
+   "author": "蔡其昌",
+   "label": "立委，陪同車掃",
+   "category": "政治人物",
+   "small": false,
+   "content": "「人潮太驚人，真的有累到」",
+   "interactions": 38000,
+   "interactionsLabel": "3.8 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@tsaimimi0416/post/DfMq1h1GY15"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-01",
+   "session": "大安×文山",
+   "author": "謝小舞",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": true,
+   "content": "車掃時「看見」神明護持沈伯洋",
+   "interactions": 55000,
+   "interactionsLabel": "5.5 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@viola_hsieh1111/post/DfM8YyfkvVj"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-07",
+   "session": "內湖×南港",
+   "author": "northicewolf",
+   "label": "個人帳號",
+   "category": "個人帳號",
+   "small": false,
+   "content": "團隊掃街前先跟店家打招呼",
+   "interactions": 77000,
+   "interactionsLabel": "7.7 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@northicewolf/post/DfbpdycEwkN"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-07",
+   "session": "內湖×南港",
+   "author": "洪彥安",
+   "label": "個人帳號",
+   "category": "個人帳號",
+   "small": false,
+   "content": "神秘嘉賓是李洋，「洋洋連線」",
+   "interactions": 52000,
+   "interactionsLabel": "5.2 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@andyhung69/post/DfbyWW4mSGv"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-07",
+   "session": "內湖×南港",
+   "author": "邱宏杰",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": true,
+   "content": "「車掃發現有洋蔥」",
+   "interactions": 52000,
+   "interactionsLabel": "5.2 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@a0923352759/post/Dfb-LlhHxbk"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-15",
+   "session": "士林×北投",
+   "author": "林楚茵",
+   "label": "立委",
+   "category": "政治人物",
+   "small": false,
+   "content": "談終點的無人機秀",
+   "interactions": 70000,
+   "interactionsLabel": "7.0 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@linchuyin1010/post/DfyKAQrABbk"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-15",
+   "session": "士林×北投",
+   "author": "吳沛憶",
+   "label": "立委",
+   "category": "政治人物",
+   "small": false,
+   "content": "批評國民黨立委質詢李洋參加車掃",
+   "interactions": 58000,
+   "interactionsLabel": "5.8 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@pay1pay1/post/Dfy0SUnlqu-"
+  },
+  {
+   "candidate": "shen",
+   "date": "2026-11-15",
+   "session": "士林×北投",
+   "author": "Regina אושר Chang",
+   "label": "個人帳號",
+   "category": "個人帳號",
+   "small": false,
+   "content": "沈伯洋看到太太舉牌，大喊「我老婆欸」",
+   "interactions": 86000,
+   "interactionsLabel": "8.6 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@regina_rainywar/post/Dfwg5alnNuI"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-10-27",
+   "session": "",
+   "author": "戴騰展",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": false,
+   "content": "貼出內湖 737 夜市掃街照片，並補上沈伯洋先前的掃街照片對照，標註「#戒慎恐懼」",
+   "interactions": 10000,
+   "interactionsLabel": "1.0 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@tengzhandai/post/De_uPHQE3QC"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-10-28",
+   "session": "",
+   "author": "Milo",
+   "label": "評論帳號",
+   "category": "評論者",
+   "small": false,
+   "content": "轉述蔣萬安掃街後身體不適、取消行程，並調侃",
+   "interactions": 15000,
+   "interactionsLabel": "1.5 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@chnyu._12/post/DfCnVSrGA0G"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-10-29",
+   "session": "",
+   "author": "張老大頻道",
+   "label": "粉絲專頁",
+   "category": "粉專",
+   "small": false,
+   "content": "蔣萬安身體微恙，夫人代為掃街拜票",
+   "interactions": 17000,
+   "interactionsLabel": "1.7 萬",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/682006400605900/posts/1671442514995612"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-10-30",
+   "session": "",
+   "author": "羅智強",
+   "label": "國民黨立委、蔣萬安競選總幹事",
+   "category": "政治人物",
+   "small": false,
+   "content": "「蔣萬安生病休息，石舫亘温暖掃街」",
+   "interactions": 43000,
+   "interactionsLabel": "4.3 萬",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/reel/2927844564262786/"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-04",
+   "session": "",
+   "author": "Matthew Yu",
+   "label": "一般民眾",
+   "category": "一般民眾",
+   "small": false,
+   "content": "以「花了將近30秒才能通過，真穩！」形容南機場掃街人潮",
+   "interactions": 35000,
+   "interactionsLabel": "3.5 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@yumatt6727/post/DfUhop5AaWn"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-04",
+   "session": "",
+   "author": "中時新聞網",
+   "label": "媒體",
+   "category": "媒體",
+   "small": false,
+   "content": "寧夏夜市掃街時，同志支持者到場力挺",
+   "interactions": 28000,
+   "interactionsLabel": "2.8 萬",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/reel/1499840188872529/"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-07",
+   "session": "",
+   "author": "Milo",
+   "label": "評論帳號",
+   "category": "評論者",
+   "small": false,
+   "content": "批評支持者在遼寧夜市圍住挺沈伯洋的店家喊口號",
+   "interactions": 34000,
+   "interactionsLabel": "3.4 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@chnyu._12/post/DfaJzFrGHJz"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-07",
+   "session": "",
+   "author": "羅智強",
+   "label": "國民黨立委、蔣萬安競選總幹事",
+   "category": "政治人物",
+   "small": false,
+   "content": "反駁「霸凌店家」說法，反指沈伯洋過去發動罷免",
+   "interactions": 17000,
+   "interactionsLabel": "1.7 萬",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/461480528667073/posts/1764590161689430"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-12",
+   "session": "",
+   "author": "中天新聞",
+   "label": "媒體",
+   "category": "媒體",
+   "small": false,
+   "content": "公館商圈夜市掃街直播",
+   "interactions": null,
+   "interactionsLabel": "—",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/579015031019914/videos/1084220927997035"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-13",
+   "session": "",
+   "author": "Zen大的時事點評",
+   "label": "評論粉專",
+   "category": "評論者",
+   "small": false,
+   "content": "談蔣萬安到公館夜市掃街，以及蔥抓餅老闆娘挺沈伯洋",
+   "interactions": 5880,
+   "interactionsLabel": "5,880",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/492748909530301/posts/1657039449767902"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-14",
+   "session": "",
+   "author": "黃益中",
+   "label": "評論者",
+   "category": "評論者",
+   "small": false,
+   "content": "轉述許淑華指蔣萬安團隊在東發號用餐未付錢",
+   "interactions": 13000,
+   "interactionsLabel": "1.3 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@yizhong0217/post/Dftw86CkqAS"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-14",
+   "session": "",
+   "author": "中時新聞網",
+   "label": "媒體",
+   "category": "媒體",
+   "small": false,
+   "content": "蔣萬安表示堅持付款但店家不收，請自治會長轉交",
+   "interactions": 7535,
+   "interactionsLabel": "7,535",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/679047304031343/posts/1639853764617354"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-15",
+   "session": "",
+   "author": "羅智強",
+   "label": "國民黨立委、蔣萬安競選總幹事",
+   "category": "政治人物",
+   "small": false,
+   "content": "引夜市自治會說法反駁「沒付錢」，要求許淑華道歉",
+   "interactions": 27000,
+   "interactionsLabel": "2.7 萬",
+   "platform": "facebook",
+   "url": "https://www.facebook.com/461480528667073/posts/1773276110820835"
+  },
+  {
+   "candidate": "chiang",
+   "date": "2026-11-15",
+   "session": "",
+   "author": "羅浚晅",
+   "label": "個人帳號",
+   "category": "個人帳號",
+   "small": false,
+   "content": "批評蔣萬安與館長等人一起掃街",
+   "interactions": 31000,
+   "interactionsLabel": "3.1 萬",
+   "platform": "threads",
+   "url": "https://www.threads.net/@dr.brain_/post/Dfw9sgXieR9"
+  }
+ ]
 };

@@ -1,0 +1,1858 @@
+{
+  "meta": {
+    "source_article": "https://www.qsearch.cc/blog/2026/11/2026-taipei-mayoral-street-campaign-social-volume/",
+    "source_site_data": "https://www.qsearch.cc/events/2026-taipei-election/review.html",
+    "extracted_on": "2026-11-20",
+    "period": "2026-10-01 ~ 2026-11-16",
+    "totals_from_article": {
+      "shen_mentions": "約 38.9 萬筆，其中掃街相關約 1.9 萬筆",
+      "chiang_mentions": "約 27.4 萬筆，其中掃街相關約 8,500 筆",
+      "note": "兩人的查詢會重疊，數字不宜相加或比較"
+    },
+    "other_facts_from_article": {
+      "threads_day0_ratio_range": "車掃當天 Threads 是前 3 天的 1.35～1.51 倍（各場數字未公開）",
+      "no_campaign_weekend_median_ratio": 0.99,
+      "youtube_videos_10_18_to_10_19": [
+        185,
+        255
+      ],
+      "decay_ranges": {
+        "day1": "72%～108%（5 場）",
+        "day2": "27%～50%（前 4 場）",
+        "day3": "24%～32%（前 4 場）"
+      }
+    },
+    "files": {
+      "street_campaign_daily": "掃街相關的每日貼文數。四平台（Threads、Facebook、新聞、YouTube 影片數）。is_exact=true 是文中寫明的數字，其餘是從圖片讀出來的估計值，誤差約 ±5 筆。沈伯洋已排除談蔣萬安掃街的貼文，蔣萬安已排除只談沈伯洋車掃的貼文。",
+      "candidate_mentions_daily": "提到候選人的每日總聲量（精確值），來自「台北市長選戰總複習」網站頁面內嵌資料。只有 Threads、Facebook、新聞三平台，不含 YouTube，所以會比文章圖二的四平台數字少（大約少 650～850 筆）。site_b 是網站自己的欄位，網站沒說明意義，數值看起來像移動中位數基準線；8/17–8/20 沒有值。",
+      "shen_campaign_sessions": "沈伯洋 6 場車掃。mentions_4p_* 是從圖二長條讀出的四平台「提到沈伯洋」筆數，誤差約 ±30 筆；ratio_4p_label 是圖上標的倍數（精確）。day1～day3 是掃街相關貼文的隔天、後天、3 天後。",
+      "chiang_campaign_sessions": "蔣萬安 7 場掃街，日期取自圖四的直線位置；數字是掃街相關貼文（讀值，11/6、11/7 為文中精確值）。",
+      "top_posts": "兩張熱門貼文表格（沈 18 筆、蔣 14 筆）加上內文提到的 2 篇（in_article_table=false）。互動數是 11/17 文章作者查看時的數字，「萬」為四捨五入後的值。沈伯洋的 date 是車掃場次日，蔣萬安的 date 是發文日。author_category 是我把原文的發文者標註歸成六類：一般民眾、個人帳號、政治人物、評論者、粉專、媒體。"
+    }
+  },
+  "street_campaign_daily": [
+    {
+      "date": "2026-10-01",
+      "shen_street_posts": 214,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 45,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-02",
+      "shen_street_posts": 165,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 42,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-03",
+      "shen_street_posts": 153,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 33,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-04",
+      "shen_street_posts": 125,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 10,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-05",
+      "shen_street_posts": 70,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 7,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-06",
+      "shen_street_posts": 101,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 18,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-07",
+      "shen_street_posts": 173,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 34,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-08",
+      "shen_street_posts": 75,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 23,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-09",
+      "shen_street_posts": 210,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 51,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-10",
+      "shen_street_posts": 246,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 43,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-11",
+      "shen_street_posts": 1006,
+      "shen_is_exact": true,
+      "shen_campaign": "中山×大同",
+      "chiang_street_posts": 37,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-12",
+      "shen_street_posts": 879,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 19,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-13",
+      "shen_street_posts": 500,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 36,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-14",
+      "shen_street_posts": 325,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 63,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-15",
+      "shen_street_posts": 316,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 109,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-16",
+      "shen_street_posts": 170,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 69,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-17",
+      "shen_street_posts": 100,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 107,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-18",
+      "shen_street_posts": 592,
+      "shen_is_exact": true,
+      "shen_campaign": "松山×信義",
+      "chiang_street_posts": 34,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-19",
+      "shen_street_posts": 636,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 21,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-20",
+      "shen_street_posts": 246,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 15,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-21",
+      "shen_street_posts": 169,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 77,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-22",
+      "shen_street_posts": 74,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 27,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-23",
+      "shen_street_posts": 47,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 8,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-24",
+      "shen_street_posts": 71,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 9,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-25",
+      "shen_street_posts": 446,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 16,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-26",
+      "shen_street_posts": 355,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 13,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-10-27",
+      "shen_street_posts": 281,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 115,
+      "chiang_is_exact": false,
+      "chiang_campaign": "內湖737夜市",
+      "note": ""
+    },
+    {
+      "date": "2026-10-28",
+      "shen_street_posts": 279,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 309,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": "蔣萬安晚間身體不適"
+    },
+    {
+      "date": "2026-10-29",
+      "shen_street_posts": 265,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 435,
+      "chiang_is_exact": false,
+      "chiang_campaign": "夫人代打",
+      "note": "蔣萬安暫停公開行程，石舫亘代為走市場"
+    },
+    {
+      "date": "2026-10-30",
+      "shen_street_posts": 211,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 495,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": "蔣萬安暫停公開行程，石舫亘代為走市場"
+    },
+    {
+      "date": "2026-10-31",
+      "shen_street_posts": 460,
+      "shen_is_exact": true,
+      "shen_campaign": "中正×萬華",
+      "chiang_street_posts": 94,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": "首場電視辯論（中午）"
+    },
+    {
+      "date": "2026-11-01",
+      "shen_street_posts": 1052,
+      "shen_is_exact": true,
+      "shen_campaign": "大安×文山",
+      "chiang_street_posts": 300,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-02",
+      "shen_street_posts": 1042,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 241,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-03",
+      "shen_street_posts": 469,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 436,
+      "chiang_is_exact": false,
+      "chiang_campaign": "寧夏夜市",
+      "note": ""
+    },
+    {
+      "date": "2026-11-04",
+      "shen_street_posts": 250,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 493,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-05",
+      "shen_street_posts": 372,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 473,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-06",
+      "shen_street_posts": 334,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 280,
+      "chiang_is_exact": true,
+      "chiang_campaign": "遼寧夜市（又一村）",
+      "note": "遼寧夜市「又一村」插曲"
+    },
+    {
+      "date": "2026-11-07",
+      "shen_street_posts": 928,
+      "shen_is_exact": true,
+      "shen_campaign": "內湖×南港",
+      "chiang_street_posts": 704,
+      "chiang_is_exact": true,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-08",
+      "shen_street_posts": 672,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 454,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-09",
+      "shen_street_posts": 253,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 403,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-10",
+      "shen_street_posts": 290,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 338,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-11",
+      "shen_street_posts": 307,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 270,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    },
+    {
+      "date": "2026-11-12",
+      "shen_street_posts": 260,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 265,
+      "chiang_is_exact": false,
+      "chiang_campaign": "公館",
+      "note": ""
+    },
+    {
+      "date": "2026-11-13",
+      "shen_street_posts": 680,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 258,
+      "chiang_is_exact": false,
+      "chiang_campaign": "饒河夜市（東發號）",
+      "note": ""
+    },
+    {
+      "date": "2026-11-14",
+      "shen_street_posts": 457,
+      "shen_is_exact": false,
+      "shen_campaign": "",
+      "chiang_street_posts": 309,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": "東發號是否付錢爭議"
+    },
+    {
+      "date": "2026-11-15",
+      "shen_street_posts": 1283,
+      "shen_is_exact": true,
+      "shen_campaign": "士林×北投",
+      "chiang_street_posts": 409,
+      "chiang_is_exact": false,
+      "chiang_campaign": "臨江街夜市",
+      "note": ""
+    },
+    {
+      "date": "2026-11-16",
+      "shen_street_posts": 1113,
+      "shen_is_exact": true,
+      "shen_campaign": "",
+      "chiang_street_posts": 469,
+      "chiang_is_exact": false,
+      "chiang_campaign": "",
+      "note": ""
+    }
+  ],
+  "candidate_mentions_daily": [
+    {
+      "date": "2026-08-17",
+      "shen_mentions": 1328,
+      "chiang_mentions": 1985,
+      "shen_site_b": null,
+      "chiang_site_b": null
+    },
+    {
+      "date": "2026-08-18",
+      "shen_mentions": 1940,
+      "chiang_mentions": 2033,
+      "shen_site_b": null,
+      "chiang_site_b": null
+    },
+    {
+      "date": "2026-08-19",
+      "shen_mentions": 1424,
+      "chiang_mentions": 1836,
+      "shen_site_b": null,
+      "chiang_site_b": null
+    },
+    {
+      "date": "2026-08-20",
+      "shen_mentions": 1275,
+      "chiang_mentions": 1782,
+      "shen_site_b": null,
+      "chiang_site_b": null
+    },
+    {
+      "date": "2026-08-21",
+      "shen_mentions": 1327,
+      "chiang_mentions": 1656,
+      "shen_site_b": 1376,
+      "chiang_site_b": 1770.5
+    },
+    {
+      "date": "2026-08-22",
+      "shen_mentions": 1373,
+      "chiang_mentions": 1454,
+      "shen_site_b": 1376,
+      "chiang_site_b": 1724
+    },
+    {
+      "date": "2026-08-23",
+      "shen_mentions": 1598,
+      "chiang_mentions": 1287,
+      "shen_site_b": 1398.5,
+      "chiang_site_b": 1724
+    },
+    {
+      "date": "2026-08-24",
+      "shen_mentions": 1816,
+      "chiang_mentions": 2144,
+      "shen_site_b": 1452.5,
+      "chiang_site_b": 1672.5
+    },
+    {
+      "date": "2026-08-25",
+      "shen_mentions": 1453,
+      "chiang_mentions": 1413,
+      "shen_site_b": 1529,
+      "chiang_site_b": 1672.5
+    },
+    {
+      "date": "2026-08-26",
+      "shen_mentions": 1239,
+      "chiang_mentions": 1279,
+      "shen_site_b": 1467,
+      "chiang_site_b": 1596.5
+    },
+    {
+      "date": "2026-08-27",
+      "shen_mentions": 1282,
+      "chiang_mentions": 1468,
+      "shen_site_b": 1438.5,
+      "chiang_site_b": 1495.5
+    },
+    {
+      "date": "2026-08-28",
+      "shen_mentions": 1752,
+      "chiang_mentions": 2842,
+      "shen_site_b": 1398.5,
+      "chiang_site_b": 1461
+    },
+    {
+      "date": "2026-08-29",
+      "shen_mentions": 1711,
+      "chiang_mentions": 2020,
+      "shen_site_b": 1438.5,
+      "chiang_site_b": 1468
+    },
+    {
+      "date": "2026-08-30",
+      "shen_mentions": 1577,
+      "chiang_mentions": 1949,
+      "shen_site_b": 1438.5,
+      "chiang_site_b": 1562
+    },
+    {
+      "date": "2026-08-31",
+      "shen_mentions": 1325,
+      "chiang_mentions": 2940,
+      "shen_site_b": 1438.5,
+      "chiang_site_b": 1719
+    },
+    {
+      "date": "2026-09-01",
+      "shen_mentions": 1546,
+      "chiang_mentions": 2598,
+      "shen_site_b": 1438.5,
+      "chiang_site_b": 1656
+    },
+    {
+      "date": "2026-09-02",
+      "shen_mentions": 2677,
+      "chiang_mentions": 4082,
+      "shen_site_b": 1438.5,
+      "chiang_site_b": 1562
+    },
+    {
+      "date": "2026-09-03",
+      "shen_mentions": 1550,
+      "chiang_mentions": 3733,
+      "shen_site_b": 1453,
+      "chiang_site_b": 1468
+    },
+    {
+      "date": "2026-09-04",
+      "shen_mentions": 1430,
+      "chiang_mentions": 3940,
+      "shen_site_b": 1546,
+      "chiang_site_b": 1461
+    },
+    {
+      "date": "2026-09-05",
+      "shen_mentions": 1601,
+      "chiang_mentions": 3083,
+      "shen_site_b": 1546,
+      "chiang_site_b": 1454
+    },
+    {
+      "date": "2026-09-06",
+      "shen_mentions": 1593,
+      "chiang_mentions": 2530,
+      "shen_site_b": 1550,
+      "chiang_site_b": 2371
+    },
+    {
+      "date": "2026-09-07",
+      "shen_mentions": 2148,
+      "chiang_mentions": 2806,
+      "shen_site_b": 1550,
+      "chiang_site_b": 2564
+    },
+    {
+      "date": "2026-09-08",
+      "shen_mentions": 1666,
+      "chiang_mentions": 2999,
+      "shen_site_b": 1548,
+      "chiang_site_b": 2702
+    },
+    {
+      "date": "2026-09-09",
+      "shen_mentions": 1685,
+      "chiang_mentions": 2551,
+      "shen_site_b": 1563.5,
+      "chiang_site_b": 2824
+    },
+    {
+      "date": "2026-09-10",
+      "shen_mentions": 1878,
+      "chiang_mentions": 2396,
+      "shen_site_b": 1585,
+      "chiang_site_b": 2824
+    },
+    {
+      "date": "2026-09-11",
+      "shen_mentions": 2508,
+      "chiang_mentions": 2585,
+      "shen_site_b": 1597,
+      "chiang_site_b": 2824
+    },
+    {
+      "date": "2026-09-12",
+      "shen_mentions": 2181,
+      "chiang_mentions": 2069,
+      "shen_site_b": 1593,
+      "chiang_site_b": 2551
+    },
+    {
+      "date": "2026-09-13",
+      "shen_mentions": 1940,
+      "chiang_mentions": 1809,
+      "shen_site_b": 1585,
+      "chiang_site_b": 2540.5
+    },
+    {
+      "date": "2026-09-14",
+      "shen_mentions": 2101,
+      "chiang_mentions": 2935,
+      "shen_site_b": 1597,
+      "chiang_site_b": 2540.5
+    },
+    {
+      "date": "2026-09-15",
+      "shen_mentions": 3287,
+      "chiang_mentions": 3169,
+      "shen_site_b": 1601,
+      "chiang_site_b": 2551
+    },
+    {
+      "date": "2026-09-16",
+      "shen_mentions": 3739,
+      "chiang_mentions": 2668,
+      "shen_site_b": 1633.5,
+      "chiang_site_b": 2568
+    },
+    {
+      "date": "2026-09-17",
+      "shen_mentions": 3468,
+      "chiang_mentions": 2139,
+      "shen_site_b": 1633.5,
+      "chiang_site_b": 2585
+    },
+    {
+      "date": "2026-09-18",
+      "shen_mentions": 3834,
+      "chiang_mentions": 2611,
+      "shen_site_b": 1666,
+      "chiang_site_b": 2568
+    },
+    {
+      "date": "2026-09-19",
+      "shen_mentions": 4430,
+      "chiang_mentions": 2788,
+      "shen_site_b": 2124.5,
+      "chiang_site_b": 2585
+    },
+    {
+      "date": "2026-09-20",
+      "shen_mentions": 3502,
+      "chiang_mentions": 2128,
+      "shen_site_b": 2164.5,
+      "chiang_site_b": 2598
+    },
+    {
+      "date": "2026-09-21",
+      "shen_mentions": 2990,
+      "chiang_mentions": 2451,
+      "shen_site_b": 2344.5,
+      "chiang_site_b": 2598
+    },
+    {
+      "date": "2026-09-22",
+      "shen_mentions": 5812,
+      "chiang_mentions": 4006,
+      "shen_site_b": 2749,
+      "chiang_site_b": 2568
+    },
+    {
+      "date": "2026-09-23",
+      "shen_mentions": 4920,
+      "chiang_mentions": 3348,
+      "shen_site_b": 3138.5,
+      "chiang_site_b": 2551
+    },
+    {
+      "date": "2026-09-24",
+      "shen_mentions": 4330,
+      "chiang_mentions": 2966,
+      "shen_site_b": 3377.5,
+      "chiang_site_b": 2518
+    },
+    {
+      "date": "2026-09-25",
+      "shen_mentions": 3091,
+      "chiang_mentions": 1594,
+      "shen_site_b": 3485,
+      "chiang_site_b": 2598
+    },
+    {
+      "date": "2026-09-26",
+      "shen_mentions": 3069,
+      "chiang_mentions": 2627,
+      "shen_site_b": 3485,
+      "chiang_site_b": 2531
+    },
+    {
+      "date": "2026-09-27",
+      "shen_mentions": 4700,
+      "chiang_mentions": 2496,
+      "shen_site_b": 3485,
+      "chiang_site_b": 2619
+    },
+    {
+      "date": "2026-09-28",
+      "shen_mentions": 3845,
+      "chiang_mentions": 3394,
+      "shen_site_b": 3620.5,
+      "chiang_site_b": 2619
+    },
+    {
+      "date": "2026-09-29",
+      "shen_mentions": 3878,
+      "chiang_mentions": 3660,
+      "shen_site_b": 3786.5,
+      "chiang_site_b": 2619
+    },
+    {
+      "date": "2026-09-30",
+      "shen_mentions": 5552,
+      "chiang_mentions": 3152,
+      "shen_site_b": 3839.5,
+      "chiang_site_b": 2611
+    },
+    {
+      "date": "2026-10-01",
+      "shen_mentions": 4487,
+      "chiang_mentions": 2492,
+      "shen_site_b": 3861.5,
+      "chiang_site_b": 2611
+    },
+    {
+      "date": "2026-10-02",
+      "shen_mentions": 4630,
+      "chiang_mentions": 2416,
+      "shen_site_b": 3845,
+      "chiang_site_b": 2611
+    },
+    {
+      "date": "2026-10-03",
+      "shen_mentions": 5202,
+      "chiang_mentions": 3452,
+      "shen_site_b": 3861.5,
+      "chiang_site_b": 2496
+    },
+    {
+      "date": "2026-10-04",
+      "shen_mentions": 10196,
+      "chiang_mentions": 6909,
+      "shen_site_b": 3861.5,
+      "chiang_site_b": 2494
+    },
+    {
+      "date": "2026-10-05",
+      "shen_mentions": 7690,
+      "chiang_mentions": 5055,
+      "shen_site_b": 3861.5,
+      "chiang_site_b": 2496
+    },
+    {
+      "date": "2026-10-06",
+      "shen_mentions": 8032,
+      "chiang_mentions": 4262,
+      "shen_site_b": 3878,
+      "chiang_site_b": 2561.5
+    },
+    {
+      "date": "2026-10-07",
+      "shen_mentions": 9653,
+      "chiang_mentions": 4469,
+      "shen_site_b": 3878,
+      "chiang_site_b": 2561.5
+    },
+    {
+      "date": "2026-10-08",
+      "shen_mentions": 7525,
+      "chiang_mentions": 6313,
+      "shen_site_b": 3878,
+      "chiang_site_b": 2561.5
+    },
+    {
+      "date": "2026-10-09",
+      "shen_mentions": 6442,
+      "chiang_mentions": 5138,
+      "shen_site_b": 4951,
+      "chiang_site_b": 2496
+    },
+    {
+      "date": "2026-10-10",
+      "shen_mentions": 5071,
+      "chiang_mentions": 3559,
+      "shen_site_b": 5377,
+      "chiang_site_b": 3556
+    },
+    {
+      "date": "2026-10-11",
+      "shen_mentions": 7065,
+      "chiang_mentions": 3628,
+      "shen_site_b": 5377,
+      "chiang_site_b": 3609.5
+    },
+    {
+      "date": "2026-10-12",
+      "shen_mentions": 7344,
+      "chiang_mentions": 4480,
+      "shen_site_b": 5997,
+      "chiang_site_b": 3644
+    },
+    {
+      "date": "2026-10-13",
+      "shen_mentions": 6964,
+      "chiang_mentions": 4077,
+      "shen_site_b": 6753.5,
+      "chiang_site_b": 3961
+    },
+    {
+      "date": "2026-10-14",
+      "shen_mentions": 7871,
+      "chiang_mentions": 4166,
+      "shen_site_b": 7014.5,
+      "chiang_site_b": 3559
+    },
+    {
+      "date": "2026-10-15",
+      "shen_mentions": 6825,
+      "chiang_mentions": 4837,
+      "shen_site_b": 7204.5,
+      "chiang_site_b": 3628
+    },
+    {
+      "date": "2026-10-16",
+      "shen_mentions": 5508,
+      "chiang_mentions": 4424,
+      "shen_site_b": 7204.5,
+      "chiang_site_b": 4365.5
+    },
+    {
+      "date": "2026-10-17",
+      "shen_mentions": 4874,
+      "chiang_mentions": 3808,
+      "shen_site_b": 7204.5,
+      "chiang_site_b": 4446.5
+    },
+    {
+      "date": "2026-10-18",
+      "shen_mentions": 6090,
+      "chiang_mentions": 3615,
+      "shen_site_b": 6825,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-19",
+      "shen_mentions": 6244,
+      "chiang_mentions": 4298,
+      "shen_site_b": 6457.5,
+      "chiang_site_b": 3942.5
+    },
+    {
+      "date": "2026-10-20",
+      "shen_mentions": 8610,
+      "chiang_mentions": 6644,
+      "shen_site_b": 6244,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-21",
+      "shen_mentions": 6079,
+      "chiang_mentions": 6126,
+      "shen_site_b": 6244,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-22",
+      "shen_mentions": 6371,
+      "chiang_mentions": 4794,
+      "shen_site_b": 6167,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-23",
+      "shen_mentions": 4519,
+      "chiang_mentions": 3068,
+      "shen_site_b": 6244,
+      "chiang_site_b": 4121.5
+    },
+    {
+      "date": "2026-10-24",
+      "shen_mentions": 3684,
+      "chiang_mentions": 2895,
+      "shen_site_b": 6167,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-25",
+      "shen_mentions": 4785,
+      "chiang_mentions": 3052,
+      "shen_site_b": 6167,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-26",
+      "shen_mentions": 5533,
+      "chiang_mentions": 4631,
+      "shen_site_b": 6090,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-27",
+      "shen_mentions": 7183,
+      "chiang_mentions": 4741,
+      "shen_site_b": 6079,
+      "chiang_site_b": 4077
+    },
+    {
+      "date": "2026-10-28",
+      "shen_mentions": 7933,
+      "chiang_mentions": 6476,
+      "shen_site_b": 6079,
+      "chiang_site_b": 4166
+    },
+    {
+      "date": "2026-10-29",
+      "shen_mentions": 7879,
+      "chiang_mentions": 6953,
+      "shen_site_b": 5806,
+      "chiang_site_b": 4053
+    },
+    {
+      "date": "2026-10-30",
+      "shen_mentions": 7641,
+      "chiang_mentions": 5286,
+      "shen_site_b": 5533,
+      "chiang_site_b": 4053
+    },
+    {
+      "date": "2026-10-31",
+      "shen_mentions": 14427,
+      "chiang_mentions": 12692,
+      "shen_site_b": 5806,
+      "chiang_site_b": 3808
+    },
+    {
+      "date": "2026-11-01",
+      "shen_mentions": 10057,
+      "chiang_mentions": 7020,
+      "shen_site_b": 6079,
+      "chiang_site_b": 3956.5
+    },
+    {
+      "date": "2026-11-02",
+      "shen_mentions": 9319,
+      "chiang_mentions": 7067,
+      "shen_site_b": 5806,
+      "chiang_site_b": 4298
+    },
+    {
+      "date": "2026-11-03",
+      "shen_mentions": 8645,
+      "chiang_mentions": 6617,
+      "shen_site_b": 5533,
+      "chiang_site_b": 5706
+    },
+    {
+      "date": "2026-11-04",
+      "shen_mentions": 8323,
+      "chiang_mentions": 5907,
+      "shen_site_b": 5533,
+      "chiang_site_b": 4631
+    },
+    {
+      "date": "2026-11-05",
+      "shen_mentions": 8552,
+      "chiang_mentions": 5322,
+      "shen_site_b": 7760,
+      "chiang_site_b": 4686
+    },
+    {
+      "date": "2026-11-06",
+      "shen_mentions": 7700,
+      "chiang_mentions": 4743,
+      "shen_site_b": 7906,
+      "chiang_site_b": 4686
+    },
+    {
+      "date": "2026-11-07",
+      "shen_mentions": 9363,
+      "chiang_mentions": 5383,
+      "shen_site_b": 7906,
+      "chiang_site_b": 4742
+    },
+    {
+      "date": "2026-11-08",
+      "shen_mentions": 8127,
+      "chiang_mentions": 4769,
+      "shen_site_b": 8128,
+      "chiang_site_b": 5032.5
+    },
+    {
+      "date": "2026-11-09",
+      "shen_mentions": 7553,
+      "chiang_mentions": 5304,
+      "shen_site_b": 8225,
+      "chiang_site_b": 5045.5
+    },
+    {
+      "date": "2026-11-10",
+      "shen_mentions": 7665,
+      "chiang_mentions": 5161,
+      "shen_site_b": 8225,
+      "chiang_site_b": 5313
+    },
+    {
+      "date": "2026-11-11",
+      "shen_mentions": 7595,
+      "chiang_mentions": 5838,
+      "shen_site_b": 8225,
+      "chiang_site_b": 5313
+    },
+    {
+      "date": "2026-11-12",
+      "shen_mentions": 7769,
+      "chiang_mentions": 5783,
+      "shen_site_b": 7700,
+      "chiang_site_b": 5322
+    },
+    {
+      "date": "2026-11-13",
+      "shen_mentions": 7007,
+      "chiang_mentions": 4820,
+      "shen_site_b": 7734.5,
+      "chiang_site_b": 5352.5
+    },
+    {
+      "date": "2026-11-14",
+      "shen_mentions": 7700,
+      "chiang_mentions": 5558,
+      "shen_site_b": 7700,
+      "chiang_site_b": 5322
+    },
+    {
+      "date": "2026-11-15",
+      "shen_mentions": 9749,
+      "chiang_mentions": 5239,
+      "shen_site_b": 7700,
+      "chiang_site_b": 5352.5
+    },
+    {
+      "date": "2026-11-16",
+      "shen_mentions": 8922,
+      "chiang_mentions": 5964,
+      "shen_site_b": 7700,
+      "chiang_site_b": 5322
+    }
+  ],
+  "shen_campaign_sessions": [
+    {
+      "session_no": 1,
+      "date": "2026-10-11",
+      "weekday": "日",
+      "districts": "中山×大同",
+      "route_and_companions": "首場；王世堅同車，終點大龍峒保安宮",
+      "memorable_scene": "路邊舉牌、上千輛機車跟車、經過馬偕醫院關音樂",
+      "top_keywords": "首場、王世堅、貪食蛇",
+      "street_posts_day0": 1006,
+      "street_posts_day1": 879,
+      "street_posts_day2": 500,
+      "street_posts_day3": 325,
+      "mentions_4p_prev3_avg_est": 7131,
+      "mentions_4p_day0_est": 7703,
+      "ratio_4p_label": 1.08,
+      "excluded_from_ratio": false,
+      "exclude_reason": ""
+    },
+    {
+      "session_no": 2,
+      "date": "2026-10-18",
+      "weekday": "日",
+      "districts": "松山×信義",
+      "route_and_companions": "五分埔出發，終點民權公園；首次不跟車、認領路段；卓榮泰、蘇春槐到場",
+      "memorable_scene": "回老家五分埔、民眾跟著車隊全程慢跑",
+      "top_keywords": "",
+      "street_posts_day0": 592,
+      "street_posts_day1": 636,
+      "street_posts_day2": 246,
+      "street_posts_day3": 169,
+      "mentions_4p_prev3_avg_est": 6613,
+      "mentions_4p_day0_est": 6804,
+      "ratio_4p_label": 1.03,
+      "excluded_from_ratio": false,
+      "exclude_reason": ""
+    },
+    {
+      "session_no": 3,
+      "date": "2026-10-31",
+      "weekday": "六",
+      "districts": "中正×萬華",
+      "route_and_companions": "古亭南福宮出發，終點龍山寺；當天中午是首場電視辯論",
+      "memorable_scene": "萬聖節穿動畫角色欣梅爾的衣服",
+      "top_keywords": "",
+      "street_posts_day0": 460,
+      "street_posts_day1": 1052,
+      "street_posts_day2": 1042,
+      "street_posts_day3": 469,
+      "mentions_4p_prev3_avg_est": 8820,
+      "mentions_4p_day0_est": 15877,
+      "ratio_4p_label": 1.8,
+      "excluded_from_ratio": true,
+      "exclude_reason": "當天中午是首場電視辯論，無法分辨是辯論還是車掃帶動"
+    },
+    {
+      "session_no": 4,
+      "date": "2026-11-01",
+      "weekday": "日",
+      "districts": "大安×文山",
+      "route_and_companions": "木柵集應廟出發，終點大安森林公園；蔡其昌同車，蔡英文開講",
+      "memorable_scene": "洋流設計師本人路邊發海報、包船應援的玩笑",
+      "top_keywords": "",
+      "street_posts_day0": 1052,
+      "street_posts_day1": 1042,
+      "street_posts_day2": 469,
+      "street_posts_day3": 250,
+      "mentions_4p_prev3_avg_est": 11082,
+      "mentions_4p_day0_est": 11054,
+      "ratio_4p_label": 1.0,
+      "excluded_from_ratio": true,
+      "exclude_reason": "前 3 天包含辯論日，比較基準被拉高"
+    },
+    {
+      "session_no": 5,
+      "date": "2026-11-07",
+      "weekday": "六",
+      "districts": "內湖×南港",
+      "route_and_companions": "原訂 10/25，因颱風延期；李洋同車，蕭美琴到場",
+      "memorable_scene": "「洋洋連線」、團隊事先向店家打招呼",
+      "top_keywords": "李洋、蕭美琴、運動部長",
+      "street_posts_day0": 928,
+      "street_posts_day1": 672,
+      "street_posts_day2": 253,
+      "street_posts_day3": 290,
+      "mentions_4p_prev3_avg_est": 9229,
+      "mentions_4p_day0_est": 10401,
+      "ratio_4p_label": 1.13,
+      "excluded_from_ratio": false,
+      "exclude_reason": ""
+    },
+    {
+      "session_no": 6,
+      "date": "2026-11-15",
+      "weekday": "日",
+      "districts": "士林×北投",
+      "route_and_companions": "壓軸場；陳其邁同車，終點關渡宮；賴清德到場",
+      "memorable_scene": "太太舉牌祝結婚紀念日、支持者划龍舟到關渡",
+      "top_keywords": "關渡、終場、陳其邁、賴清德",
+      "street_posts_day0": 1283,
+      "street_posts_day1": 1113,
+      "street_posts_day2": null,
+      "street_posts_day3": null,
+      "mentions_4p_prev3_avg_est": 8302,
+      "mentions_4p_day0_est": 10591,
+      "ratio_4p_label": 1.27,
+      "excluded_from_ratio": false,
+      "exclude_reason": ""
+    }
+  ],
+  "chiang_campaign_sessions": [
+    {
+      "date": "2026-10-27",
+      "place": "內湖737夜市",
+      "street_posts_day0": 115,
+      "street_posts_day1": 309,
+      "day1_over_day0": 2.69
+    },
+    {
+      "date": "2026-10-29",
+      "place": "夫人代打",
+      "street_posts_day0": 435,
+      "street_posts_day1": 495,
+      "day1_over_day0": 1.14
+    },
+    {
+      "date": "2026-11-03",
+      "place": "寧夏夜市",
+      "street_posts_day0": 436,
+      "street_posts_day1": 493,
+      "day1_over_day0": 1.13
+    },
+    {
+      "date": "2026-11-06",
+      "place": "遼寧夜市（又一村）",
+      "street_posts_day0": 280,
+      "street_posts_day1": 704,
+      "day1_over_day0": 2.51
+    },
+    {
+      "date": "2026-11-12",
+      "place": "公館",
+      "street_posts_day0": 265,
+      "street_posts_day1": 258,
+      "day1_over_day0": 0.97
+    },
+    {
+      "date": "2026-11-13",
+      "place": "饒河夜市（東發號）",
+      "street_posts_day0": 258,
+      "street_posts_day1": 309,
+      "day1_over_day0": 1.2
+    },
+    {
+      "date": "2026-11-15",
+      "place": "臨江街夜市",
+      "street_posts_day0": 409,
+      "street_posts_day1": 469,
+      "day1_over_day0": 1.15
+    }
+  ],
+  "top_posts": [
+    {
+      "candidate": "shen",
+      "date": "2026-10-11",
+      "date_meaning": "車掃場次日",
+      "session": "中山×大同",
+      "author": "沈伯洋",
+      "author_label": "候選人",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "首場心得：看到民眾舉牌「台北須團結，團結真有力」，一度眼眶泛紅",
+      "interactions": 136000,
+      "interactions_label": "13.6 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@pumashen/post/DeXAYd0kywx",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-11",
+      "date_meaning": "車掃場次日",
+      "session": "中山×大同",
+      "author": "張益贍",
+      "author_label": "評論者",
+      "author_category": "評論者",
+      "followers_under_600": false,
+      "content": "車隊後方跟著的機車超過 2,000 台（發文者自估）",
+      "interactions": 30000,
+      "interactions_label": "3.0 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@yisan0519/post/DeWfreNj7g6",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-11",
+      "date_meaning": "車掃場次日",
+      "session": "中山×大同",
+      "author": "c妞",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": false,
+      "content": "問朋友為什麼只有王世堅拿到烤香腸，朋友說那是船舵",
+      "interactions": 33000,
+      "interactions_label": "3.3 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@cnewloveyou/post/DeWiVJtD73q",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-18",
+      "date_meaning": "車掃場次日",
+      "session": "松山×信義",
+      "author": "周立軒",
+      "author_label": "個人帳號",
+      "author_category": "個人帳號",
+      "followers_under_600": false,
+      "content": "一組「洋流路跑團」全程跟著車隊跑",
+      "interactions": 43000,
+      "interactions_label": "4.3 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@victor31429/post/DeohzbRD7FL",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-18",
+      "date_meaning": "車掃場次日",
+      "session": "松山×信義",
+      "author": "打馬悍將粉絲團",
+      "author_label": "政治粉專",
+      "author_category": "粉專",
+      "followers_under_600": false,
+      "content": "松山信義車掃人潮影片",
+      "interactions": 45000,
+      "interactions_label": "4.5 萬",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1866239834362758/",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-18",
+      "date_meaning": "車掃場次日",
+      "session": "松山×信義",
+      "author": "Jenny C.",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": false,
+      "content": "車掃途中看到健身教練",
+      "interactions": 34000,
+      "interactions_label": "3.4 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@jennychang211/post/Deoc7BHEmSI",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-31",
+      "date_meaning": "車掃場次日",
+      "session": "中正×萬華",
+      "author": "yhnmtttt",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": true,
+      "content": "沈伯洋穿著動畫角色欣梅爾的衣服車掃",
+      "interactions": 48000,
+      "interactions_label": "4.8 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@yhnmtttt/post/DfJ329Bkidx",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-31",
+      "date_meaning": "車掃場次日",
+      "session": "中正×萬華",
+      "author": "ngnews6969",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": true,
+      "content": "邊倒垃圾邊看車掃直播，和鄰居的政治對話",
+      "interactions": 62000,
+      "interactions_label": "6.2 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@ngnews6969/post/DfKM5uTk0WD",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-31",
+      "date_meaning": "車掃場次日",
+      "session": "中正×萬華",
+      "author": "連文烽",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": false,
+      "content": "看完辯論，建議多辦車掃、跟市民互動",
+      "interactions": 16000,
+      "interactions_label": "1.6 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@liengavin/post/DfJe1s8lNvT",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-01",
+      "date_meaning": "車掃場次日",
+      "session": "大安×文山",
+      "author": "蕭婆不姓蕭",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": true,
+      "content": "在路邊碰到洋流設計師本人發海報",
+      "interactions": 39000,
+      "interactions_label": "3.9 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@doritosaholic/post/DfNQjumCEFI",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-01",
+      "date_meaning": "車掃場次日",
+      "session": "大安×文山",
+      "author": "蔡其昌",
+      "author_label": "立委，陪同車掃",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "「人潮太驚人，真的有累到」",
+      "interactions": 38000,
+      "interactions_label": "3.8 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@tsaimimi0416/post/DfMq1h1GY15",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-01",
+      "date_meaning": "車掃場次日",
+      "session": "大安×文山",
+      "author": "謝小舞",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": true,
+      "content": "車掃時「看見」神明護持沈伯洋",
+      "interactions": 55000,
+      "interactions_label": "5.5 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@viola_hsieh1111/post/DfM8YyfkvVj",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-07",
+      "date_meaning": "車掃場次日",
+      "session": "內湖×南港",
+      "author": "northicewolf",
+      "author_label": "個人帳號",
+      "author_category": "個人帳號",
+      "followers_under_600": false,
+      "content": "團隊掃街前先跟店家打招呼",
+      "interactions": 77000,
+      "interactions_label": "7.7 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@northicewolf/post/DfbpdycEwkN",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-07",
+      "date_meaning": "車掃場次日",
+      "session": "內湖×南港",
+      "author": "洪彥安",
+      "author_label": "個人帳號",
+      "author_category": "個人帳號",
+      "followers_under_600": false,
+      "content": "神秘嘉賓是李洋，「洋洋連線」",
+      "interactions": 52000,
+      "interactions_label": "5.2 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@andyhung69/post/DfbyWW4mSGv",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-07",
+      "date_meaning": "車掃場次日",
+      "session": "內湖×南港",
+      "author": "邱宏杰",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": true,
+      "content": "「車掃發現有洋蔥」",
+      "interactions": 52000,
+      "interactions_label": "5.2 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@a0923352759/post/Dfb-LlhHxbk",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-15",
+      "date_meaning": "車掃場次日",
+      "session": "士林×北投",
+      "author": "林楚茵",
+      "author_label": "立委",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "談終點的無人機秀",
+      "interactions": 70000,
+      "interactions_label": "7.0 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@linchuyin1010/post/DfyKAQrABbk",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-15",
+      "date_meaning": "車掃場次日",
+      "session": "士林×北投",
+      "author": "吳沛憶",
+      "author_label": "立委",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "批評國民黨立委質詢李洋參加車掃",
+      "interactions": 58000,
+      "interactions_label": "5.8 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@pay1pay1/post/Dfy0SUnlqu-",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-15",
+      "date_meaning": "車掃場次日",
+      "session": "士林×北投",
+      "author": "Regina אושר Chang",
+      "author_label": "個人帳號",
+      "author_category": "個人帳號",
+      "followers_under_600": false,
+      "content": "沈伯洋看到太太舉牌，大喊「我老婆欸」",
+      "interactions": 86000,
+      "interactions_label": "8.6 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@regina_rainywar/post/Dfwg5alnNuI",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-10-27",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "戴騰展",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": false,
+      "content": "貼出內湖 737 夜市掃街照片，並補上沈伯洋先前的掃街照片對照，標註「#戒慎恐懼」",
+      "interactions": 10000,
+      "interactions_label": "1.0 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@tengzhandai/post/De_uPHQE3QC",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-10-28",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "Milo",
+      "author_label": "評論帳號",
+      "author_category": "評論者",
+      "followers_under_600": false,
+      "content": "轉述蔣萬安掃街後身體不適、取消行程，並調侃",
+      "interactions": 15000,
+      "interactions_label": "1.5 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@chnyu._12/post/DfCnVSrGA0G",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-10-29",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "張老大頻道",
+      "author_label": "粉絲專頁",
+      "author_category": "粉專",
+      "followers_under_600": false,
+      "content": "蔣萬安身體微恙，夫人代為掃街拜票",
+      "interactions": 17000,
+      "interactions_label": "1.7 萬",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/682006400605900/posts/1671442514995612",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-10-30",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "羅智強",
+      "author_label": "國民黨立委、蔣萬安競選總幹事",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "「蔣萬安生病休息，石舫亘温暖掃街」",
+      "interactions": 43000,
+      "interactions_label": "4.3 萬",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2927844564262786/",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-04",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "Matthew Yu",
+      "author_label": "一般民眾",
+      "author_category": "一般民眾",
+      "followers_under_600": false,
+      "content": "以「花了將近30秒才能通過，真穩！」形容南機場掃街人潮",
+      "interactions": 35000,
+      "interactions_label": "3.5 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@yumatt6727/post/DfUhop5AaWn",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-04",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "中時新聞網",
+      "author_label": "媒體",
+      "author_category": "媒體",
+      "followers_under_600": false,
+      "content": "寧夏夜市掃街時，同志支持者到場力挺",
+      "interactions": 28000,
+      "interactions_label": "2.8 萬",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1499840188872529/",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-07",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "Milo",
+      "author_label": "評論帳號",
+      "author_category": "評論者",
+      "followers_under_600": false,
+      "content": "批評支持者在遼寧夜市圍住挺沈伯洋的店家喊口號",
+      "interactions": 34000,
+      "interactions_label": "3.4 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@chnyu._12/post/DfaJzFrGHJz",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-07",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "羅智強",
+      "author_label": "國民黨立委、蔣萬安競選總幹事",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "反駁「霸凌店家」說法，反指沈伯洋過去發動罷免",
+      "interactions": 17000,
+      "interactions_label": "1.7 萬",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/461480528667073/posts/1764590161689430",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-12",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "中天新聞",
+      "author_label": "媒體",
+      "author_category": "媒體",
+      "followers_under_600": false,
+      "content": "公館商圈夜市掃街直播",
+      "interactions": null,
+      "interactions_label": "—",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/579015031019914/videos/1084220927997035",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-13",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "Zen大的時事點評",
+      "author_label": "評論粉專",
+      "author_category": "評論者",
+      "followers_under_600": false,
+      "content": "談蔣萬安到公館夜市掃街，以及蔥抓餅老闆娘挺沈伯洋",
+      "interactions": 5880,
+      "interactions_label": "5,880",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/492748909530301/posts/1657039449767902",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-14",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "黃益中",
+      "author_label": "評論者",
+      "author_category": "評論者",
+      "followers_under_600": false,
+      "content": "轉述許淑華指蔣萬安團隊在東發號用餐未付錢",
+      "interactions": 13000,
+      "interactions_label": "1.3 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@yizhong0217/post/Dftw86CkqAS",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-14",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "中時新聞網",
+      "author_label": "媒體",
+      "author_category": "媒體",
+      "followers_under_600": false,
+      "content": "蔣萬安表示堅持付款但店家不收，請自治會長轉交",
+      "interactions": 7535,
+      "interactions_label": "7,535",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/679047304031343/posts/1639853764617354",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-15",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "羅智強",
+      "author_label": "國民黨立委、蔣萬安競選總幹事",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "引夜市自治會說法反駁「沒付錢」，要求許淑華道歉",
+      "interactions": 27000,
+      "interactions_label": "2.7 萬",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/461480528667073/posts/1773276110820835",
+      "in_article_table": true
+    },
+    {
+      "candidate": "chiang",
+      "date": "2026-11-15",
+      "date_meaning": "發文日",
+      "session": "",
+      "author": "羅浚晅",
+      "author_label": "個人帳號",
+      "author_category": "個人帳號",
+      "followers_under_600": false,
+      "content": "批評蔣萬安與館長等人一起掃街",
+      "interactions": 31000,
+      "interactions_label": "3.1 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@dr.brain_/post/Dfw9sgXieR9",
+      "in_article_table": true
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-10-31",
+      "date_meaning": "發文日",
+      "session": "中正×萬華",
+      "author": "沈伯洋",
+      "author_label": "候選人",
+      "author_category": "政治人物",
+      "followers_under_600": false,
+      "content": "辯論日長文，車掃只在其中一句（文中說明未列入表格）",
+      "interactions": 163000,
+      "interactions_label": "約 16.3 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@pumashen/post/DfJdux8lI1C",
+      "in_article_table": false
+    },
+    {
+      "candidate": "shen",
+      "date": "2026-11-15",
+      "date_meaning": "發文日",
+      "session": "士林×北投",
+      "author": "Yi-Ju Chen",
+      "author_label": "",
+      "author_category": "",
+      "followers_under_600": false,
+      "content": "轉述長輩看到洋流車掃人多，擔心蔣萬安選不上，決定坐輪椅也要去投票",
+      "interactions": 39000,
+      "interactions_label": "約 3.9 萬",
+      "platform": "threads",
+      "url": "https://www.threads.net/@yijuchen213/post/DfwnMeMk6IL",
+      "in_article_table": false
+    }
+  ]
+}

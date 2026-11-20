@@ -1,16 +1,157 @@
 <!doctype html>
-<html lang="zh-Hant"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>發文變多，討論也變多了嗎？｜新聞視覺化 HW3</title>
-<link rel="stylesheet" href="styles.css"><script defer src="chart-data.js"></script><script defer src="chart.js"></script>
-</head><body><main><section id="yl-track" lang="zh-Hant">
- <header><h2>發文變多，討論也變多了嗎？</h2><p>「洋流」動員公文曝光前後的兩日比較</p></header>
- <div class="yt-key"><span>○ 曝光前　9/28–9/29</span><span>● 曝光後　9/30–10/1</span><span>點選端點查看占比</span></div>
- <div class="yt-plot"><svg role="group" aria-label="發文數為橫軸，討論聲量為縱軸；選取端點查看數值"></svg></div>
- <div class="yt-inspect" aria-live="polite"></div>
- <details><summary>候選人被討論時，正負評價如何？</summary>
- <p>每 <strong>20</strong> 份負面聲量，約對應下列正面聲量。每個「＋」代表一份換算後的正面聲量。</p>
- <div class="yt-pairs"></div><p>每位候選人各有一組 P/N，原文未提供曝光前後的分期值。</p></details>
- <small class="yt-source">資料：<a href="https://www.tpoc.com.tw/ArticlePage/aa371fd2-ba0e-49a8-8300-bfac13055fb0" target="_blank" rel="noopener noreferrer">TPOC／QuickseeK</a>。曝光前採原圖的 9/28 起算；文章內文寫作 9/27。</small>
-</section>
-<noscript>請開啟 JavaScript 以操作箭頭圖。</noscript></main></body></html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>台北大洋流：車掃熱度只延續兩三天｜新聞視覺化 HW3</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+<script defer src="vendor/d3.v7.9.0.min.js"></script>
+<script defer src="chart-data.js"></script>
+<script defer src="taipei-geo.js"></script>
+<script defer src="js/common.js"></script>
+<script defer src="js/map.js"></script>
+<script defer src="js/bubbles.js"></script>
+<script defer src="js/story.js"></script>
+<script defer src="js/explore.js"></script>
+</head>
+<body>
+<main class="viz-root">
+  <header class="page-head">
+    <p class="kicker">新聞視覺化 HW3 · 重做 QSearch〈街頭陸戰遇上網路空戰〉的圖表</p>
+    <h1>台北大洋流：<br>車掃熱度只延續兩三天，被轉傳的多是路人拍的小插曲</h1>
+    <p class="lead">沈伯洋 10/11–11/15 開著車隊跑了 6 場車掃，蔣萬安同期走夜市與市場。往下捲，看社群上的討論怎麼一波波流過台北。</p>
+    <p class="scroll-hint" aria-hidden="true">往下捲 ↓</p>
+  </header>
+
+  <section class="story" aria-label="捲動敘事">
+    <div class="story-stage">
+      <div class="layer" data-layer="map"></div>
+      <div class="layer" data-layer="decay"></div>
+      <div class="layer" data-layer="lift"></div>
+      <div class="layer" data-layer="bubbles"></div>
+    </div>
+    <div class="story-steps">
+      <article class="story-step">
+        <h2>6 場車掃，剛好走遍台北 12 區</h2>
+        <p>「台北大洋流」從 10/11 中山×大同開始，到 11/15 士林×北投壓軸，每場跑兩個區。地圖上每種顏色是一場，越亮代表那場當天的掃街討論越多。</p>
+        <p>壓軸的士林×北投最亮：當天有 1,283 筆和車掃有關的討論，是 6 場最多。</p>
+      </article>
+      <article class="story-step">
+        <h2>播放：討論像洋流一樣流過台北</h2>
+        <p>時間從 10/1 跑到 11/16。每天的亮度是當天和車掃有關的討論量，畫在最近一場車掃的那兩區；跑過的場次留下微光。</p>
+        <p>車掃那天，洋流湧進那兩區；幾天後就退了，要等下一場才又亮起來。</p>
+        <p><button type="button" class="replay-btn">↻ 重播</button></p>
+      </article>
+      <article class="story-step">
+        <h2>熱度只延續兩三天</h2>
+        <p>把 6 場都對齊到「車掃當天＝100%」：隔天大多還有當天的 7 到 10 成，3 天後只剩 2 到 3 成。</p>
+        <p>6 場車掃分散在五週裡，每一場都再把討論推高一次。要讓熱度不斷，得靠事件一波接一波。</p>
+      </article>
+      <article class="story-step">
+        <h2>車掃當天，總討論只多了 3%～27%</h2>
+        <p>看所有「提到沈伯洋」的討論，車掃當天是前 3 天平均的 1.03 到 1.27 倍；沒有車掃的週末大約是 0.99 倍。</p>
+        <p>10/31 中午有首場電視辯論、11/1 的前 3 天包含辯論日，這兩場分不出是辯論還是車掃帶動，不列入比較。</p>
+      </article>
+      <article class="story-step">
+        <h2>被轉傳的是什麼？</h2>
+        <p>每顆泡泡是一篇熱門貼文，從它所屬的那場車掃冒出來；越大顆，互動越多。</p>
+        <p>白色泡泡是一般民眾，加光暈的是追蹤者不到 600 人的帳號。外圈顏色是場次，藍色外圈是蔣萬安。</p>
+      </article>
+      <article class="story-step">
+        <h2>路人拍的小插曲，比政見更會被轉傳</h2>
+        <p>依發文者分群：沈伯洋的熱門貼文，一般民眾和個人帳號拿下 61% 的互動；蔣萬安只有 27%。5 個追蹤者不到 600 人的帳號，各有 3.9 萬到 6.2 萬次互動，都在 Threads。</p>
+        <p>被轉傳的是船舵、健身教練、動畫角色的衣服、洋蔥、太太的舉牌，政見幾乎沒有出現。</p>
+      </article>
+      <article class="story-step">
+        <h2>蔣萬安走夜市，討論被插曲牽動</h2>
+        <p>藍色光點是蔣萬安的夜市、市場掃街。他的熱門貼文多是政治人物、評論者與媒體的攻防。</p>
+        <p>7 場裡有 2 場隔天討論反而變多：10/27 內湖 737 夜市（隔天他身體不適、取消行程），11/6 遼寧夜市（走進挺沈伯洋的水餃店「又一村」引發爭議）。</p>
+      </article>
+      <article class="story-step">
+        <h2>聲量不等於選票</h2>
+        <p>這些數字只看得出掃街前後討論量的變化，不能證明是掃街帶動的；聲量也只代表被討論的多寡，不分支持或批評。</p>
+        <p>往下捲，自己點地圖、泡泡和各張圖探索每一場。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="explore" aria-labelledby="explore-title">
+    <h2 id="explore-title" class="explore-title">自己探索</h2>
+    <nav class="session-picker" aria-label="選擇車掃場次">
+      <span class="picker-label">選一場車掃</span>
+      <div class="chips" role="group"></div>
+    </nav>
+
+    <section class="panel map-panel">
+      <div class="map-col">
+        <h3>洋流地圖</h3>
+        <p class="sub">點一塊看那場車掃的細節；按播放看每天的變化，或拖曳下方時間軸。藍色光點是蔣萬安的夜市、市場掃街。</p>
+        <div class="chart" data-chart="map"></div>
+      </div>
+      <aside class="detail-card" aria-live="polite"></aside>
+    </section>
+
+    <section class="panel">
+      <h3>熱門貼文泡泡圖</h3>
+      <p class="sub">沈伯洋每場取當天與隔天互動最高的 3 篇，蔣萬安每場取 2 篇。泡泡越大，互動越多；填色是發文者類型（白＝一般民眾、灰＝個人帳號、深＝公眾帳號），外圈是場次顏色，光暈是追蹤者不到 600 人。</p>
+      <div class="grouping" role="group" aria-label="泡泡分群方式">
+        <button type="button" data-grouping="type" aria-pressed="true">依發文者類型</button>
+        <button type="button" data-grouping="session" aria-pressed="false">依場次</button>
+        <button type="button" data-grouping="map" aria-pressed="false">依地點</button>
+      </div>
+      <p class="bubble-headline"></p>
+      <div class="chart" data-chart="bubbles"></div>
+      <div class="inspect" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h3>每天有多少和車掃有關的討論</h3>
+      <p class="sub">沈伯洋掃街相關貼文，每日筆數（Threads、Facebook、新聞網站、YouTube 影片數）。線段顏色是最近一場車掃，圓點是車掃當天。</p>
+      <div class="chart" data-chart="overview"></div>
+    </section>
+
+    <section class="panel">
+      <h3>把每一場對齊到「掃街當天」：隔天剩多少？</h3>
+      <p class="sub">當天的筆數算 100%，畫前後各 3 天。兩人的查詢會重疊，只比起伏，不比高低。蔣萬安的掃街日期和沈伯洋的車掃對不上，他的小圖獨立選取。</p>
+      <div class="facets">
+        <div class="facet">
+          <h4>沈伯洋 · 6 場車掃</h4>
+          <div class="chart" data-chart="decay-shen"></div>
+        </div>
+        <div class="facet">
+          <h4>蔣萬安 · 7 場夜市、市場掃街</h4>
+          <div class="chart" data-chart="decay-chiang"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>車掃當天，提到沈伯洋的討論比前 3 天多了多少？</h3>
+      <p class="sub">每列一場：空心點是前 3 天平均，實心點是車掃當天。沒有車掃的週末，當天平均是前 3 天的 0.99 倍（中位數），灰色兩場受辯論影響，不列入比較。</p>
+      <div class="chart" data-chart="lift"></div>
+    </section>
+
+    <section class="panel notes">
+      <details>
+        <summary>原圖哪裡不好、這版怎麼改</summary>
+        <ol>
+          <li><strong>原圖二（前 3 天 vs 當天長條圖）</strong>：重點是 1.03～1.27 倍，但長條從 0 畫起，差 3%～27% 看起來幾乎一樣高；最搶眼的反而是文章說不列入比較的 1.80 倍。這版改成點圖，只看兩點的距離，被排除的場次改成灰色並寫出原因。</li>
+          <li><strong>原圖三（每日折線）</strong>：要講「熱度延續兩三天」，讀者卻得自己數高峰後每天掉多少；而且它和原圖四的上半張是同一條線。這版用洋流地圖播放每天的變化，並另做「對齊當天」的圖，直接看隔天、後天剩幾成。</li>
+          <li><strong>原圖四（沈、蔣上下兩張折線）</strong>：兩張刻度不同、標籤重疊，蔣萬安的重點「隔天反而變多」看不出來。這版兩人用同一個百分比刻度，各自對齊自己的掃街日。</li>
+          <li><strong>兩張熱門貼文表</strong>：結論是「沈這邊多是一般民眾、蔣這邊多是政治人物與媒體」，但 32 列文字要讀者自己數。這版用泡泡圖，可以依發文者類型、場次、地點分群。</li>
+        </ol>
+        <p>原圖：<a href="https://storage.googleapis.com/best-life.appspot.com/1/2026/11/image-12.png" target="_blank" rel="noopener noreferrer">圖一</a> · <a href="https://storage.googleapis.com/best-life.appspot.com/1/2026/11/image-13.png" target="_blank" rel="noopener noreferrer">圖二</a> · <a href="https://storage.googleapis.com/best-life.appspot.com/1/2026/11/image-9.png" target="_blank" rel="noopener noreferrer">圖三</a> · <a href="https://storage.googleapis.com/best-life.appspot.com/1/2026/11/image-10.png" target="_blank" rel="noopener noreferrer">圖四</a></p>
+      </details>
+      <details>
+        <summary>看資料表</summary>
+        <div class="tables"></div>
+      </details>
+      <p class="source">資料：<a href="https://www.qsearch.cc/blog/2026/11/2026-taipei-mayoral-street-campaign-social-volume/" target="_blank" rel="noopener noreferrer">QSearch〈街頭陸戰遇上網路空戰：沈伯洋車掃、蔣萬安走夜市，社群在聊什麼？〉</a>（2026/11/17）。每日筆數除了文中寫明的數字，是從原圖讀出的估計值（誤差約 ±5 筆）；前 3 天平均與當天筆數從長條圖讀出（誤差約 ±30 筆），倍數用原圖標示。互動數是原文作者 11/17 查看時的數字。地圖的亮度是「每天全台」和車掃有關的討論，畫在最近一場車掃的那兩區，不是各區各自的討論量。行政區界線：內政部鄉鎮市區界線（經 taiwan-atlas 簡化）；蔣萬安的夜市位置是我們依地名標的約略位置。聲量只代表被討論的多寡，不分支持或批評，也不能證明是掃街帶動。</p>
+    </section>
+  </section>
+  <div class="tooltip" role="status" hidden></div>
+  <noscript>請開啟 JavaScript 以顯示互動圖表。</noscript>
+</main>
+</body>
+</html>

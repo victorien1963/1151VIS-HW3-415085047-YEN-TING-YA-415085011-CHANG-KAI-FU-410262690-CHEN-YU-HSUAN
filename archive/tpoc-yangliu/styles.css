@@ -1,0 +1,17 @@
+:root{--foreground:#152924;--muted-foreground:#4d6058;--green:#14724a;--blue:#245eab;--border:#c9d4ce;--background:#fff;--muted:#f0f5f1}
+body{margin:0;background:var(--background)}
+main{max-width:880px;margin:clamp(20px,7vw,70px) auto;padding:0 20px}
+summary{padding:10px 0}a{color:var(--blue)}
+#yl-track{font-family:"Instrument Sans","PingFang TC",sans-serif;color:var(--foreground);container-type:inline-size;font-variant-numeric:tabular-nums}
+#yl-track h2{font:600 clamp(21px,4.6cqw,33px)/1.25 "Songti TC",serif;margin:0 0 4px}
+#yl-track header p,#yl-track details p{font-size:13px;margin:4px 0 8px}
+#yl-track .yt-key{display:flex;gap:6px 20px;flex-wrap:wrap;font-size:12px;color:var(--muted-foreground);border-top:1px solid var(--border);padding-top:8px}
+#yl-track svg{width:100%;height:auto;display:block}
+#yl-track [role=button],#yl-track summary{cursor:pointer}
+#yl-track [role=button]:focus-visible circle:last-child{stroke:var(--foreground);stroke-width:2}
+#yl-track .yt-inspect{border-left:3px solid var(--ink);padding:6px 11px;font-size:14px;background:var(--muted);color:var(--foreground)}
+#yl-track .yt-inspect span{display:block;font-size:12px;margin-top:2px}
+#yl-track details{margin:12px 0;font-size:14px}
+#yl-track .yt-pairs>div{display:flex;gap:5px 12px;align-items:center;flex-wrap:wrap;padding:4px 0}
+#yl-track .yt-pairs b{font-size:18px;letter-spacing:1px;color:var(--ink)}
+#yl-track .yt-pairs small,#yl-track .yt-source{font-size:12px;color:var(--muted-foreground)}
