@@ -25,7 +25,7 @@
     '2026-10-18': { no: 2, color: '#c77dff', districts: ['松山區', '信義區'] },
     '2026-10-31': { no: 3, color: '#ff5d8f', districts: ['中正區', '萬華區'] },
     '2026-11-01': { no: 4, color: '#ffd166', districts: ['大安區', '文山區'] },
-    '2026-11-07': { no: 5, color: '#5ee6a8', districts: ['內湖區', '南港區'] },
+    '2026-11-07': { no: 5, color: '#d62828', districts: ['內湖區', '南港區'] },
     '2026-11-15': { no: 6, color: '#ff8c42', districts: ['士林區', '北投區'] },
   };
   const sessions = data.shenSessions.map((s) => ({
@@ -37,7 +37,8 @@
   const sessionByDate = new Map(sessions.map((s) => [s.date, s]));
   const sessionByDistrict = new Map(sessions.flatMap((s) => s.districts.map((d) => [d, s])));
 
-  const CHIANG_COLOR = '#5b8cff';
+  // 兩位候選人都不用政黨色（綠、藍）：沈伯洋各場用場次色，蔣萬安用中性的銀灰。
+  const CHIANG_COLOR = '#c3cad8';
   // 夜市位置是我們依地名標的約略座標；10/29 太太代為走的市場原文沒有地點，不標。
   const CHIANG_SPOTS = [
     // dx／dy／anchor 是標籤相對光點的位置，避免彼此重疊

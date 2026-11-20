@@ -88,7 +88,7 @@ html, body { margin: 0; background: #0a0f1c; }
 @keyframes flow { to { stroke-dashoffset: -48; } }
 .map-label-no { font-size: 12px; font-weight: 700; fill: #ffffff; paint-order: stroke; stroke: rgba(10, 15, 28, 0.85); stroke-width: 3px; }
 .map-label-name { font-size: 12px; fill: #dfe5f0; paint-order: stroke; stroke: rgba(10, 15, 28, 0.85); stroke-width: 3px; }
-.spot-label { font-size: 11px; fill: #cfdcff; paint-order: stroke; stroke: rgba(10, 15, 28, 0.9); stroke-width: 3px; }
+.spot-label { font-size: 11px; fill: #e3e6ec; paint-order: stroke; stroke: rgba(10, 15, 28, 0.9); stroke-width: 3px; }
 .spot { cursor: default; }
 .hud-date { font-size: 22px; font-weight: 800; fill: #ffffff; }
 .hud-count { font-size: 13px; fill: var(--text-secondary); }
@@ -96,6 +96,8 @@ html, body { margin: 0; background: #0a0f1c; }
 .spark-line { fill: none; stroke: rgba(255, 255, 255, 0.55); stroke-width: 1.5; }
 .spark-cursor { stroke: #ffffff; stroke-width: 1.5; }
 .spark-tick { font-size: 10px; fill: var(--text-muted); }
+.legend-marker { fill: #ffffff; }
+.legend-tick { stroke: var(--text-muted); stroke-width: 1; }
 .map-controls { position: absolute; top: 12px; right: 12px; }
 .play-btn {
   color: var(--text-primary); background: rgba(23, 32, 54, 0.9); border: 1px solid var(--border);

@@ -63,6 +63,7 @@
     let projection;
     let path;
     let spark = null;
+    let legend = null;
 
     const sessionOf = (f) => H.sessionByDistrict.get(f.properties.name);
     const touchOnly = window.matchMedia('(hover: none)').matches;
@@ -77,7 +78,7 @@
       if (w < 200 || h < 200) return false;
       svg.attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h);
       const sparkH = o.hud ? 58 : 0;
-      const pad = { top: o.hud ? 70 : 16, right: 16, bottom: 16 + sparkH, left: 16 };
+      const pad = { top: o.hud ? 100 : 16, right: 16, bottom: 16 + sparkH, left: 16 };
       projection = H.fitProjection(w, h, pad);
       path = d3.geoPath(projection);
 
@@ -219,6 +220,27 @@
       gHud.selectAll('*').remove();
       gHud.append('text').attr('class', 'hud-date').attr('x', 16).attr('y', 30);
       gHud.append('text').attr('class', 'hud-count').attr('x', 16).attr('y', 50);
+      // 亮度參考條：最近一場車掃的兩區，亮度＝當天筆數 ÷ 期間最多的一天；三角形標出目前這一天的位置。
+      const lg = gHud.append('g').attr('class', 'glow-legend').attr('transform', 'translate(16,64)');
+      const barX = 30;
+      const barW = Math.min(200, w - 80);
+      const gradId = `${id}-legend`;
+      const grad = defs.selectAll(`#${gradId}`).data([null]).join('linearGradient').attr('id', gradId);
+      const stops = grad.selectAll('stop').data(d3.range(11)).join('stop')
+        .attr('offset', (i) => `${i * 10}%`);
+      lg.append('text').attr('class', 'spark-tick').attr('x', 0).attr('y', 14).text('亮度');
+      lg.append('rect').attr('x', barX).attr('y', 6).attr('width', barW).attr('height', 10).attr('rx', 2)
+        .attr('fill', `url(#${gradId})`);
+      const ticks = [0, 400, 800, H.MAX_SHEN];
+      lg.append('g').selectAll('line').data(ticks).join('line').attr('class', 'legend-tick')
+        .attr('x1', (d) => barX + (d / H.MAX_SHEN) * barW).attr('x2', (d) => barX + (d / H.MAX_SHEN) * barW)
+        .attr('y1', 16).attr('y2', 20);
+      lg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'spark-tick')
+        .attr('x', (d) => barX + (d / H.MAX_SHEN) * barW).attr('y', 31)
+        .attr('text-anchor', (d, i) => (i === 0 ? 'start' : i === ticks.length - 1 ? 'end' : 'middle'))
+        .text((d, i) => (i === ticks.length - 1 ? `${H.fmt(d)} 筆` : H.fmt(d)));
+      const marker = lg.append('path').attr('class', 'legend-marker').attr('d', 'M0,5 l-4,-6 h8 z');
+      legend = { barX, barW, stops, marker };
       const sy0 = h - 50;
       const sy1 = h - 14;
       const sx = d3.scaleLinear().domain([0, last]).range([20, w - 20]);
@@ -306,6 +328,18 @@
       else if (current) line += ` · 距 ${current.name} ${dayDiff(current.date, d)} 天`;
       if (row.note) line += ` · ${row.note}`;
       gHud.select('.hud-count').text(line);
+      if (legend) {
+        // 亮度畫在「最近一場車掃」的兩區，參考條也用那一場的顏色。
+        const color = current ? current.color : '#9aa6bd';
+        // 和地圖區塊同樣的換算：填色透明度 0.1＋0.5×亮度，再加上光暈。
+        legend.stops.attr('stop-color', color)
+          .attr('stop-opacity', (i) => {
+            const t = i / 10;
+            return Math.min(1, 0.1 + 0.5 * t + 0.35 * Math.pow(t, 1.3));
+          });
+        const v = Math.min(1, row.shen / H.MAX_SHEN);
+        legend.marker.attr('transform', `translate(${legend.barX + v * legend.barW},4)`);
+      }
       if (spark) {
         const x = spark.sx(dayIdx);
         spark.cursor.attr('x1', x).attr('x2', x);
