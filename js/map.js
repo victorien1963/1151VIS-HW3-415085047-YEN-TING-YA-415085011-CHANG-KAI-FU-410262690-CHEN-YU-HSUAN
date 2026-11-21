@@ -15,6 +15,8 @@
     return geo;
   }
   const GEO = rewind(window.TAIPEI_GEO);
+  // 地圖畫得小時的標籤位移 [右移, 下移]：中山×大同往上、松山×信義往右下，避開彼此和中正×萬華
+  const LABEL_NUDGE = { '2026-10-11': [0, -8], '2026-10-18': [10, 3] };
   H.GEO = GEO;
   H.fitProjection = (w, h, pad) => d3.geoMercator()
     .fitExtent([[pad.left, pad.top], [w - pad.right, h - pad.bottom]], GEO);
@@ -141,7 +143,9 @@
         }
       }
 
-      // 標籤
+      // 標籤：地圖畫得比較小（矮手機）時，中山×大同和松山×信義的標籤會疊在一起，稍微拉開
+      const [[, top], [, bottom]] = path.bounds(GEO);
+      const compact = bottom - top < 360;
       gLabels.selectAll('g').data(H.sessions, (s) => s.date).join((enter) => {
         const g = enter.append('g');
         g.append('text').attr('class', 'map-label-no');
@@ -149,7 +153,8 @@
         return g;
       }).attr('transform', (s) => {
         const [x, y] = sessionPoint(s.date);
-        return `translate(${x},${y})`;
+        const [nx, ny] = (compact && LABEL_NUDGE[s.date]) || [0, 0];
+        return `translate(${x + nx},${y + ny})`;
       }).call((g) => {
         g.select('.map-label-no').attr('y', -2).attr('text-anchor', 'middle').text((s) => `${H.md(s.date)}`);
         g.select('.map-label-name').attr('y', 13).attr('text-anchor', 'middle').text((s) => s.name);

@@ -154,13 +154,14 @@
           .attr('fill-opacity', 0.08).attr('stroke', 'rgba(255,255,255,0.14)');
       } else if (o.grouping === 'type') {
         const colX = [0.2, 0.5, 0.8].map((f) => f * w);
-        const rowY = [h * 0.33, h * 0.76];
+        // 窄螢幕的圖比較矮，兩列往下移，列標題（沈伯洋）才不會碰到上方的欄標題（一般民眾）
+        const rowY = narrow ? [h * 0.37, h * 0.79] : [h * 0.33, h * 0.76];
         H.AUTHOR_TYPES.forEach((t, c) => labels.push({ x: colX[c], y: 22, text: t.key, cls: 'bubble-col' }));
         let lastStat = 0;
         ['shen', 'chiang'].forEach((cand, r) => {
           // 列標題不能比上一列的統計文字（「8 篇 · 33.9 萬」）高，圖比較矮時才不會疊在一起
-          const rowLabelY = Math.max(rowY[r] - (narrow ? 70 : 92), lastStat + 26);
-          labels.push({ x: 4, y: rowLabelY, text: cand === 'shen' ? '沈伯洋' : '蔣萬安', cls: 'bubble-row', anchor: 'start' });
+          const rowLabelY = Math.max(rowY[r] - (narrow ? 70 : 92), lastStat + 26, narrow ? 46 : 0);
+          labels.push({ x: 4, y: rowLabelY, base: rowLabelY, row: r, text: cand === 'shen' ? '沈伯洋' : '蔣萬安', cls: 'bubble-row', anchor: 'start' });
           H.AUTHOR_TYPES.forEach((t, c) => {
             const group = nodes.filter((d) => d.post.candidate === cand && d.type === t.key);
             group.forEach((d) => targets.set(d.i, [colX[c], rowY[r]]));
@@ -168,7 +169,7 @@
             const spread = Math.sqrt(d3.sum(group, (d) => d.r * d.r)) * 1.5;
             const statY = rowY[r] + spread + 16;
             lastStat = Math.max(lastStat, statY);
-            labels.push({ x: colX[c], y: statY, text: group.length ? `${group.length} 篇 · ${H.wan(total)}` : '0 篇', cls: 'bubble-stat' });
+            labels.push({ x: colX[c], y: statY, group, row: r, text: group.length ? `${group.length} 篇 · ${H.wan(total)}` : '0 篇', cls: 'bubble-stat' });
           });
         });
       } else {
@@ -199,6 +200,21 @@
         .attr('cx', (d) => d.x - textHalf(d.text) - 9).attr('cy', (d) => d.y - 4);
     }
     const textHalf = (t) => t.length * 6.2;
+
+    // 依發文者類型：統計文字跟著泡泡實際的位置放在泡泡下方，蔣萬安的列標題再放在沈伯洋那列統計文字下方；
+    // 圖比較矮時泡泡會被擠開，用預估位置的話文字會被泡泡壓到。
+    function placeTypeLabels() {
+      let shenStat = 0;
+      for (const d of labels) {
+        if (!d.group || !d.group.length) continue;
+        d.y = d3.max(d.group, (n) => n.y + n.r) + 16;
+        if (d.row === 0) shenStat = Math.max(shenStat, d.y);
+      }
+      for (const d of labels) {
+        if (d.cls === 'bubble-row' && d.row === 1) d.y = Math.max(d.base, shenStat + 24);
+      }
+      gLabels.selectAll('text').attr('y', (d) => d.y);
+    }
 
     function headline() {
       if (!o.headline) return;
@@ -256,6 +272,7 @@
 
     function ticked() {
       nodeSel.attr('transform', (d) => `translate(${d.x},${d.y})`);
+      if (o.grouping === 'type') placeTypeLabels();
     }
 
     function render({ burst = false } = {}) {

@@ -117,14 +117,17 @@
     const height = liftEl.clientHeight;
     if (width < 200 || height < 200) return;
     const narrow = width < 600;
-    const m = { top: 104, right: narrow ? 110 : 140, bottom: 56 + liftKey.offsetHeight + 6, left: narrow ? 20 : 150 };
+    // 窄螢幕省掉「空心＝…實心＝…」那行副標（下方圖例已說明），把高度留給 6 列
+    const m = { top: narrow ? 82 : 104, right: narrow ? 110 : 140, bottom: 56 + liftKey.offsetHeight + 6, left: narrow ? 20 : 150 };
     const svg = d3.select(liftEl).selectChildren('svg').data([null]).join('svg')
       .attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height)
       .attr('role', 'img').attr('aria-label', '車掃當天提到沈伯洋的討論是前 3 天的 1.03 到 1.27 倍；10/31 與 11/1 受辯論影響不列入。');
     svg.selectAll('*').remove();
-    svg.append('text').attr('class', 'stage-title').attr('x', narrow ? 20 : m.left).attr('y', 30).text('提到沈伯洋的總討論：當天 vs 前 3 天平均');
-    svg.append('text').attr('class', 'stage-sub').attr('x', narrow ? 20 : m.left).attr('y', 54).text('空心＝前 3 天平均，實心＝車掃當天（筆／日，四平台合計）');
-    svg.append('text').attr('class', 'stage-sub').attr('x', narrow ? 20 : m.left).attr('y', 76).text('橫軸是對數刻度，每格 1.25 倍：倍數相同，線就一樣長');
+    // 360 寬的手機放不下 18px 的標題，縮小一號
+    svg.append('text').attr('class', 'stage-title').attr('x', narrow ? 20 : m.left).attr('y', 30)
+      .style('font-size', width < 400 ? '16px' : null).text('提到沈伯洋的總討論：當天 vs 前 3 天平均');
+    if (!narrow) svg.append('text').attr('class', 'stage-sub').attr('x', m.left).attr('y', 54).text('空心＝前 3 天平均，實心＝車掃當天（筆／日，四平台合計）');
+    svg.append('text').attr('class', 'stage-sub').attr('x', narrow ? 20 : m.left).attr('y', narrow ? 54 : 76).text('橫軸是對數刻度，每格 1.25 倍：倍數相同，線就一樣長');
     // 對數刻度：線長對應「當天 ÷ 前 3 天」的倍數，不受該場原本討論量大小影響。
     const x = d3.scaleLog().domain([6000, 16000]).range([m.left, width - m.right]);
     // 刻度每格固定 1.25 倍（15,625 取整為 15,600），在對數刻度上等距。
@@ -136,8 +139,9 @@
       .attr('x', (d) => x(d)).attr('y', height - m.bottom + 20).attr('text-anchor', 'middle').text((d) => `${H.fmt(d)} 筆`);
     const rows = svg.append('g').selectAll('g').data(H.sessions).join('g')
       .attr('transform', (s, i) => `translate(0,${m.top + i * rowH + rowH / 2})`);
-    const dy = narrow ? 10 : 0;
-    rows.append('text').attr('class', 'stage-legend').attr('x', narrow ? 20 : 12).attr('y', narrow ? -10 : 4)
+    // 窄螢幕的場次名稱放在點的上方：名稱和自己的點距離要比和上一列的點近，才看得出是同一列
+    const dy = narrow ? Math.min(10, rowH * 0.22) : 0;
+    rows.append('text').attr('class', 'stage-legend').attr('x', narrow ? 20 : 12).attr('y', narrow ? dy - 14 : 4)
       .text((s) => `${H.md(s.date)} ${s.name}`);
     // 受辯論影響的兩場也用場次色，但線畫得比較淡，當天點加黑色星號（跟著圓點一起滑）。
     const link = rows.append('line').attr('y1', dy).attr('y2', dy).attr('x1', (s) => x(s.prev3)).attr('x2', (s) => x(s.prev3))

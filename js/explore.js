@@ -636,8 +636,16 @@
     }
   }
   function updateChips() {
-    for (const b of document.querySelectorAll('.chips button')) {
-      b.setAttribute('aria-pressed', String((b.dataset.date || null) === H.state.session));
+    const box = document.querySelector('.chips');
+    for (const b of box.querySelectorAll('button')) {
+      const on = (b.dataset.date || null) === H.state.session;
+      b.setAttribute('aria-pressed', String(on));
+      // 手機上按鈕排成一行橫向捲動：從圖上選了場次時，把那顆按鈕捲到中間，看得出現在選的是哪一場
+      if (on && box.scrollWidth > box.clientWidth) {
+        const br = b.getBoundingClientRect();
+        const left = box.scrollLeft + (br.left - box.getBoundingClientRect().left) - (box.clientWidth - br.width) / 2;
+        box.scrollTo({ left: Math.max(0, left), behavior: H.prefersReducedMotion() ? 'auto' : 'smooth' });
+      }
     }
   }
   H.registerView('chips', updateChips, { hover: false });
