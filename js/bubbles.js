@@ -156,14 +156,19 @@
         const colX = [0.2, 0.5, 0.8].map((f) => f * w);
         const rowY = [h * 0.33, h * 0.76];
         H.AUTHOR_TYPES.forEach((t, c) => labels.push({ x: colX[c], y: 22, text: t.key, cls: 'bubble-col' }));
+        let lastStat = 0;
         ['shen', 'chiang'].forEach((cand, r) => {
-          labels.push({ x: 4, y: rowY[r] - (narrow ? 70 : 92), text: cand === 'shen' ? '沈伯洋' : '蔣萬安', cls: 'bubble-row', anchor: 'start' });
+          // 列標題不能比上一列的統計文字（「8 篇 · 33.9 萬」）高，圖比較矮時才不會疊在一起
+          const rowLabelY = Math.max(rowY[r] - (narrow ? 70 : 92), lastStat + 26);
+          labels.push({ x: 4, y: rowLabelY, text: cand === 'shen' ? '沈伯洋' : '蔣萬安', cls: 'bubble-row', anchor: 'start' });
           H.AUTHOR_TYPES.forEach((t, c) => {
             const group = nodes.filter((d) => d.post.candidate === cand && d.type === t.key);
             group.forEach((d) => targets.set(d.i, [colX[c], rowY[r]]));
             const total = d3.sum(group, (d) => d.post.interactions || 0);
             const spread = Math.sqrt(d3.sum(group, (d) => d.r * d.r)) * 1.5;
-            labels.push({ x: colX[c], y: rowY[r] + spread + 16, text: group.length ? `${group.length} 篇 · ${H.wan(total)}` : '0 篇', cls: 'bubble-stat' });
+            const statY = rowY[r] + spread + 16;
+            lastStat = Math.max(lastStat, statY);
+            labels.push({ x: colX[c], y: statY, text: group.length ? `${group.length} 篇 · ${H.wan(total)}` : '0 篇', cls: 'bubble-stat' });
           });
         });
       } else {

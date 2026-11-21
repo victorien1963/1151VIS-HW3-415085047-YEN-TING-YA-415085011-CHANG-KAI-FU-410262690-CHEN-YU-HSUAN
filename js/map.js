@@ -78,7 +78,9 @@
       if (w < 200 || h < 200) return false;
       svg.attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h);
       const sparkH = o.hud ? 58 : 0;
-      const pad = { top: o.hud ? 100 : 16, right: 16, bottom: 16 + sparkH, left: 16 };
+      // 窄螢幕的筆數那行分成兩行（避開右上角的播放按鈕），日期區多留一行高
+      const hudTop = w < 500 ? 118 : 100;
+      const pad = { top: o.hud ? hudTop : 16, right: 16, bottom: 16 + sparkH, left: 16 };
       projection = H.fitProjection(w, h, pad);
       path = d3.geoPath(projection);
 
@@ -221,7 +223,7 @@
       gHud.append('text').attr('class', 'hud-date').attr('x', 16).attr('y', 30);
       gHud.append('text').attr('class', 'hud-count').attr('x', 16).attr('y', 50);
       // 亮度參考條：最近一場車掃的兩區，亮度＝當天筆數 ÷ 期間最多的一天；三角形標出目前這一天的位置。
-      const lg = gHud.append('g').attr('class', 'glow-legend').attr('transform', 'translate(16,64)');
+      const lg = gHud.append('g').attr('class', 'glow-legend').attr('transform', `translate(16,${pad.top - 36})`);
       const barX = 30;
       const barW = Math.min(200, w - 80);
       const gradId = `${id}-legend`;
@@ -324,13 +326,20 @@
       const row = H.byDate.get(d);
       const { current } = H.shenGlow(dayIdx);
       gHud.select('.hud-date').text(`${H.md(d)}（${H.weekday(d)}）`);
-      let line = o.chiang && o.dimShen
+      const main = o.chiang && o.dimShen
         ? `蔣萬安掃街相關 ${H.fmt(row.chiang)} 筆`
         : `沈伯洋掃街相關 ${H.fmt(row.shen)} 筆`;
-      if (row.shenCampaign) line += ` · ${row.shenCampaign} 車掃日`;
-      else if (current) line += ` · 距 ${current.name} ${dayDiff(current.date, d)} 天`;
-      if (row.note) line += ` · ${row.note}`;
-      gHud.select('.hud-count').text(line);
+      const extra = [];
+      if (row.shenCampaign) extra.push(`${row.shenCampaign} 車掃日`);
+      else if (current) extra.push(`距 ${current.name} ${dayDiff(current.date, d)} 天`);
+      if (row.note) extra.push(row.note);
+      const count = gHud.select('.hud-count').text(null);
+      if (w < 500) {
+        count.append('tspan').attr('x', 16).text(main);
+        if (extra.length) count.append('tspan').attr('x', 16).attr('dy', 17).text(extra.join(' · '));
+      } else {
+        count.text([main, ...extra].join(' · '));
+      }
       if (legend) {
         // 亮度畫在「最近一場車掃」的兩區，參考條也用那一場的顏色。
         const color = current ? current.color : '#9aa6bd';

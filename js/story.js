@@ -17,7 +17,9 @@
   const mapLegend = H.legend(layerEl('map'), [], { place: 'append', className: 'stage-key' });
   const LEGEND_SHEN = [
     { type: 'swatches', colors: sessionColors, label: '顏色＝6 場車掃（每場兩區）' },
-    { type: 'gradient', id: 'story', color: '#ff8c42', label: `越亮＝那場車掃當天討論越多（最亮：11/15 士林×北投 ${H.fmt(H.MAX_SHEN)} 筆）` },
+    { type: 'gradient', id: 'story', color: '#ff8c42', label: window.matchMedia('(max-width: 760px)').matches
+      ? `越亮＝當天討論越多（最亮 ${H.fmt(H.MAX_SHEN)} 筆）`
+      : `越亮＝那場車掃當天討論越多（最亮：11/15 士林×北投 ${H.fmt(H.MAX_SHEN)} 筆）` },
   ];
   const LEGEND_CHIANG = { type: 'glow-dot', color: H.CHIANG_COLOR, label: '藍色光點＝蔣萬安掃街，越大越亮＝當天或隔天討論越多' };
   function setMapLegend(items) {
@@ -53,11 +55,11 @@
       const col = narrow ? i % 2 : i % 3;
       const row = narrow ? Math.floor(i / 2) : Math.floor(i / 3);
       const g = legend.append('g').attr('transform', `translate(${col * (narrow ? 150 : 170)},${row * 18})`);
-      // 10/31 在圖裡畫成較細的淡線（受辯論影響），圖例也要一致
+      // 10/31 在圖裡畫成較細的淡線（受辯論影響），圖例也要一致；窄螢幕放不下「（不列入）」，靠下方圖例的「淡線」說明
       const muted = s.date === '2026-10-31';
       g.append('line').attr('x2', 14).attr('y1', -4).attr('y2', -4).attr('stroke', s.color)
         .attr('stroke-width', muted ? 2 : 3).attr('stroke-opacity', muted ? 0.4 : 1);
-      g.append('text').attr('class', 'stage-legend').attr('x', 20).text(`${H.md(s.date)} ${s.name}${muted ? '（不列入）' : ''}`);
+      g.append('text').attr('class', 'stage-legend').attr('x', 20).text(`${H.md(s.date)} ${s.name}${muted && !narrow ? '（不列入）' : ''}`);
     });
 
     svg.append('g').attr('class', 'grid').selectAll('line').data([0, 50, 150, 200]).join('line')
@@ -191,16 +193,27 @@
     steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
     STEPS[i]();
   };
-  const observer = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (e.isIntersecting) go(steps.indexOf(e.target));
-    }
-  }, {
-    // 手機上文字卡疊在圖的下方，等卡片進到畫面下段才切換；桌機則在畫面中線切換
-    rootMargin: window.matchMedia('(max-width: 760px)').matches ? '-62% 0px -8% 0px' : '-45% 0px -45% 0px',
-  });
-  steps.forEach((s) => observer.observe(s));
-  go(0);
+  // 每次捲動都找「頂端已經過切換線的最後一段」：拖捲軸或一次捲很遠也不會漏掉中間的段落。
+  // 手機上文字卡疊在圖的下方，卡片一進到畫面下段就切換；桌機在畫面中線切換。
+  const narrowStory = window.matchMedia('(max-width: 760px)');
+  let ticking = false;
+  function syncStep() {
+    ticking = false;
+    const line = window.innerHeight * (narrowStory.matches ? 0.9 : 0.5);
+    let idx = 0;
+    steps.forEach((s, k) => {
+      if (s.getBoundingClientRect().top < line) idx = k;
+    });
+    go(idx);
+  }
+  const requestSync = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(syncStep);
+  };
+  window.addEventListener('scroll', requestSync, { passive: true });
+  window.addEventListener('resize', requestSync);
+  syncStep();
   H.storyGo = go;
 
   // 舞台尺寸改變時，重畫目前段落的靜態圖

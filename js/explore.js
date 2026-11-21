@@ -77,7 +77,12 @@
   // ---------- 地圖＋詳細資料卡 ----------
   const exploreMap = H.createMap(document.querySelector('[data-chart="map"]'), {
     name: 'map', interactive: true, controls: true, hud: true, chiang: true,
-    height: (w) => (w < 600 ? Math.round(w * 1.15) : Math.min(620, Math.round(w * 0.95))),
+    // 手機（寬度不到 500）扣掉上方日期／亮度條和下方時間軸後，地圖本身還要夠大，區名標籤才不會擠在一起
+    height: (w) => {
+      if (w < 500) return Math.round(w * 1.15 + 190);
+      if (w < 600) return Math.round(w * 1.15);
+      return Math.min(620, Math.round(w * 0.95));
+    },
   });
   H.registerView('map', (reason) => {
     if (reason === 'select' && H.state.session) exploreMap.setDay(H.dayIndex.get(H.state.session));
@@ -96,9 +101,11 @@
     detail.replaceChildren();
     if (!s) {
       detail.style.setProperty('--accent', 'transparent');
+      detail.classList.add('is-empty');
       detail.append(el('p', 'detail-empty', '點地圖上的區塊、上方的場次按鈕，或下面任一張圖，看那一場車掃的細節。按「播放」看 10/1 到 11/16 每天的熱度怎麼流過台北。'));
       return;
     }
+    detail.classList.remove('is-empty');
     detail.style.setProperty('--accent', s.color);
     detail.append(el('p', 'detail-kicker', `第 ${s.no} 場車掃`));
     detail.append(el('h3', 'detail-title', `${md(s.date)}（${s.weekday}）${s.name}`));

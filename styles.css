@@ -62,17 +62,20 @@ html, body { margin: 0; background: #0a0f1c; }
 }
 .layer, .layer.map-wrap, .layer.bubbles-wrap { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
 .layer.is-on { opacity: 1; pointer-events: auto; }
+/* 桌機：圖和圖例離畫面底邊留一點空，不要貼齊 */
+@media (min-width: 761px) { .story .story-stage .layer { bottom: 14px; } }
 .story-stage .map-hud, .story-stage .map-controls { opacity: 0; transition: opacity 0.4s; pointer-events: none; }
 .story-stage.hud-on .map-hud, .story-stage.hud-on .map-controls { opacity: 1; pointer-events: auto; }
 
 @media (max-width: 760px) {
   .story { display: block; padding: 0; }
   .story-stage { position: sticky; top: 0; height: 100vh; height: 100svh; z-index: 0; }
-  .story-steps { position: relative; z-index: 1; margin-top: -100vh; margin-top: -100svh; padding: 60vh 12px 40vh; pointer-events: none; }
+  /* 第一張卡片從圖例下方開始（圖佔舞台上方 63%），一開始不會蓋到圖例 */
+  .story-steps { position: relative; z-index: 1; margin-top: -100vh; margin-top: -100svh; padding: 67vh 12px 40vh; pointer-events: none; }
   .story-step { pointer-events: auto; margin-bottom: 90vh; }
   .story-step:not(.is-active) { opacity: 0.25; }
   /* 手機上圖只佔舞台上方，下方留給文字卡 */
-  .story .story-stage .layer { inset: 0 0 36% 0; height: auto; }
+  .story .story-stage .layer { inset: 0 0 37% 0; height: auto; }
 }
 
 .stage-title { font-size: 18px; font-weight: 700; fill: var(--text-primary); }
@@ -185,6 +188,8 @@ html, body { margin: 0; background: #0a0f1c; }
   background: var(--surface-2); border-radius: 12px; border-top: 4px solid var(--accent);
   padding: 16px; min-height: 240px; position: sticky; top: 64px;
 }
+/* 還沒選場次時只有一段提示文字，不撐出空白的大框 */
+.detail-card.is-empty { min-height: 0; }
 .detail-empty { color: var(--text-secondary); font-size: 14px; margin: 0; }
 .detail-kicker { font-size: 12px; color: var(--text-muted); margin: 0; }
 .detail-title { font-size: 20px; margin: 2px 0 12px; }
