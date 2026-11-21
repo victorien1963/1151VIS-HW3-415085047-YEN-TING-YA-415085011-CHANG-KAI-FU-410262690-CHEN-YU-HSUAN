@@ -109,7 +109,7 @@
 
     function size() {
       w = el.clientWidth;
-      h = o.height ? o.height(w) : el.clientHeight - (legendBox && o.legend !== 'before' ? legendBox.offsetHeight + 4 : 0);
+      h = o.height ? o.height(w, o.grouping) : el.clientHeight - (legendBox && o.legend !== 'before' ? legendBox.offsetHeight + 4 : 0);
     }
 
     function radii() {
@@ -265,6 +265,7 @@
       drawLegend();
       size(); // 圖例畫好後高度才確定，敘事舞台要重新扣掉
       if (h < 200) return;
+      lastSize = `${w}x${h}`; // 換分群時高度可能跟著變，記下來免得尺寸監聽又重畫一次
       svg.attr('viewBox', `0 0 ${w} ${h}`).attr('width', w).attr('height', h)
         .attr('aria-label', '熱門貼文泡泡圖，每篇貼文一顆泡泡，大小代表互動數。');
       layout();

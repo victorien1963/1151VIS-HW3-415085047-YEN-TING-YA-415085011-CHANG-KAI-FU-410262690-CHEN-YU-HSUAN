@@ -151,12 +151,22 @@
   H.registerView('detail', renderDetail);
 
   // ---------- 泡泡圖 ----------
+  // 台北地圖的高寬比（等寬投影後的外框）
+  const TAIPEI_ASPECT = (() => {
+    const [[x0, y0], [x1, y1]] = d3.geoPath(H.fitProjection(1000, 100000, { top: 0, right: 0, bottom: 0, left: 0 })).bounds(H.GEO);
+    return (y1 - y0) / (x1 - x0);
+  })();
   const bubbleHeadline = document.querySelector('.bubble-headline');
   const inspect = document.querySelector('.inspect');
   let inspected = false; // 圖 2 下方是否正在顯示某篇貼文
   const bubbles = H.createBubbles(document.querySelector('[data-chart="bubbles"]'), {
     name: 'bubbles', grouping: 'map', headline: bubbleHeadline, legend: 'before',
-    height: (w) => (w < 600 ? 640 : 560),
+    // 手機上「依地圖」的高度照台北的長寬比算，不留上下空白；「依發文者類型」只有兩列，也不用太高
+    height: (w, grouping) => {
+      if (w >= 600) return 560;
+      if (grouping === 'map') return Math.round((w - 32) * TAIPEI_ASPECT + 40);
+      return grouping === 'type' ? 520 : 640;
+    },
     onPick: (post) => {
       if (post.candidate === 'shen' && post.date !== H.state.session) H.setSession(post.date);
       inspectPost(post);
