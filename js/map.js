@@ -174,6 +174,7 @@
       spots.attr('pointer-events', touchOnly ? 'none' : null);
       spots.select('.spot-label').attr('x', (s) => s.dx).attr('y', (s) => s.dy)
         .attr('text-anchor', (s) => s.anchor).text((s) => s.name);
+      placeSpotLabels(spots);
       spots.on('pointerenter', (event, s) => {
         spotTip(s);
         H.placeTip(event.clientX, event.clientY);
@@ -181,6 +182,37 @@
 
       if (o.hud) buildHud(pad);
       return true;
+    }
+
+    // 夜市名稱先放在資料指定的位置；如果碰到場次標籤（如「10/11 中山×大同」）或其他夜市，
+    // 依序改放到上、下、右、左等位置，挑第一個不重疊的。地圖大小不同，擠的地方也不同，所以每次重畫都重算。
+    const SPOT_SPOTS = [[0, -10, 'middle'], [0, 18, 'middle'], [9, 4, 'start'], [-9, 4, 'end'],
+      [9, -7, 'start'], [-9, -7, 'end'], [9, 15, 'start'], [-9, 15, 'end']];
+    function placeSpotLabels(spots) {
+      const origin = svg.node().getBoundingClientRect();
+      if (!origin.width) return;
+      const box = (el, pad = 1) => {
+        const r = el.getBoundingClientRect();
+        return { x0: r.left - origin.left - pad, y0: r.top - origin.top - pad, x1: r.right - origin.left + pad, y1: r.bottom - origin.top + pad };
+      };
+      const hit = (a, b) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+      const taken = gLabels.selectAll('text').nodes().map((el) => box(el));
+      // 夜市光點本身也不能被名稱蓋住（光點大小在 update 才設，這裡用半徑 12 的感應圓縮成半徑約 6）
+      spots.select('.spot-hit').each(function () { taken.push(box(this, -6)); });
+      spots.each(function (s) {
+        const label = d3.select(this).select('.spot-label');
+        const tries = [[s.dx, s.dy, s.anchor], ...SPOT_SPOTS];
+        let chosen = tries[0];
+        for (const t of tries) {
+          label.attr('x', t[0]).attr('y', t[1]).attr('text-anchor', t[2]);
+          if (!taken.some((b) => hit(box(label.node()), b))) {
+            chosen = t;
+            break;
+          }
+        }
+        label.attr('x', chosen[0]).attr('y', chosen[1]).attr('text-anchor', chosen[2]);
+        taken.push(box(label.node()));
+      });
     }
 
     function sessionPoint(date) {
