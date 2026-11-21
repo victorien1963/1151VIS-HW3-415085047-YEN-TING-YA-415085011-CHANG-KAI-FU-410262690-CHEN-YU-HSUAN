@@ -272,7 +272,8 @@
 
     function ticked() {
       nodeSel.attr('transform', (d) => `translate(${d.x},${d.y})`);
-      if (o.grouping === 'type') placeTypeLabels();
+      // 泡泡快停下來才調整文字位置，移動途中不跟著泡泡飄
+      if (o.grouping === 'type' && sim.alpha() < 0.06) placeTypeLabels();
     }
 
     function render({ burst = false } = {}) {

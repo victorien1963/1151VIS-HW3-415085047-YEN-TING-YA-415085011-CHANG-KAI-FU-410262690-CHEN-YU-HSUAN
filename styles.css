@@ -63,7 +63,8 @@ html, body { margin: 0; background: #0a0f1c; }
 .layer, .layer.map-wrap, .layer.bubbles-wrap { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
 .layer.is-on { opacity: 1; pointer-events: auto; }
 /* 桌機：圖和圖例離畫面底邊留一點空，不要貼齊 */
-@media (min-width: 761px) { .story .story-stage .layer { bottom: 14px; } }
+/* 地圖、泡泡的圖層另外設了 height: 100%，要改回 auto，bottom 才會生效 */
+@media (min-width: 761px) { .story .story-stage .layer { bottom: 14px; height: auto; } }
 .story-stage .map-hud, .story-stage .map-controls { opacity: 0; transition: opacity 0.4s; pointer-events: none; }
 .story-stage.hud-on .map-hud, .story-stage.hud-on .map-controls { opacity: 1; pointer-events: auto; }
 
